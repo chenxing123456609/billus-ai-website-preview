@@ -1,0 +1,156 @@
+<div class="site">
+<a href="#main" class="skip-link">跳至主要内容</a>
+<header class="site-header">
+ <div class="header-inner wrap">
+  <a class="brand header-brand" href="/" @click="navigate('/',$event)" aria-label="Billus AI 首页"><img src="/billus-ai-website-preview/assets/billus-header-logo.png" width="800" height="246" alt="Billus AI"></a>
+  <nav class="primary-nav" :class="{open:menuOpen}" aria-label="主要导航">
+   <details class="nav-dropdown" @keydown.esc="$event.currentTarget.open=false" @mouseenter="hoverProducts($event,true)" @mouseleave="hoverProducts($event,false)"><summary @click.prevent="$event.currentTarget.parentElement.open=true">产品 <span>⌄</span></summary><div class="dropdown-panel"><a href="/products/workspace" @click="navigate('/products/workspace',$event)" :aria-current="page==='workspace'?'page':undefined">毕鲁斯智能体</a><a href="/products/api-model-square" @click="navigate('/products/api-model-square',$event)" :aria-current="page==='api'?'page':undefined">API 模型广场</a><a href="/products/open-models" @click="navigate('/products/open-models',$event)" :aria-current="['openModels','modelDownloads'].includes(page)?'page':undefined">开源模型</a></div></details>
+   <details class="nav-dropdown support-dropdown" @keydown.esc="$event.currentTarget.open=false" @mouseenter="hoverProducts($event,true)" @mouseleave="hoverProducts($event,false)"><summary @click.prevent="$event.currentTarget.parentElement.open=true">服务支持 <span>⌄</span></summary><div class="dropdown-panel support-dropdown-panel"><a href="/support/manual" @click="navigate('/support/manual',$event)"><strong>功能手册</strong><small>智能体 · Claude Code · Codex 教程</small></a><a href="/support/usage-notes" @click="navigate('/support/usage-notes',$event)"><strong>注意事项</strong><small>使用前的准备与核对</small></a><a href="/support/usage-policy" @click="navigate('/support/usage-policy',$event)"><strong>使用政策</strong><small>开通、使用与售后说明</small></a><a href="/support/updates" @click="navigate('/support/updates',$event)"><strong>更新日志</strong><small>公开资料与官网更新</small></a></div></details>
+   <details class="nav-dropdown about-dropdown" @keydown.esc="$event.currentTarget.open=false" @mouseenter="hoverProducts($event,true)" @mouseleave="hoverProducts($event,false)"><summary @click.prevent="$event.currentTarget.parentElement.open=true">关于我们 <span>⌄</span></summary><div class="dropdown-panel"><a href="/about/company" @click="navigate('/about/company',$event)">公司介绍</a><a href="/about/team" @click="navigate('/about/team',$event)">团队介绍</a><a href="/about/news" @click="navigate('/about/news',$event)">新闻动态</a></div></details>
+   <a class="nav-sales" href="/contact-sales" @click="navigate('/contact-sales',$event)">联系销售</a>
+  </nav>
+  <div class="nav-actions">
+   <div class="display-controls" role="group" aria-label="语言与显示设置"><button class="language-toggle" @click="toggleLocale" :aria-label="locale==='zh'?'切换到英文':'Switch to Chinese'" :title="locale==='zh'?'切换到英文':'Switch to Chinese'">{{locale==='zh'?'EN':'中文'}}</button><span class="display-controls-divider" aria-hidden="true"></span><button class="theme-toggle" @click="toggleTheme" :aria-label="theme==='light'?'切换深色模式':'切换浅色模式'" :title="theme==='light'?'切换深色模式':'切换浅色模式'"><Icon :name="theme==='light'?'moon':'sun'"/></button></div>
+   <button @click="visitApi" class="button button-outline compact desktop-action">访问模型广场 <Icon name="arrow"/></button>
+   <button @click="requestDownload" class="button button-green compact nav-download" aria-label="下载毕鲁斯智能体"><span class="label-full">下载智能体</span><span class="label-short">下载</span><Icon name="download"/></button>
+   <button class="menu-toggle" @click="menuOpen=!menuOpen" :aria-expanded="menuOpen" aria-label="展开导航"><Icon :name="menuOpen?'close':'menu'"/></button>
+  </div>
+ </div>
+</header>
+<nav v-if="['about','team','news'].includes(page)" class="company-subnav" aria-label="关于我们二级导航"><div class="wrap"><a href="/about/company" :aria-current="page==='about'?'page':undefined" @click="navigate('/about/company',$event)">公司介绍</a><a href="/about/team" :aria-current="page==='team'?'page':undefined" @click="navigate('/about/team',$event)">团队介绍</a><a href="/about/news" :aria-current="page==='news'?'page':undefined" @click="navigate('/about/news',$event)">新闻动态</a></div></nav>
+<main v-if="page==='home'" id="main">
+ <section class="hero hero-cinematic" aria-labelledby="hero-title">
+  <div class="hero-cosmic-art" aria-hidden="true"></div>
+  <div class="hero-copy wrap">
+   <p class="hero-kicker">BILLUS AI</p>
+   <h1 id="hero-title">把未来，做成生活。</h1>
+   <p class="hero-description">以自研多模态模型与企业级智能体，连接空间方案、商品匹配、报价与成果整理，持续推进方案与采购业务的衔接。</p>
+   <div class="hero-actions"><button @click="requestDownload" class="button button-hero-primary" aria-label="下载毕鲁斯智能体">下载智能体 <Icon name="download"/></button><button @click="visitApi" class="button button-hero-secondary" aria-label="访问 API 模型广场">访问模型广场 <Icon name="arrow"/></button></div>
+  </div>
+ </section>
+
+ <section class="workspace-section wrap" id="workspace" aria-labelledby="workspace-title">
+  <div class="workspace-intro"><p class="eyebrow">BILLUS AI</p><h2 id="workspace-title">WORKSPACE</h2><p>在电脑上，推进空间方案。</p></div>
+  <figure class="workspace-window workspace-capture">
+   <div class="capture-frame">
+    <picture><source media="(max-width:560px)" srcset="/billus-ai-website-preview/assets/workspace-client-mobile-20261112.webp"><img class="capture-image" src="/billus-ai-website-preview/assets/workspace-client-20261112.webp" alt="毕鲁斯智能体客户端中，通过对话生成空间效果图的实际界面" width="1600" height="880"></picture>
+    <div class="capture-before" :style="{clipPath:'inset(0 '+(100-compare)+'% 0 0)'}" aria-hidden="true"></div>
+   </div>
+   <figcaption class="capture-caption"><span>客户端界面</span><div class="capture-controls"><label for="comparison-range">线稿 / 效果图</label><input id="comparison-range" type="range" min="0" max="100" v-model.number="compare" aria-label="线稿与效果图对比"><output for="comparison-range">{{compare}}%</output></div></figcaption>
+  </figure>
+ </section>
+
+ <section class="space-showcase" aria-labelledby="space-title">
+  <div class="space-inner wrap">
+   <div class="space-heading"><h2 id="space-title">同一空间，更多可能</h2><p>{{selectedScene.description}}</p></div>
+   <div class="scene-list" role="group" aria-label="选择空间演示">
+    <button v-for="(scene,index) in scenes" :key="scene.name" class="scene-card" :class="{active:activeScene===index}" :aria-pressed="activeScene===index" @click="chooseScene(index)"><img :src="scene.image" :alt="scene.name" loading="lazy"><span><b>0{{index+1}}</b> {{scene.name}}</span></button>
+   </div>
+  </div>
+ </section>
+
+ <section class="values-section wrap" id="solutions" aria-labelledby="values-title">
+  <div class="values-lead"><h2 id="values-title">让每一步工作<br>接得起来。</h2></div>
+  <div class="values-grid"><article v-for="(value,index) in values" :key="value.title"><span class="value-number">0{{index+1}}</span><h3>{{value.title}}</h3><p>{{value.description}}</p></article></div>
+ </section>
+
+ <section class="products-section wrap" id="products" aria-labelledby="products-title">
+  <div class="section-heading"><h2 id="products-title">两种工作方式</h2></div>
+  <div class="product-grid">
+   <article class="product-panel"><div class="product-heading">电脑客户端</div><h3>毕鲁斯智能体</h3><p>在项目工作区整理资料、修改方案，生成选品报价草稿和成果文件。</p><div class="product-card-actions"><button class="button button-dark" @click="requestDownload">下载电脑客户端 <Icon name="download"/></button><a href="/products/workspace" @click="navigate('/products/workspace',$event)" class="text-link">产品介绍 ↗</a></div></article>
+   <article class="product-panel api-panel" id="api"><div class="product-heading">线上网站</div><h3>API 模型广场</h3><p>为企业和开发者对接代码模型服务。具体模型与接入方式在使用前确认。</p><div class="product-card-actions"><button class="button button-dark" @click="visitApi">访问模型广场 <Icon name="arrow"/></button><a href="/products/api-model-square" @click="navigate('/products/api-model-square',$event)" class="text-link">产品介绍 ↗</a></div></article>
+  </div>
+ </section>
+
+ <section class="resources-section resources-hub wrap" id="resources" aria-labelledby="resources-title">
+ <div class="section-heading"><h2 id="resources-title">服务支持</h2></div>
+ <div class="support-grid">
+  <a class="support-item" href="/support/manual" @click="navigate('/support/manual',$event)"><span class="support-index">01 / USER MANUAL</span><h3>功能手册</h3><span class="support-action">查看功能手册 <Icon name="arrow"/></span></a>
+  <a class="support-item" href="/support/usage-policy" @click="navigate('/support/usage-policy',$event)"><span class="support-index">02 / USAGE POLICY</span><h3>使用政策</h3><span class="support-action">阅读使用政策 <Icon name="arrow"/></span></a>
+  <a class="support-item" href="/support/updates" @click="navigate('/support/updates',$event)"><span class="support-index">03 / CHANGELOG</span><h3>更新日志</h3><span class="support-action">查看更新日志 <Icon name="arrow"/></span></a>
+ </div>
+</section>
+ <section class="about-section" id="about" aria-labelledby="about-title"><div class="wrap about-grid">
+ <div class="about-copy"><h2 id="about-title">关于毕鲁斯</h2><p>深圳市毕鲁斯人工智能科技有限公司服务连锁商业、装修设计、家具建材及供应链企业，以多模态模型和智能体推进空间项目。</p><div class="about-actions"><a href="/about/company" @click="navigate('/about/company',$event)" class="text-link">了解毕鲁斯 <Icon name="arrow"/></a></div></div>
+ <dl class="about-positioning"><div><dt>品牌定位</dt><dd>美好生活产业的智能缔造者</dd></div><div><dt>平台定位</dt><dd>智能体驱动的供应链采购平台</dd></div><div><dt>业务主线</dt><dd>从空间方案，到采购订单</dd></div></dl>
+</div></section>
+</main>
+
+<main v-else-if="page==='workspace'||page==='api'" id="main" class="product-detail">
+ <div class="wrap breadcrumb"><a href="/" @click="navigate('/',$event)">首页</a><span>/</span><span>产品</span><span>/</span><span>{{page==='workspace'?'毕鲁斯智能体':'API 模型广场'}}</span></div>
+<div class="product-subnav"><div class="wrap product-subnav-inner"><strong>{{page==='workspace'?'毕鲁斯智能体':'API 模型广场'}}</strong><nav aria-label="产品页导航"><a v-for="item in productAnchors" :key="item.id" :href="'#'+item.id">{{item.name}}</a></nav><button class="text-link" @click="openModal(page==='workspace'?'demo':'api-contact')">咨询接入 <Icon name="arrow"/></button></div></div>
+ <template v-if="page==='workspace'">
+  <section class="detail-hero wrap" id="workspace-overview">
+   <div><p class="eyebrow">BILLUS AI WORKSPACE</p><div class="product-form-badge"><Icon name="screen"/>桌面客户端 · 电脑使用</div><h1>用企业自己的知识，<br><span>推进空间项目。</span></h1><p class="detail-lead">围绕同一项目组织需求、设计资产、商品 SKU 与报价规则，辅助方案生成、连续图像修改、选品报价草稿和成果文件整理。</p><div class="detail-actions"><button class="button button-green" @click="requestDownload">下载毕鲁斯智能体 <Icon name="download"/></button><button @click="requestPatch" class="button button-outline">下载补丁包 <Icon name="download"/></button></div></div>
+   <figure class="detail-visual workspace-detail-visual real-output"><img src="/billus-ai-website-preview/assets/workspace-scene-render.webp" alt="毕鲁斯智能体客户端生成的室内空间效果图" width="1000" height="750"><figcaption>客户端生成画面</figcaption></figure>
+  </section>
+  <section class="detail-section wrap" id="workspace-capabilities"><div class="section-heading"><h2>从项目资料，到可沟通的成果。</h2></div><div class="capability-grid"><article v-for="(item,i) in workspaceCapabilities" :key="item.title"><div><span class="product-symbol"><Icon :name="item.icon"/></span><small>0{{i+1}}</small></div><h3>{{item.title}}</h3><p>{{item.body}}</p></article></div></section>
+  <section class="detail-band" id="workspace-flow"><div class="wrap"><div class="section-heading"><h2>每一步，都接着上一步。</h2></div><ol class="detail-flow"><li v-for="(step,i) in workspaceFlow" :key="step.title"><span>0{{i+1}}</span><h3>{{step.title}}</h3><p>{{step.body}}</p></li></ol></div></section>
+  <section class="detail-section wrap data-section"><div><p class="eyebrow">YOUR COMPANY, YOUR KNOWLEDGE</p><h2>让已有积累，<br>成为新的项目起点。</h2><p>企业资料持续维护，智能体才能更好地理解品牌、产品与业务规则。</p></div><div class="data-list"><article><span>01</span><div><h3>企业知识库</h3><p>品牌规范、项目要求、历史方案与参考资料。</p></div></article><article><span>02</span><div><h3>产品 SKU 库</h3><p>家具、材料和商品资料，结合企业实际维护。</p></div></article><article><span>03</span><div><h3>报价规则库</h3><p>施工条目、单位、参考价格及业务报价标准。</p></div></article></div></section>
+    <section class="detail-section wrap workspace-install-section" id="workspace-install"><div class="section-heading"><h2>下载与安装</h2></div><ol class="detail-flow api-flow"><li v-for="(step,i) in workspaceInstallSteps" :key="step.title"><span>0{{i+1}}</span><h3>{{step.title}}</h3><p>{{step.body}}</p></li></ol></section>
+
+<section class="detail-section wrap faq-section" id="workspace-faq"><div class="section-heading"><p class="eyebrow">GOOD TO KNOW</p><h2>开始之前，先了解这些。</h2></div><div class="faq-list"><details v-for="item in workspaceFaq" :key="item.q"><summary>{{item.q}}<span>+</span></summary><p>{{item.a}}</p></details></div></section>
+  <section class="closing-section"><div class="wrap closing-inner"><div><h2>带上你的项目，聊聊怎么做。</h2></div><a class="button button-green" href="/contact-sales" @click="navigate('/contact-sales',$event)">联系我们 <Icon name="arrow"/></a></div></section>
+ </template>
+ <template v-else>
+  <section class="detail-hero wrap api-detail-hero" id="api-overview">
+   <div><p class="eyebrow">BILLUS AI MODEL SQUARE</p><div class="product-form-badge"><Icon name="globe"/>在线平台 · 浏览器访问</div><h1>为 AI 编程工作流，<br><span>对接模型服务。</span></h1><p class="detail-lead">Billus 毕鲁斯 AI 模型广场面向企业与开发者的代码模型使用需求，提供 Claude Code、Codex 相关服务对接。具体服务方式、可用模型和适配范围按当前资料确认。</p><div class="detail-actions"><button class="button button-green" @click="visitApi">访问 API 模型广场 <Icon name="arrow"/></button><a href="#api-guide" class="button button-outline">接入与使用指南</a></div></div>
+   <div class="api-directory"><div class="directory-header"><div><Icon name="code"/><span>代码模型相关服务</span></div></div><div class="directory-row"><div><h3>Claude Code</h3><p>相关服务对接</p></div></div><div class="directory-row"><div><h3>Codex</h3><p>代码模型需求沟通</p></div></div></div>
+  </section>
+  <section class="detail-section wrap" id="api-benefits"><div class="section-heading"><h2>持续使用与企业合作</h2></div><div class="capability-grid api-advantages"><article v-for="(item,i) in apiAdvantages" :key="item.title"><div><span class="product-symbol"><Icon :name="item.icon"/></span><small>0{{i+1}}</small></div><h3>{{item.title}}</h3><p>{{item.body}}</p></article></div></section>
+  <section class="detail-band" id="api-access"><div class="wrap"><div class="section-heading"><h2>从需求到接入</h2></div><ol class="detail-flow api-flow"><li v-for="(step,i) in apiFlow" :key="step.title"><span>0{{i+1}}</span><h3>{{step.title}}</h3><p>{{step.body}}</p></li></ol></div></section>
+  
+  <section class="detail-section wrap" id="api-guide"><div class="section-heading"><h2>接入资料</h2></div><div class="help-route-grid"><a href="/support/manual/claude" @click="navigate('/support/manual/claude',$event)"><span>01</span><h3>功能手册</h3><small>打开功能手册 ↗</small></a><a href="/support/usage-notes" @click="navigate('/support/usage-notes',$event)"><span>02</span><h3>注意事项</h3><small>查看注意事项 ↗</small></a><a href="/support/usage-policy" @click="navigate('/support/usage-policy',$event)"><span>03</span><h3>使用政策</h3><small>阅读使用政策 ↗</small></a></div></section>
+
+<section class="detail-section wrap api-business"><div><p class="eyebrow">FOR LONG-TERM COLLABORATION</p><h2>让合作方式，<br>适配团队的实际需求。</h2><p>围绕使用场景、预估用量、服务周期及企业采购要求，沟通合适的服务安排。</p><button class="button button-dark" @click="openModal('api-contact')">洽谈长期合作 <Icon name="arrow"/></button></div><div class="business-list"><div><span>使用需求</span><strong>使用场景与预估用量</strong></div><div><span>模型服务</span><strong>底层模型、接口与适配范围</strong></div><div><span>服务报价</span><strong>计价单位、倍率基准与结算规则</strong></div><div><span>企业合作</span><strong>合同、服务支持与开票条件</strong></div></div></section>
+  <section class="detail-section wrap faq-section" id="api-faq"><div class="section-heading"><p class="eyebrow">QUESTIONS & ANSWERS</p><h2>接入与合作常见问题。</h2></div><div class="faq-list"><details v-for="item in apiFaq" :key="item.q"><summary>{{item.q}}<span>+</span></summary><p>{{item.a}}</p></details></div></section>
+  <section class="closing-section"><div class="wrap closing-inner"><div><h2>聊聊你的代码模型需求。</h2></div><button class="button button-green" @click="openModal('api-contact')">联系合作 <Icon name="arrow"/></button></div></section>
+ </template>
+</main>
+<OpenModelsPage v-else-if="page==='openModels'||page==='modelDownloads'" :view="page==='openModels'?'overview':'downloads'" @navigate="navigate" @model-link="openModelLink"/>
+<SupportPage v-else-if="['manual','usage','policy','updates'].includes(page)" :doc-key="supportDocKey" @navigate="navigate" @download="requestDownload" @patch="requestPatch" @contact="openModal('qr-support')"/>
+<TeamPage v-else-if="page==='team'" @navigate="navigate"/>
+<NewsPage v-else-if="page==='news'" :slug="newsSlug" @navigate="navigate"/>
+<ContentPage v-else :page-key="page" @navigate="navigate" @download="requestDownload" @visit-api="visitApi" @contact="openModal('qr-support')"/>
+<footer class="footer full-footer" id="contact">
+ <div class="wrap footer-grid">
+  <div class="footer-brand"><a class="brand" href="/" @click="navigate('/',$event)" aria-label="Billus AI 返回首页"><img src="/billus-ai-website-preview/assets/brand-mark.webp" alt=""><span>Billus <b>AI</b></span></a><p>把未来，做成生活。</p><small>美好生活产业的智能缔造者</small><nav class="footer-quick-nav" aria-label="页脚快捷导航"><a href="/about/company" @click="navigate('/about/company',$event)">关于我们</a><a href="/contact-sales" @click="navigate('/contact-sales',$event)">联系销售</a></nav></div>
+  <div class="footer-contact"><h2>CONTACT US</h2><p class="footer-intro">面向空间设计与企业智能体应用</p><h3>联系我们</h3><address><a href="mailto:billus@126.com">邮箱：billus@126.com</a><span>地址：深圳市宝安区前海科兴科学园6号楼1305</span></address></div>
+  <div class="footer-channels"><a class="footer-channel" href="https://www.aigcacs.com/inspiration" target="_blank" rel="noopener noreferrer"><Icon name="globe"/><span>www.aigcacs.com/inspiration</span><span>↗</span></a><button class="footer-channel" @click="copyFooter('billus2025')"><Icon name="chat"/><span>官方客服搜索 <b>billus2025</b></span><small>{{copiedFooter==='billus2025'?'已复制':'复制'}}</small></button><button class="footer-channel social-channel" @click="copyFooter('毕鲁斯AI')"><Icon name="screen"/><span>小红书 / 视频号<small>更多账号搜索 毕鲁斯AI</small></span><small>{{copiedFooter==='毕鲁斯AI'?'已复制':'复制'}}</small></button><span class="footer-copy-status" role="status" aria-live="polite">{{footerStatus}}</span></div>
+  <div class="footer-qr-list"><button class="footer-qr" @click="openModal('qr-support')" aria-label="放大小客服助手二维码"><img src="/billus-ai-website-preview/assets/support-qr.png" alt="小客服助手二维码"><span>小客服助手</span></button><button class="footer-qr" @click="openModal('qr-experience')" aria-label="放大扫码体验二维码"><img src="/billus-ai-website-preview/assets/experience-qr.png" alt="扫码体验二维码"><span>扫码体验</span></button><small>点击二维码放大查看</small></div>
+ </div>
+ <div class="wrap footer-bottom"><span>© 2026 Billus. All rights reserved.</span><span class="footer-preview-status">预览版 · 下载与表单暂未接入 · 2026.11.18</span><nav class="footer-policy-nav" aria-label="使用规则"><a href="/support/usage-notes" @click="navigate('/support/usage-notes',$event)">注意事项</a><a href="/support/usage-policy" @click="navigate('/support/usage-policy',$event)">使用政策</a></nav><a href="https://beian.miit.gov.cn/" target="_blank" rel="noopener noreferrer">粤ICP备2025396851号</a></div>
+</footer>
+
+<dialog ref="dialog" class="site-dialog" @click="backdropClose" @close="activeModal=''">
+ <button class="dialog-close" @click="closeModal" aria-label="关闭弹窗"><Icon name="close"/></button>
+ <template v-if="activeModal==='demo'">
+  <p class="eyebrow">LET'S TALK</p><h2>从你的项目开始聊</h2><p>告诉我们业务类型和希望先解决的环节。</p>
+  <form v-if="!requestSent" @submit.prevent="submitRequest"><label>姓名或称呼<input v-model="contactName" required autocomplete="name" placeholder="怎么称呼你"></label><label>联系方式<input v-model="contactWay" required autocomplete="tel" placeholder="手机号或邮箱"></label><label>感兴趣的产品<select v-model="selectedProduct"><option value="毕鲁斯智能体">毕鲁斯智能体</option><option value="API 模型广场">API 模型广场</option><option value="企业定制服务">企业定制服务</option></select></label><button type="submit" class="button button-green">预览提交效果 <Icon name="arrow"/></button><details class="info-note"><summary>提交说明</summary><p>本地预览不会发送信息。请勿填写密钥或敏感项目资料。</p></details></form>
+  <div v-else class="form-success"><Icon name="check"/><h3>已完成预览</h3><p>信息没有发送。</p><button class="button button-outline" @click="closeModal">完成</button></div>
+ </template>
+ <template v-else-if="activeModal==='download'">
+  <h2>下载毕鲁斯智能体</h2>
+  <div class="download-options"><div><div><strong>客户端安装包</strong><span>首次安装</span></div><a v-if="productLinks.workspaceDownload" class="button button-green" :href="productLinks.workspaceDownload">下载客户端 <Icon name="download"/></a><button v-else class="button button-outline" disabled>待接入</button></div><div><div><strong>配套补丁</strong><span>更新前核对适配版本</span></div><a v-if="productLinks.workspacePatch" class="button button-outline" :href="productLinks.workspacePatch">下载补丁包 <Icon name="download"/></a><button v-else class="button button-outline" disabled>待接入</button></div></div>
+  <details class="info-note"><summary>安装说明</summary><p>智能体在电脑上使用。按对应版本说明安装；补丁只适用于标明的客户端版本。</p></details>
+  <button class="text-link" @click="closeModal();navigate('/support/manual/agent/install')">查看安装教程 <Icon name="arrow"/></button>
+ </template>
+ <template v-else-if="activeModal==='patch'">
+  <h2>下载补丁包</h2><p>请先核对客户端版本。</p><a v-if="productLinks.workspacePatch" class="button button-green access-primary" :href="productLinks.workspacePatch">下载补丁包 <Icon name="download"/></a><button v-else class="button button-outline access-primary" disabled>待接入</button><details class="info-note"><summary>版本说明</summary><p>补丁只适用于标明的客户端版本。更新前保存项目资料。</p></details><button class="text-link" @click="closeModal();navigate('/support/manual/agent/install')">查看安装教程 <Icon name="arrow"/></button>
+ </template>
+ <template v-else-if="activeModal==='api-visit'">
+  <h2>API 模型广场</h2><p>线上网站，浏览器访问。</p>
+  <button class="button button-outline access-primary" disabled>网站地址待接入</button>
+  <button class="text-link" @click="closeModal();navigate('/products/api-model-square')">查看产品介绍 <Icon name="arrow"/></button>
+ </template>
+  <template v-else-if="activeModal==='model-link'">
+   <h2>{{selectedModel?.title}}</h2><p>这是模型页跳转的演示入口。正式链接接入后，将前往对应版本的发布页面。</p>
+   <details class="info-note"><summary>版本说明</summary><p>{{selectedModel?.note}}</p></details>
+   <button class="button button-outline access-primary" @click="closeModal">返回模型档案</button>
+  </template>
+ <template v-else-if="activeModal==='qr-support'||activeModal==='qr-experience'"><p class="eyebrow">CONNECT WITH BILLUS AI</p><h2>{{activeModal==='qr-support'?'小客服助手':'扫码体验'}}</h2><p>使用微信扫描二维码，查看对应入口。</p><img class="expanded-qr" :src="activeModal==='qr-support'?'/billus-ai-website-preview/assets/support-qr.png':'/billus-ai-website-preview/assets/experience-qr.png'" :alt="activeModal==='qr-support'?'小客服助手二维码':'扫码体验二维码'"><p class="small-copy">官方客服账号：billus2025</p></template>
+ <template v-else-if="activeModal==='updates'"><p class="eyebrow">UPDATES & CHANGELOG</p><h2>更新日志</h2><p>查看已经公开的产品资料与本次官网预览调整。</p><div class="update-log-list"><article><div><time datetime="2026-11-18">2026.11.18</time><span>官网预览</span></div><h3>导航、字体与首页布局更新</h3><p>统一 OPPO Sans 字体，明确智能体下载与模型广场在线访问，整理服务支持入口和首页展示节奏。</p></article><article><div><time datetime="2026-11-17">2026.11.17</time><span>产品资料</span></div><h3>主推产品使用方式说明</h3><p>毕鲁斯智能体为电脑下载安装使用的软件；API 模型广场为浏览器线上访问的网站。</p></article></div><p class="small-copy update-log-note">软件版本更新将按正式发布记录补充。</p></template>
+ <template v-else-if="activeModal==='guide'"><p class="eyebrow">PRODUCT GUIDE</p><h2>从一项明确的任务开始</h2><ol class="guide-list"><li>整理项目需求和空间参考资料。</li><li>创建项目，调用企业设计资产。</li><li>通过连续对话调整方案。</li><li>核对清单与成果，再推进交付。</li></ol><button class="button button-dark" @click="closeModal">继续浏览</button></template>
+ <template v-else><p class="eyebrow">BILLUS AI</p><h2>了解适合你的产品</h2><p>智能体是电脑客户端，API 模型广场是线上网站。</p><button class="button button-dark" @click="requestDownload">下载智能体</button><button class="button button-outline" @click="visitApi">访问模型广场</button></template>
+</dialog>
+</div>

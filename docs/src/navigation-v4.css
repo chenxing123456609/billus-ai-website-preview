@@ -1,0 +1,96 @@
+/* User-requested navigation, tutorial hierarchy and language controls. */
+.display-controls{display:flex;align-items:center;gap:1px;border:1px solid var(--line);border-radius:999px;padding:2px;margin-right:5px;flex-shrink:0}
+.language-toggle{height:30px;min-width:34px;padding:0 7px;border-radius:50%;font-size:11px;font-weight:600;color:var(--muted)}
+.language-toggle:hover{background:var(--soft);color:var(--text)}
+.display-controls .theme-toggle{width:30px;height:30px}
+.display-controls .theme-toggle svg{width:17px;height:17px}
+.display-controls-divider{height:13px;width:1px;background:var(--line)}
+.label-short{display:none}
+.header-inner{gap:30px}
+.nav-actions{gap:9px}
+.hero-visual>.mascot{bottom:48px;right:105px}
+.reader-sidebar nav>div{min-width:0}
+.manual-nav{padding:7px 7px 12px}
+.reader-sidebar .manual-nav a{display:block;font-size:11px;line-height:1.6;padding:7px 8px;border:0;color:var(--muted);white-space:normal}
+.reader-sidebar .manual-nav a:hover{color:var(--brand);background:var(--soft)}
+.reader-sidebar .manual-nav a.manual-nav-child{padding-left:18px;font-size:10px}
+.reader-toc-group{display:flex;flex-direction:column;gap:9px;min-width:0}
+.reader-toc-child{padding-left:20px;color:var(--muted);font-size:11px}
+.manual-toc{grid-template-columns:1fr;gap:17px}
+.manual-toc .reader-toc-group{gap:9px}
+.manual-subsection{padding-top:26px;scroll-margin-top:115px}
+.manual-subsection h3{font-size:19px;font-weight:600;margin:0 0 12px}
+.manual-subsection>p{color:var(--muted);font-size:14px;line-height:1.85}
+.manual-steps{padding-left:20px;margin:17px 0 0;color:var(--muted);font-size:14px;line-height:1.85}
+.manual-steps>li{padding-left:5px;margin-top:10px}
+.manual-steps>li::marker{color:var(--brand);font-size:12px}
+.manual-official-link{display:inline-flex;gap:12px;align-items:center;margin-top:23px;font-size:12px;color:var(--brand);padding-block:6px}
+.manual-official-link:hover{text-decoration:underline;text-underline-offset:4px}
+html[lang=en] .hero h1 .hero-tagline-line{font-size:clamp(27px,2.6vw,37px);letter-spacing:-.025em}
+html[lang=en] .hero h1 .hero-highlight{margin-left:.22em}
+html[lang=en] .primary-nav{gap:23px}
+html[lang=en] .header-inner{gap:26px}
+html[lang=en] .nav-actions .button{font-size:11px;padding-inline:14px;gap:9px}
+html[lang=en] .support-dropdown-panel{min-width:265px}
+html[lang=en] .hero h2{font-size:21px;line-height:1.55;max-width:500px}
+html[lang=en] .hero-actions{gap:21px}
+html[lang=en] .product-type-hints{gap:14px}
+html[lang=en] .product-subnav-inner{gap:25px}
+html[lang=en] .product-subnav nav{gap:22px}
+html[lang=en] .detail-flow h3{font-size:15px}
+html[lang=en] .footer-channel>span{overflow-wrap:anywhere}
+html[lang=en] .footer-contact address{overflow-wrap:anywhere}
+html[lang=en] .content-page-meta{line-height:1.7}
+html[lang=en] .reader-section h2{line-height:1.4}
+html[lang=en] .reader-sidebar .manual-nav a.manual-nav-child{font-size:11px}
+@media(max-width:1200px){html[lang=en] .desktop-action{display:none}}
+@media(max-width:1100px){.hero-visual>.mascot{right:55px;bottom:48px}.header-inner{gap:23px}.nav-actions{gap:7px}}
+@media(max-width:950px) and (min-width:801px){html[lang=en] .primary-nav{gap:15px;font-size:12px}html[lang=en] .header-inner{gap:18px}}
+@media(max-width:800px){
+ .header-inner{gap:14px}.nav-actions{gap:6px}.display-controls{margin-right:2px}
+ .hero-visual>.mascot{right:20px;bottom:40px}
+ .reader-sidebar .manual-nav{display:none}
+ .manual-subsection{scroll-margin-top:90px}
+ .manual-subsection h3{font-size:18px}
+ html[lang=en] .hero h1 .hero-tagline-line{font-size:26px}
+ html[lang=en] .hero h2{font-size:17px}
+ html[lang=en] .hero-actions{flex-wrap:wrap;gap:13px 20px}
+ html[lang=en] .product-type-hints{gap:10px;font-size:10px}
+ html[lang=en] .product-subnav nav{gap:18px}
+ html[lang=en] .primary-nav{gap:4px}
+ html[lang=en] .product-subnav-inner>strong{display:none}
+ html[lang=en] .reader-sidebar nav a{font-size:11px}
+ html[lang=en] .entry-item strong{font-size:13px}
+}
+@media(max-width:560px){
+ .brand{font-size:19px;gap:6px}.brand img{width:23px;height:34px}
+ .header-inner{gap:8px}.nav-actions{gap:5px}
+ .display-controls{padding:1px;margin-right:0}.language-toggle{min-width:30px;padding:0 5px;font-size:10px}
+ .display-controls .theme-toggle{width:28px}
+ .nav-download .label-full{display:none}.nav-download .label-short{display:inline}
+ .nav-download.compact{padding-inline:12px;gap:7px}
+ .nav-download.compact svg{display:block;width:13px;height:13px}
+ .menu-toggle{width:30px;height:34px}
+ .hero-visual>.mascot{right:0;bottom:15px}
+ .manual-subsection{padding-top:24px}.manual-subsection h3{font-size:18px;line-height:1.5}
+ .manual-subsection>p,.manual-steps{font-size:13px;line-height:1.9}
+ .reader-toc-child{font-size:11px}
+ html[lang=en] .header-inner{gap:8px}
+ html[lang=en] .nav-actions .nav-download{padding-inline:10px;gap:6px;font-size:10px}
+ html[lang=en] .hero h1 .hero-tagline-line{font-size:26px;margin-top:12px}
+ html[lang=en] .hero h2{font-size:18px;max-width:340px}
+ html[lang=en] .product-subnav nav{gap:17px}
+ html[lang=en] .product-subnav .text-link{display:none}
+ html[lang=en] .product-type-hints{font-size:10px;gap:12px}
+ html[lang=en] .product-form-badge{font-size:9px}
+ html[lang=en] .detail-actions{gap:10px}
+ html[lang=en] .detail-actions .button{font-size:10px;padding-inline:13px}
+ html[lang=en] .support-policy-links{flex-direction:column;gap:14px}
+}
+@media(max-width:360px){
+ .nav-download .label-short{display:none}
+ .nav-download.compact,html[lang=en] .nav-actions .nav-download{width:34px;min-width:34px;padding:0;gap:0}
+ .nav-download.compact svg{width:15px;height:15px}
+ html[lang=en] .hero h1 .hero-tagline-line{font-size:23px}
+ html[lang=en] .hero-actions>.button{font-size:11px;padding-inline:15px}
+}
