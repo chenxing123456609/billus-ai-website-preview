@@ -846,5 +846,7 @@ export const english = {
   "图像模型与智能体协作，连接企业资料、方案任务与成果文件。": "Image models work with the agent to connect company information, proposal tasks and output files.",
   "从一个空间项目开始，构建你的 AI 工作流。": "Start with a spatial project. Build your AI workflow.",
   "以自研图像模型与企业级智能体为基础，衔接空间方案、企业知识、选品报价与成果整理，探索适合你的业务路径。": "Connect spatial proposals, company knowledge, selections, estimates and outputs with Billus image models and its enterprise agent. Explore a workflow that fits your business.",
-  "聊聊你的项目": "Discuss your project"
+  "聊聊你的项目": "Discuss your project",
+  "微信扫码咨询": "Scan with WeChat",
+  "官方客服：": "Official support: "
 };

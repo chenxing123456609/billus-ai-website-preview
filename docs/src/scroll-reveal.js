@@ -5,7 +5,7 @@ export function createScrollReveal() {
   let observer = null;
   let frame = 0;
   const selector = [
-    'main > section', 'main > header', 'main > article', 'main > .wrap.breadcrumb',
+    'main > section', 'main > header', 'main > article',
     'main section article', 'main section figure', 'main .section-heading',
     'main .docs-heading', 'main .docs-section', 'main .reader-section',
     'main .company-content-section', 'main .reader-layout > aside',
