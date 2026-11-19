@@ -1,0 +1,25 @@
+/* Reference layout only: inherit the existing page and about-section backgrounds. */
+.model-hero.model-capability-hero{grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:100px;align-items:start;min-height:610px;padding-block:78px 96px}
+.model-capability-hero .model-hero-copy{padding-top:5px}
+.model-capability-hero h1{font-size:clamp(33px,3.1vw,42px);line-height:1.35;font-weight:600;letter-spacing:-.04em;margin:20px 0 21px}
+.model-capability-hero h1 span{display:block}
+.model-capability-hero .model-hero-lead{font-size:16px;line-height:1.9;letter-spacing:0;color:var(--muted);max-width:540px}
+.model-capability-hero .model-hero-actions{margin-top:32px}
+.model-capability-hero .model-hero-actions .button{min-height:44px;padding-inline:23px;font-size:14px;gap:13px}
+.model-capability-list{list-style:none;padding:0;margin:0;min-width:0}
+.model-capability-list li{display:grid;grid-template-columns:52px minmax(0,1fr);gap:18px;align-items:start;padding-block:27px;border-bottom:1px solid var(--line)}
+.model-capability-list li:first-child{padding-top:0}
+.model-capability-list li:last-child{padding-bottom:0;border-bottom:0}
+.model-capability-icon{width:52px;height:52px;display:grid;place-items:center;background:var(--soft);color:var(--text)}
+.model-capability-icon svg{width:24px;height:24px}
+.model-capability-list h2{font-size:16px;font-weight:550;line-height:1.65;letter-spacing:0;margin:0 0 7px}
+.model-capability-list p{font-size:13px;line-height:1.85;color:var(--muted);margin:0}
+.about-section.about-invitation{padding-block:80px}
+.about-invitation-inner{display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;min-height:240px}
+.about-invitation-inner h2{max-width:1050px;font-size:clamp(28px,2.8vw,36px);font-weight:600;line-height:1.45;letter-spacing:-.035em;margin:0;text-wrap:balance}
+.about-invitation-inner>p{max-width:850px;font-size:15px;line-height:1.9;color:var(--muted);margin:22px auto 0;text-wrap:balance}
+.about-invitation-inner>.button{font-size:14px;min-height:46px;padding-inline:25px;margin-top:31px}
+.model-capability-hero a:focus-visible,.about-invitation a:focus-visible{outline:2px solid var(--brand);outline-offset:5px}
+@media(max-width:1050px){.model-hero.model-capability-hero{gap:54px;padding-block:65px 80px}.model-capability-hero h1{font-size:34px}.model-capability-hero .model-hero-lead{font-size:15px}.model-capability-list li{grid-template-columns:48px minmax(0,1fr);gap:15px;padding-block:24px}.model-capability-icon{width:48px;height:48px}.model-capability-list li:first-child{padding-top:0}.model-capability-list li:last-child{padding-bottom:0}.model-capability-list h2{font-size:15px}.about-section.about-invitation{padding-block:67px}.about-invitation-inner h2{font-size:32px}}
+@media(max-width:800px){.model-hero.model-capability-hero{grid-template-columns:1fr;gap:45px;min-height:0;padding-block:48px 66px}.model-capability-hero .model-hero-copy{padding:0;max-width:620px}.model-capability-hero h1{font-size:36px;margin-block:20px}.model-capability-hero .model-hero-lead{font-size:15px;max-width:620px}.model-capability-hero .model-hero-actions{margin-top:27px}.model-capability-list li{grid-template-columns:48px minmax(0,1fr);padding-block:24px}.model-capability-list li:first-child{padding-top:0}.model-capability-list li:last-child{padding-bottom:0}.model-capability-list h2{font-size:16px}.model-capability-list p{font-size:14px}.about-invitation-inner{min-height:230px}.about-invitation-inner h2{font-size:30px;max-width:650px}.about-invitation-inner>p{font-size:14px;max-width:620px}}
+@media(max-width:560px){.model-hero.model-capability-hero{padding-block:38px 52px;gap:39px}.model-capability-hero .model-kicker{font-size:10px;letter-spacing:.1em}.model-capability-hero h1{font-size:clamp(28px,7.8vw,34px);line-height:1.4;margin-block:17px 20px}.model-capability-hero .model-hero-lead{font-size:14px;line-height:1.9}.model-capability-hero .model-hero-actions{margin-top:25px}.model-capability-hero .model-hero-actions .button{font-size:13px;min-height:44px}.model-capability-list li{grid-template-columns:44px minmax(0,1fr);gap:14px;padding-block:23px}.model-capability-icon{width:44px;height:44px}.model-capability-icon svg{width:22px;height:22px}.model-capability-list h2{font-size:15px;line-height:1.65;margin-bottom:6px}.model-capability-list p{font-size:13px;line-height:1.85}.about-section.about-invitation{padding-block:51px}.about-invitation-inner{min-height:260px}.about-invitation-inner h2{font-size:27px;line-height:1.5}.about-invitation-inner>p{font-size:14px;line-height:1.9;margin-top:20px}.about-invitation-inner>.button{font-size:13px;min-height:44px;margin-top:27px}}

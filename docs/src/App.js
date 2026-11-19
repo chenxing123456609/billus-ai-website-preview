@@ -10,6 +10,7 @@ import {supportContent} from './support-content.js';
 import {companyContent} from './company-content.js';
 import {siteContent} from './site-content.js';
 import {productLinks} from './config.js';
+import {workspaceShowcaseTabs,workspaceHighlights} from './workspace-showcase.js';
 import {locale,t,toggleLocale} from './i18n.js';
 const paths={
  download:'M12 3v12m-5-5 5 5 5-5M4 16v5h16v-5',
@@ -31,8 +32,21 @@ const Icon={props:{name:String},setup(){return{paths}},template:'<svg viewBox="0
 export default{
  components:{Icon,ContentPage,SupportPage,TeamPage,NewsPage,OpenModelsPage},
  setup(){
-  const theme=ref(document.documentElement.dataset.theme||'light'), menuOpen=ref(false),activeScene=ref(1),compare=ref(42),activeModal=ref(''),dialog=ref(null),requestSent=ref(false),contactName=ref(''),contactWay=ref(''),selectedModel=ref(null);
+  const menuOpen=ref(false),activeScene=ref(1),compare=ref(42),activeModal=ref(''),dialog=ref(null),requestSent=ref(false),contactName=ref(''),contactWay=ref(''),selectedModel=ref(null);
   const motion=createScrollReveal();
+  const workspaceTabIndex=ref(0);
+  const selectedWorkspaceTab=computed(()=>workspaceShowcaseTabs[workspaceTabIndex.value]);
+  function selectWorkspaceTab(index,focus=false){
+   workspaceTabIndex.value=index;
+   if(focus)nextTick(()=>document.getElementById('workspace-tab-'+workspaceShowcaseTabs[index].id)?.focus());
+  }
+  function onWorkspaceTabKeydown(event){
+   const last=workspaceShowcaseTabs.length-1;
+   const positions={ArrowLeft:(workspaceTabIndex.value+last)%(last+1),ArrowRight:(workspaceTabIndex.value+1)%(last+1),Home:0,End:last};
+   if(!Object.hasOwn(positions,event.key))return;
+   event.preventDefault();
+   selectWorkspaceTab(positions[event.key],true);
+  }
   const scenes=[
    {name:'线稿构思',tag:'LINE ART',image:'/billus-ai-website-preview/assets/lineart.webp',description:'从一张线稿开始，让空间构想有迹可循。'},
    {name:'效果呈现',tag:'SPACE DESIGN',image:'/billus-ai-website-preview/assets/livingroom.webp',description:'结合项目需求与参考素材，形成可沟通的空间方案。'},
@@ -107,12 +121,11 @@ export default{
   function requestPatch(){if(productLinks.workspacePatch){location.assign(productLinks.workspacePatch)}else{openModal('patch')}}
   function visitApi(){if(productLinks.apiWebsite){window.open(productLinks.apiWebsite,'_blank','noopener,noreferrer')}else{openModal('api-visit')}}
   function openModelLink(model){selectedModel.value=model;openModal('model-link')}
-  function toggleTheme(){theme.value=theme.value==='light'?'dark':'light';document.documentElement.dataset.theme=theme.value;try{localStorage.setItem('billus-theme',theme.value)}catch{}}
   function chooseScene(i){activeScene.value=i}
   async function openModal(kind){selectedProduct.value=kind==='api-contact'?'API 模型广场':'毕鲁斯智能体';activeModal.value=kind==='api-contact'?'demo':kind;requestSent.value=false;menuOpen.value=false;document.querySelectorAll('.nav-dropdown[open]').forEach(el=>el.open=false);await nextTick();if(!dialog.value.open)dialog.value.showModal()}
   function closeModal(){dialog.value.close();activeModal.value=''}
   function backdropClose(e){if(e.target===dialog.value)closeModal()}
   function submitRequest(){requestSent.value=true}
-  return{productLinks,supportDocKey,newsSlug,locale,toggleLocale,requestPatch,requestDownload,visitApi,openModelLink,selectedModel,workspaceInstallSteps,guideTab,stepGuide,productAnchors,apiGuideTabs,apiSetupSteps,apiUsageNotes,apiPolicyOverview,page,navigate,hoverProducts,copiedFooter,footerStatus,copyFooter,selectedProduct,workspaceCapabilities,workspaceFaq,workspaceFlow,apiAdvantages,apiFaq,apiFlow,theme,toggleTheme,menuOpen,activeScene,compare,scenes,selectedScene,chooseScene,values,steps,activeModal,dialog,openModal,closeModal,backdropClose,requestSent,contactName,contactWay,submitRequest};
+  return{workspaceShowcaseTabs,workspaceHighlights,workspaceTabIndex,selectedWorkspaceTab,selectWorkspaceTab,onWorkspaceTabKeydown,productLinks,supportDocKey,newsSlug,locale,toggleLocale,requestPatch,requestDownload,visitApi,openModelLink,selectedModel,workspaceInstallSteps,guideTab,stepGuide,productAnchors,apiGuideTabs,apiSetupSteps,apiUsageNotes,apiPolicyOverview,page,navigate,hoverProducts,copiedFooter,footerStatus,copyFooter,selectedProduct,workspaceCapabilities,workspaceFaq,workspaceFlow,apiAdvantages,apiFaq,apiFlow,menuOpen,activeScene,compare,scenes,selectedScene,chooseScene,values,steps,activeModal,dialog,openModal,closeModal,backdropClose,requestSent,contactName,contactWay,submitRequest};
  }
 };

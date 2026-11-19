@@ -1,5 +1,13 @@
-import {modelArchive} from './open-models-content.js';
+import {modelArchive,modelCapabilities} from './open-models-content.js';
 import {t} from './i18n.js';
+
+// Same line-icon paths and stroke treatment as the existing site Icon component.
+const capabilityIcons = {
+  screen: 'M3 4h18v13H3zm5 17h8m-4-4v4',
+  grid: 'M4 4h6v6H4zm10 0h6v6h-6zM4 14h6v6H4zm10 0h6v6h-6z',
+  file: 'M6 3h8l4 4v14H6zm8 0v5h4M9 12h6m-6 4h6',
+  chat: 'M4 4h16v12H9l-5 4V4Z',
+};
 
 export default {
   props: {view: {type: String, default: 'overview'}},
@@ -7,7 +15,7 @@ export default {
   setup(_props, {emit}) {
     const navigate = (to, event) => emit('navigate', to, event);
     const openModel = (model, event) => { event?.preventDefault(); emit('model-link', model); };
-    return {modelArchive, navigate, openModel, t};
+    return {modelArchive, modelCapabilities, capabilityIcons, navigate, openModel, t};
   },
   template: `
   <main id="main" class="open-models-page">
@@ -19,19 +27,21 @@ export default {
     </nav>
 
     <template v-if="view==='overview'">
-      <section class="model-hero wrap" aria-labelledby="model-page-title">
+      <section class="model-hero model-capability-hero wrap" aria-labelledby="model-page-title">
         <div class="model-hero-copy">
-          <p class="model-kicker">BILLUS DIFFUSION / OPEN MODELS</p>
-          <h1 id="model-page-title">{{t('开源模型')}}</h1>
-          <p class="model-hero-lead">{{t('面向建筑、室内与景观创作的模型作品。')}}</p>
+          <p class="model-kicker">BILLUS DIFFUSION / MODEL CAPABILITIES</p>
+          <h1 id="model-page-title"><span>{{t('毕鲁斯自研大模型')}}</span><span>{{t('空间创作的能力底座')}}</span></h1>
+          <p class="model-hero-lead">{{t('面向建筑、室内与景观场景，围绕图像生成、参考图编辑与空间表达持续研发。通过毕鲁斯智能体，衔接企业知识、项目任务与成果整理。')}}</p>
           <div class="model-hero-actions">
-            <a class="button button-green" href="/products/open-models/downloads" @click="navigate('/products/open-models/downloads', $event)">{{t('查看往期模型')}} <span aria-hidden="true">↗</span></a>
-            <a class="text-link" href="/about/company" @click="navigate('/about/company', $event)">{{t('了解毕鲁斯')}} <span aria-hidden="true">↗</span></a>
+            <a class="button button-green" href="/products/open-models/downloads" @click="navigate('/products/open-models/downloads', $event)">{{t('查看模型档案')}} <span aria-hidden="true">→</span></a>
           </div>
         </div>
-        <div class="model-hero-visual" aria-hidden="true">
-          <div class="model-visual-field"><span class="model-visual-top">BILLUS / 04C</span><strong>0.4C</strong><span class="model-visual-bottom">ARCHITECTURE · INTERIOR · LANDSCAPE</span></div>
-        </div>
+        <ul class="model-capability-list" :aria-label="t('模型能力')">
+          <li v-for="item in modelCapabilities" :key="item.title">
+            <span class="model-capability-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.65" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path :d="capabilityIcons[item.icon]"/></svg></span>
+            <div><h2>{{t(item.title)}}</h2><p>{{t(item.body)}}</p></div>
+          </li>
+        </ul>
       </section>
 
       <section class="model-feature wrap" aria-labelledby="model-feature-title">

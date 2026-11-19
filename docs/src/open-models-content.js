@@ -1,5 +1,14 @@
 // The archive distinguishes an independently checked public page from names
 // mentioned only in historical Billus material. Links remain demo placeholders.
+// Overview capabilities describe Billus's model/agent direction, not a promise
+// that every archived model supports every operation.
+export const modelCapabilities = [
+  {icon: 'screen', title: '图文结合的空间表达', body: '结合自然语言、线稿与参考素材，形成可沟通的空间效果。'},
+  {icon: 'grid', title: '面向行业的图像生成', body: '围绕建筑、室内与景观场景，探索风格、材质与空间氛围。'},
+  {icon: 'file', title: '图像编辑与细节探索', body: '按对应模型与客户端版本，开展材质、软装与局部内容的调整。'},
+  {icon: 'chat', title: '企业知识与智能体协同', body: '图像模型与智能体协作，连接企业资料、方案任务与成果文件。'},
+];
+
 export const modelArchive = [
   {
     slug: 'billus-04c',

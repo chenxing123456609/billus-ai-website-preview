@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 900" fill="none">
+  <defs>
+    <linearGradient id="beam" x1="0" y1="0" x2="1" y2="0">
+      <stop stop-color="#08160d" stop-opacity="0"/>
+      <stop offset=".7" stop-color="#24783e" stop-opacity=".44"/>
+      <stop offset="1" stop-color="#7dcb62" stop-opacity=".68"/>
+    </linearGradient>
+    <linearGradient id="fade" x1="0" y1="0" x2="0" y2="1">
+      <stop stop-color="white" stop-opacity="0"/>
+      <stop offset=".24" stop-color="white"/>
+      <stop offset=".7" stop-color="white" stop-opacity=".9"/>
+      <stop offset="1" stop-color="white" stop-opacity="0"/>
+    </linearGradient>
+    <mask id="edges"><path fill="url(#fade)" d="M0 0h1440v900H0z"/></mask>
+  </defs>
+  <g mask="url(#edges)">
+    <g fill="url(#beam)" transform="rotate(-39 720 450)">
+      <path opacity=".3" d="M210-500h132v1900H210z"/>
+      <path opacity=".5" d="M366-500h132v1900H366z"/>
+      <path opacity=".85" d="M522-500h132v1900H522z"/>
+      <path d="M678-500h132v1900H678z"/>
+      <path opacity=".8" d="M834-500h132v1900H834z"/>
+      <path opacity=".45" d="M990-500h132v1900H990z"/>
+    </g>
+  </g>
+</svg>

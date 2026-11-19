@@ -2,6 +2,8 @@
 .display-controls{display:flex;align-items:center;gap:1px;border:1px solid var(--line);border-radius:999px;padding:2px;margin-right:5px;flex-shrink:0}
 .language-toggle{height:30px;min-width:34px;padding:0 7px;border-radius:50%;font-size:11px;font-weight:600;color:var(--muted)}
 .language-toggle:hover{background:var(--soft);color:var(--text)}
+.nav-actions>.nav-language-toggle{height:34px;min-width:38px;padding-inline:9px;border:1px solid var(--line);border-radius:999px;flex-shrink:0}
+.nav-language-toggle:focus-visible{outline:2px solid var(--brand);outline-offset:3px}
 .display-controls .theme-toggle{width:30px;height:30px}
 .display-controls .theme-toggle svg{width:17px;height:17px}
 .display-controls-divider{height:13px;width:1px;background:var(--line)}
@@ -94,3 +96,25 @@ html[lang=en] .reader-sidebar .manual-nav a.manual-nav-child{font-size:11px}
  html[lang=en] .hero h1 .hero-tagline-line{font-size:23px}
  html[lang=en] .hero-actions>.button{font-size:11px;padding-inline:15px}
 }
+
+/* Black first- and second-level navigation; keep page colors scoped outside. */
+.site-header,.company-subnav,.product-subnav{
+ --page:#000;--surface:#000;--soft:#182017;--text:#f2f5ef;--muted:#b8c1b5;
+ --brand:#9bdf78;--bright:#abe88b;--line:#2b3428;--tint:#192715;
+ --shadow:0 16px 40px #0006;
+ background:#000;color:var(--text);border-color:var(--line);
+}
+.site-header .primary-nav,.site-header .dropdown-panel{background:#000;color:var(--text);border-color:var(--line)}
+.site-header .header-brand{cursor:default}
+.primary-nav>.nav-home[aria-current=page]{color:var(--brand)}
+.site-header .dropdown-panel a:hover,.site-header .dropdown-panel a[aria-current=page]{background:var(--tint);color:var(--brand)}
+.site-header .nav-download{background:#9bdf78;border-color:#9bdf78;color:#14210d}
+.site-header .nav-download:hover{background:#b2eb94;border-color:#b2eb94}
+.site-header .nav-language-toggle,.site-header .menu-toggle{color:#d2dbce}
+.site-header .nav-language-toggle:hover,.site-header .menu-toggle:hover{background:var(--soft);color:#f4f8f0}
+.site-header :is(a,button,summary):focus-visible,.company-subnav a:focus-visible,.product-subnav :is(a,button):focus-visible{outline:2px solid #9bdf78;outline-offset:4px}
+.product-breadcrumb-band{--muted:#b8c1b5;--brand:#9bdf78;background:#000;color:#b8c1b5;padding-bottom:22px}
+.product-breadcrumb-band .breadcrumb>span:last-child{color:#f2f5ef}
+.product-breadcrumb-band .breadcrumb a:focus-visible{outline:2px solid #9bdf78;outline-offset:4px}
+.product-breadcrumb-band+.product-subnav{margin-top:0}
+@media(max-width:560px){.product-breadcrumb-band{padding-bottom:17px}}
