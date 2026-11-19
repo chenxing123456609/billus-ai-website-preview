@@ -106,7 +106,7 @@
 </main>
 
 <main v-else-if="page==='workspace'||page==='api'" id="main" class="product-detail">
- <div class="product-breadcrumb-band"><div class="wrap breadcrumb"><a href="/" @click="navigate('/',$event)">首页</a><span>/</span><span>产品</span><span>/</span><span>{{page==='workspace'?'毕鲁斯智能体':'API 模型广场'}}</span></div></div>
+ <div class="product-breadcrumb-band" :class="{'workspace-breadcrumb-dark':page==='workspace'}"><div class="wrap breadcrumb"><a href="/" @click="navigate('/',$event)">首页</a><span>/</span><span>产品</span><span>/</span><span>{{page==='workspace'?'毕鲁斯智能体':'API 模型广场'}}</span></div></div>
 <div class="product-subnav"><div class="wrap product-subnav-inner"><strong>{{page==='workspace'?'毕鲁斯智能体':'API 模型广场'}}</strong><nav aria-label="产品页导航"><a v-for="item in productAnchors" :key="item.id" :href="'#'+item.id">{{item.name}}</a></nav><button class="text-link" @click="openModal(page==='workspace'?'demo':'api-contact')">咨询接入 <Icon name="arrow"/></button></div></div>
  <template v-if="page==='workspace'">
   <section class="workspace-launch" id="workspace-overview" aria-labelledby="workspace-overview-title">

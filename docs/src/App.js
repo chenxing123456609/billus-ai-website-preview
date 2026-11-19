@@ -6,6 +6,7 @@ import TeamPage from './TeamPage.js';
 import NewsPage from './NewsPage.js';
 import OpenModelsPage from './OpenModelsPage.js';
 import {createScrollReveal} from './scroll-reveal.js';
+import {createHeaderContrast} from './header-contrast.js';
 import {supportContent} from './support-content.js';
 import {companyContent} from './company-content.js';
 import {siteContent} from './site-content.js';
@@ -34,6 +35,7 @@ export default{
  setup(){
   const menuOpen=ref(false),activeScene=ref(1),compare=ref(42),activeModal=ref(''),dialog=ref(null),requestSent=ref(false),contactName=ref(''),contactWay=ref(''),selectedModel=ref(null);
   const motion=createScrollReveal();
+  const headerContrast=createHeaderContrast();
   const workspaceTabIndex=ref(0);
   const selectedWorkspaceTab=computed(()=>workspaceShowcaseTabs[workspaceTabIndex.value]);
   function selectWorkspaceTab(index,focus=false){
@@ -107,9 +109,9 @@ export default{
   }
   function onPop(){currentPath.value=canonicalRoute(browserPath());if(currentPath.value!==browserPath())history.replaceState({},'',siteBase+currentPath.value+location.search+location.hash);menuOpen.value=false;scrollToRoute()}
   addEventListener('popstate',onPop);
-  onBeforeUnmount(()=>{removeEventListener('popstate',onPop);motion.dispose()});
-  onMounted(()=>{if(currentPath.value!==browserPath())history.replaceState({},'',siteBase+currentPath.value+location.search+location.hash);if(location.hash)scrollToRoute();requestAnimationFrame(motion.refresh)});
-  watch(currentPath,()=>nextTick(()=>requestAnimationFrame(motion.refresh)));
+  onBeforeUnmount(()=>{removeEventListener('popstate',onPop);motion.dispose();headerContrast.dispose()});
+  onMounted(()=>{if(currentPath.value!==browserPath())history.replaceState({},'',siteBase+currentPath.value+location.search+location.hash);if(location.hash)scrollToRoute();requestAnimationFrame(()=>{motion.refresh();headerContrast.refresh()})});
+  watch(currentPath,()=>nextTick(()=>requestAnimationFrame(()=>{motion.refresh();headerContrast.refresh()})));
   watch([pageTitle,locale],([title])=>{document.title=t(title)+' · Billus AI';document.querySelector('meta[name=description]')?.setAttribute('content',t('Billus AI 美好生活产业的智能缔造者，智能体驱动的供应链采购平台。'))},{immediate:true});
   function hoverProducts(event,open){if(matchMedia('(hover:hover)').matches)event.currentTarget.open=open}
   async function copyFooter(text){
