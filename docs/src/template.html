@@ -20,7 +20,6 @@
 <nav v-if="['about','team','news'].includes(page)" class="company-subnav" aria-label="关于我们二级导航"><div class="wrap"><a href="/about/company" :aria-current="page==='about'?'page':undefined" @click="navigate('/about/company',$event)">公司介绍</a><a href="/about/team" :aria-current="page==='team'?'page':undefined" @click="navigate('/about/team',$event)">团队介绍</a><a href="/about/news" :aria-current="page==='news'?'page':undefined" @click="navigate('/about/news',$event)">新闻动态</a></div></nav>
 <main v-if="page==='home'" id="main">
  <section class="hero hero-cinematic" aria-labelledby="hero-title">
-  <div class="hero-cosmic-art" aria-hidden="true"></div>
   <div class="hero-copy wrap">
    <p class="hero-kicker">BILLUS AI</p>
    <h1 id="hero-title">把未来，做成生活。</h1>

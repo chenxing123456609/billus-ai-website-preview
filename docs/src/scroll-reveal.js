@@ -16,7 +16,7 @@ export function createScrollReveal() {
   function updateDepth() {
     frame = 0;
     const height = window.innerHeight || 1;
-    document.querySelectorAll('.hero-visual, .model-hero-visual, .hero-cosmic-art').forEach(el => {
+    document.querySelectorAll('.hero-visual, .model-hero-visual').forEach(el => {
       const rect = el.getBoundingClientRect();
       const progress = Math.max(0, Math.min(1, (height - rect.top) / (height + rect.height)));
       el.style.setProperty('--depth-offset', `${Math.round((progress - .5) * 25)}px`);

@@ -1,6 +1,5 @@
 /* Cinematic home hero, adapted to Billus copy and its existing navigation. */
 .hero.hero-cinematic{width:100%;max-width:none;margin:0;min-height:calc(100svh - 82px);display:flex;align-items:center;justify-content:center;isolation:isolate;overflow:hidden;position:relative;background:#020303;color:#f5f7f3}
-.hero-cosmic-art{position:absolute;inset:-2% 0 -4%;z-index:0;background:#020303 url('/billus-ai-website-preview/assets/hero-orbit.svg') center bottom/cover no-repeat;translate:0 var(--depth-offset,0px);pointer-events:none}
 .hero.hero-cinematic:before{content:"";position:absolute;inset:0;z-index:1;background:linear-gradient(180deg,#020303cc 0%,#0203035c 38%,#02030323 68%,#02030300 100%);pointer-events:none}
 .hero-cinematic .hero-copy{width:min(980px,calc(100% - 72px));margin:auto;padding:100px 0 160px;text-align:center;z-index:2}
 .hero-cinematic .hero-kicker{font-size:11px;font-weight:650;letter-spacing:.18em;color:#a8df96;margin:0 0 28px;line-height:1.5}
@@ -22,7 +21,6 @@
 }
 @media(max-width:560px){
  .hero.hero-cinematic{min-height:max(680px,calc(100svh - 68px));padding:0}
- .hero-cosmic-art{background-position:18% bottom;background-size:auto 100%}
  .hero.hero-cinematic:before{background:linear-gradient(180deg,#020303df 0%,#020303a8 45%,#02030324 100%)}
  .hero-cinematic .hero-copy{width:calc(100% - 40px);padding:62px 0 185px}
  .hero-cinematic .hero-kicker{font-size:10px;margin-bottom:24px}
@@ -32,5 +30,3 @@
  .hero-cinematic .hero-actions .button{min-width:0;min-height:42px;padding:0 15px;font-size:11px;gap:10px}
  .hero-cinematic .hero-actions .button svg{width:13px;height:13px}
 }
-@media(prefers-reduced-motion:no-preference){.hero-cosmic-art{transition:translate .18s linear}}
-@media(prefers-reduced-motion:reduce){.hero-cosmic-art{translate:none!important;transition:none!important}}
