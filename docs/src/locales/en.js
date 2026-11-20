@@ -1,4 +1,14 @@
+import {apiSquareEnglish} from '../api-square-content.js';
+
 export const english = {
+  ...apiSquareEnglish,
+  "携手同行，共创更多可能": "Moving forward together. Creating new possibilities.",
+  "合作品牌": "Brand logos",
+  "暂停滚动": "Pause scrolling",
+  "继续滚动": "Resume scrolling",
+  "最新新闻": "Latest news",
+  "查看全部新闻": "View all news",
+  "当前内容为资料整理稿，尚不作为正式新闻发布记录。": "These articles are drafts based on company materials, not official news release records.",
   "以自研多模态模型与企业级智能体，连接空间方案、商品匹配、报价与成果整理，持续推进方案与采购业务的衔接。": "Billus connects spatial proposals, product matching, estimates and deliverables through its own multimodal models and enterprise agent, while continuing to link proposals with procurement workflows.",
   "开源模型": "Open models",
   "往期模型": "Model archive",

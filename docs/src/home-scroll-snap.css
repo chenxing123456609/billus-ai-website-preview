@@ -1,0 +1,49 @@
+/* Native page snapping belongs only to the home route. Keep long panels scrollable. */
+html.home-scroll-snap{
+ --home-header-height:82px;
+ scroll-snap-type:y mandatory;
+ scroll-padding-top:var(--home-header-height);
+}
+.home-page>section,
+.home-scroll-snap .home-ending{
+ min-height:calc(100svh - var(--home-header-height));
+ scroll-snap-align:start;
+ scroll-snap-stop:always;
+ scroll-margin-block:0;
+}
+/* Reveal children rather than moving the section's snap boundary. */
+.motion-ready .home-page>section.scroll-reveal{
+ opacity:1;
+ filter:none;
+ transform:none;
+ transition:none;
+}
+.home-page>.hero.hero-cinematic{min-height:calc(100svh - var(--home-header-height))}
+.home-page>.workspace-features,
+.home-page>.products-section,
+.home-scroll-snap .home-ending{
+ display:flex;
+ flex-direction:column;
+ justify-content:center;
+}
+.home-page>.space-showcase{display:flex;align-items:center}
+.home-ending>.about-invitation{display:flex;align-items:center;flex:1 0 auto;min-height:0;padding-block:clamp(28px,4svh,52px)}
+.home-ending .about-invitation-inner{min-height:0}
+.home-ending>.full-footer{flex:0 0 auto;min-height:0;scroll-snap-align:none}
+.motion-ready .home-ending .scroll-reveal{opacity:1;filter:none;transform:none;transition:none}
+.home-page .workspace-feature-tabs{width:100%}
+@media(min-width:801px){
+ .home-page>.workspace-features{padding-block:clamp(22px,3svh,48px)}
+ .home-page .workspace-feature-tabs{margin-top:18px}
+ .home-page .workspace-feature-panel{min-height:0;margin-top:22px}
+ .home-page .workspace-feature-copy{padding-block:0}
+ .home-page .workspace-feature-list{margin-block:20px;gap:16px}
+ .home-page .workspace-feature-media{height:clamp(260px,43svh,420px);aspect-ratio:auto}
+ .home-page .workspace-feature-media.is-knowledge{height:auto;min-height:clamp(300px,43svh,420px)}
+}
+@media(max-width:800px){
+ html.home-scroll-snap{--home-header-height:68px}
+}
+@media(prefers-reduced-motion:reduce){
+ html.home-scroll-snap{scroll-snap-type:none;scroll-behavior:auto}
+}

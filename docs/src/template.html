@@ -23,7 +23,7 @@
  </div>
 </header>
 <nav v-if="['about','team','news'].includes(page)" class="company-subnav" aria-label="关于我们二级导航"><div class="wrap"><a href="/about/company" :aria-current="page==='about'?'page':undefined" @click="navigate('/about/company',$event)">公司介绍</a><a href="/about/team" :aria-current="page==='team'?'page':undefined" @click="navigate('/about/team',$event)">团队介绍</a><a href="/about/news" :aria-current="page==='news'?'page':undefined" @click="navigate('/about/news',$event)">新闻动态</a></div></nav>
-<main v-if="page==='home'" id="main">
+<main v-if="page==='home'" id="main" class="home-page">
  <section class="hero hero-cinematic" aria-labelledby="hero-title">
   <div class="hero-copy wrap">
    <p class="hero-kicker">BILLUS AI</p>
@@ -90,19 +90,41 @@
   </div>
  </section>
 
- <section class="resources-section resources-hub wrap" id="resources" aria-labelledby="resources-title">
- <div class="section-heading"><h2 id="resources-title">服务支持</h2></div>
- <div class="support-grid">
-  <a class="support-item" href="/support/manual" @click="navigate('/support/manual',$event)"><span class="support-index">01 / USER MANUAL</span><h3>功能手册</h3><span class="support-action">查看功能手册 <Icon name="arrow"/></span></a>
-  <a class="support-item" href="/support/usage-policy" @click="navigate('/support/usage-policy',$event)"><span class="support-index">02 / USAGE POLICY</span><h3>使用政策</h3><span class="support-action">阅读使用政策 <Icon name="arrow"/></span></a>
-  <a class="support-item" href="/support/updates" @click="navigate('/support/updates',$event)"><span class="support-index">03 / CHANGELOG</span><h3>更新日志</h3><span class="support-action">查看更新日志 <Icon name="arrow"/></span></a>
- </div>
-</section>
- <section class="about-section about-invitation" id="about" aria-labelledby="about-title"><div class="wrap about-invitation-inner">
- <h2 id="about-title">从一个空间项目开始，构建你的 AI 工作流。</h2>
- <p>以自研图像模型与企业级智能体为基础，衔接空间方案、企业知识、选品报价与成果整理，探索适合你的业务路径。</p>
- <a href="/contact-sales" @click="navigate('/contact-sales',$event)" class="button button-green">聊聊你的项目 <Icon name="arrow"/></a>
-</div></section>
+ <section v-if="latestNews.length" class="home-news-section wrap" id="latest-news" aria-labelledby="latest-news-title">
+  <header class="home-news-heading"><h2 id="latest-news-title">最新新闻</h2><a class="home-news-more" href="/about/news" @click="navigate('/about/news',$event)">查看全部新闻 <Icon name="arrow"/></a></header>
+  <div class="home-news-grid">
+   <article class="home-news-featured">
+    <a :href="'/about/news/'+latestNews[0].slug" @click="navigate('/about/news/'+latestNews[0].slug,$event)">
+     <div class="home-news-cover"><img :src="latestNews[0].homeImage" :class="{'is-contain':latestNews[0].imageMode==='contain'}" alt="" loading="lazy" decoding="async"></div>
+     <div class="home-news-meta"><span>{{latestNews[0].category}}</span><time :datetime="latestNews[0].date.replaceAll('.','-')">{{latestNews[0].dateType}} {{latestNews[0].date}}</time></div>
+     <h3>{{latestNews[0].title}}</h3><p>{{latestNews[0].summary}}</p>
+    </a>
+   </article>
+   <div class="home-news-stories">
+    <article class="home-news-story" v-for="item in latestNews.slice(1,4)" :key="item.slug">
+     <a :href="'/about/news/'+item.slug" @click="navigate('/about/news/'+item.slug,$event)">
+      <div class="home-news-story-copy"><div class="home-news-meta"><span>{{item.category}}</span><time :datetime="item.date.replaceAll('.','-')">{{item.dateType}} {{item.date}}</time></div><h3>{{item.title}}</h3><p>{{item.summary}}</p></div>
+      <img class="home-news-thumb" :class="{'is-contain':item.imageMode==='contain'}" :src="item.homeImage" alt="" loading="lazy" decoding="async">
+     </a>
+    </article>
+   </div>
+  </div>
+  <p class="home-news-note">当前内容为资料整理稿，尚不作为正式新闻发布记录。</p>
+ </section>
+ <section class="home-clients-section" :class="{'is-paused':clientLogosPaused}" id="client-logos" aria-labelledby="home-clients-title">
+  <header class="wrap home-clients-heading"><h2 id="home-clients-title">携手同行，共创更多可能</h2></header>
+  <ul class="sr-only" aria-label="合作品牌"><li v-for="logo in clientLogos" :key="logo.id">{{locale==='en'?logo.nameEn:logo.name}}</li></ul>
+  <div class="home-clients-wall" id="home-clients-wall" aria-hidden="true">
+   <div class="home-clients-lane" v-for="row in clientLogoRows" :key="row.id" :class="{'is-reversed':row.id==='right'}">
+    <div class="home-clients-track">
+     <div class="home-clients-group" v-for="copy in 2" :key="copy" :class="{'is-loop-copy':copy===2}">
+      <div class="home-client-tile" v-for="(logo,index) in row.logos" :key="logo.id+'-'+index" :class="{'is-repeat':index>=clientLogos.length}"><img :src="logo.src" :width="logo.width" :height="logo.height" alt="" loading="lazy" decoding="async"></div>
+     </div>
+    </div>
+   </div>
+  </div>
+  <div class="wrap home-clients-controls"><button class="button button-outline" :aria-pressed="clientLogosPaused" aria-controls="home-clients-wall" @click="clientLogosPaused=!clientLogosPaused">{{clientLogosPaused?'继续滚动':'暂停滚动'}}</button></div>
+ </section>
 </main>
 
 <main v-else-if="page==='workspace'||page==='api'" id="main" class="product-detail">
@@ -133,18 +155,7 @@
   <section class="closing-section"><div class="wrap closing-inner"><div><h2>带上你的项目，聊聊怎么做。</h2></div><a class="button button-green" href="/contact-sales" @click="navigate('/contact-sales',$event)">联系我们 <Icon name="arrow"/></a></div></section>
  </template>
  <template v-else>
-  <section class="detail-hero wrap api-detail-hero" id="api-overview">
-   <div><p class="eyebrow">BILLUS AI MODEL SQUARE</p><div class="product-form-badge"><Icon name="globe"/>在线平台 · 浏览器访问</div><h1>为 AI 编程工作流，<br><span>对接模型服务。</span></h1><p class="detail-lead">Billus 毕鲁斯 AI 模型广场面向企业与开发者的代码模型使用需求，提供 Claude Code、Codex 相关服务对接。具体服务方式、可用模型和适配范围按当前资料确认。</p><div class="detail-actions"><button class="button button-green" @click="visitApi">访问 API 模型广场 <Icon name="arrow"/></button><a href="#api-guide" class="button button-outline">接入与使用指南</a></div></div>
-   <div class="api-directory"><div class="directory-header"><div><Icon name="code"/><span>代码模型相关服务</span></div></div><div class="directory-row"><div><h3>Claude Code</h3><p>相关服务对接</p></div></div><div class="directory-row"><div><h3>Codex</h3><p>代码模型需求沟通</p></div></div></div>
-  </section>
-  <section class="detail-section wrap" id="api-benefits"><div class="section-heading"><h2>持续使用与企业合作</h2></div><div class="capability-grid api-advantages"><article v-for="(item,i) in apiAdvantages" :key="item.title"><div><span class="product-symbol"><Icon :name="item.icon"/></span><small>0{{i+1}}</small></div><h3>{{item.title}}</h3><p>{{item.body}}</p></article></div></section>
-  <section class="detail-band" id="api-access"><div class="wrap"><div class="section-heading"><h2>从需求到接入</h2></div><ol class="detail-flow api-flow"><li v-for="(step,i) in apiFlow" :key="step.title"><span>0{{i+1}}</span><h3>{{step.title}}</h3><p>{{step.body}}</p></li></ol></div></section>
-  
-  <section class="detail-section wrap" id="api-guide"><div class="section-heading"><h2>接入资料</h2></div><div class="help-route-grid"><a href="/support/manual/claude" @click="navigate('/support/manual/claude',$event)"><span>01</span><h3>功能手册</h3><small>打开功能手册 ↗</small></a><a href="/support/usage-notes" @click="navigate('/support/usage-notes',$event)"><span>02</span><h3>注意事项</h3><small>查看注意事项 ↗</small></a><a href="/support/usage-policy" @click="navigate('/support/usage-policy',$event)"><span>03</span><h3>使用政策</h3><small>阅读使用政策 ↗</small></a></div></section>
-
-<section class="detail-section wrap api-business"><div><p class="eyebrow">FOR LONG-TERM COLLABORATION</p><h2>让合作方式，<br>适配团队的实际需求。</h2><p>围绕使用场景、预估用量、服务周期及企业采购要求，沟通合适的服务安排。</p><button class="button button-dark" @click="openModal('api-contact')">洽谈长期合作 <Icon name="arrow"/></button></div><div class="business-list"><div><span>使用需求</span><strong>使用场景与预估用量</strong></div><div><span>模型服务</span><strong>底层模型、接口与适配范围</strong></div><div><span>服务报价</span><strong>计价单位、倍率基准与结算规则</strong></div><div><span>企业合作</span><strong>合同、服务支持与开票条件</strong></div></div></section>
-  <section class="detail-section wrap faq-section" id="api-faq"><div class="section-heading"><p class="eyebrow">QUESTIONS & ANSWERS</p><h2>接入与合作常见问题。</h2></div><div class="faq-list"><details v-for="item in apiFaq" :key="item.q"><summary>{{item.q}}<span>+</span></summary><p>{{item.a}}</p></details></div></section>
-  <section class="closing-section"><div class="wrap closing-inner"><div><h2>聊聊你的代码模型需求。</h2></div><button class="button button-green" @click="openModal('api-contact')">联系合作 <Icon name="arrow"/></button></div></section>
+  <api-square-page @navigate="navigate" @visit-api="visitApi" @contact="openModal('qr-support')"></api-square-page>
  </template>
 </main>
 <OpenModelsPage v-else-if="page==='openModels'||page==='modelDownloads'" :view="page==='openModels'?'overview':'downloads'" @navigate="navigate" @model-link="openModelLink"/>
@@ -152,6 +163,12 @@
 <TeamPage v-else-if="page==='team'" @navigate="navigate"/>
 <NewsPage v-else-if="page==='news'" :slug="newsSlug" @navigate="navigate"/>
 <ContentPage v-else :page-key="page" @navigate="navigate" @download="requestDownload" @visit-api="visitApi" @contact="openModal('qr-support')"/>
+<div class="site-ending" :class="{'home-ending':page==='home'}" :id="page==='home'?'about':undefined">
+ <section v-if="page==='home'" class="about-section about-invitation" aria-labelledby="about-title"><div class="wrap about-invitation-inner">
+  <h2 id="about-title">从一个空间项目开始，构建你的 AI 工作流。</h2>
+  <p>以自研图像模型与企业级智能体为基础，衔接空间方案、企业知识、选品报价与成果整理，探索适合你的业务路径。</p>
+  <a href="/contact-sales" @click="navigate('/contact-sales',$event)" class="button button-green">聊聊你的项目 <Icon name="arrow"/></a>
+ </div></section>
 <footer class="footer full-footer" id="contact">
  <div class="wrap footer-grid">
   <div class="footer-brand"><a class="brand" href="/" @click="navigate('/',$event)" aria-label="Billus AI 返回首页"><img src="/billus-ai-website-preview/assets/brand-mark.webp" alt=""><span>Billus <b>AI</b></span></a><p>把未来，做成生活。</p><small>美好生活产业的智能缔造者</small><nav class="footer-quick-nav" aria-label="页脚快捷导航"><a href="/about/company" @click="navigate('/about/company',$event)">关于我们</a><a href="/contact-sales" @click="navigate('/contact-sales',$event)">联系销售</a></nav></div>
@@ -161,6 +178,7 @@
  </div>
  <div class="wrap footer-bottom"><span>© 2026 Billus. All rights reserved.</span><span class="footer-preview-status">预览版 · 下载与表单暂未接入 · 2026.11.18</span><nav class="footer-policy-nav" aria-label="使用规则"><a href="/support/usage-notes" @click="navigate('/support/usage-notes',$event)">注意事项</a><a href="/support/usage-policy" @click="navigate('/support/usage-policy',$event)">使用政策</a></nav><a href="https://beian.miit.gov.cn/" target="_blank" rel="noopener noreferrer">粤ICP备2025396851号</a></div>
 </footer>
+</div>
 
 <dialog ref="dialog" class="site-dialog" @click="backdropClose" @close="activeModal=''">
  <button class="dialog-close" @click="closeModal" aria-label="关闭弹窗"><Icon name="close"/></button>

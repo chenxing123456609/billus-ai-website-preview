@@ -5,10 +5,13 @@ import SupportPage from './SupportPage.js';
 import TeamPage from './TeamPage.js';
 import NewsPage from './NewsPage.js';
 import OpenModelsPage from './OpenModelsPage.js';
+import ApiSquarePage from './ApiSquarePage.js';
 import {createScrollReveal} from './scroll-reveal.js';
 import {createHeaderContrast} from './header-contrast.js';
+import {createHomeScrollSnap} from './home-scroll-snap.js';
 import {supportContent} from './support-content.js';
 import {companyContent} from './company-content.js';
+import {clientLogos,clientLogoRows} from './home-client-logos.js';
 import {siteContent} from './site-content.js';
 import {productLinks} from './config.js';
 import {workspaceShowcaseTabs,workspaceHighlights} from './workspace-showcase.js';
@@ -31,11 +34,13 @@ const paths={
 };
 const Icon={props:{name:String},setup(){return{paths}},template:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.65" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path :d="paths[name] || paths.arrow"/></svg>'};
 export default{
- components:{Icon,ContentPage,SupportPage,TeamPage,NewsPage,OpenModelsPage},
+ components:{Icon,ContentPage,SupportPage,TeamPage,NewsPage,OpenModelsPage,ApiSquarePage},
  setup(){
   const menuOpen=ref(false),activeScene=ref(1),compare=ref(42),activeModal=ref(''),dialog=ref(null),requestSent=ref(false),contactName=ref(''),contactWay=ref(''),selectedModel=ref(null);
   const motion=createScrollReveal();
   const headerContrast=createHeaderContrast();
+  const homeScroll=createHomeScrollSnap();
+  const clientLogosPaused=ref(false);
   const workspaceTabIndex=ref(0);
   const selectedWorkspaceTab=computed(()=>workspaceShowcaseTabs[workspaceTabIndex.value]);
   function selectWorkspaceTab(index,focus=false){
@@ -71,6 +76,11 @@ export default{
   const page=computed(()=>currentPath.value.startsWith('/about/news/')?'news':currentPath.value.startsWith('/support/manual/')?'manual':routePages[currentPath.value]||'home');
   const supportDocKey=computed(()=>Object.entries(supportContent).find(([,doc])=>doc.path===currentPath.value)?.[0]||'overview');
   const newsSlug=computed(()=>currentPath.value.startsWith('/about/news/')?currentPath.value.slice('/about/news/'.length):'');
+  const homeNewsImages={
+   'enterprise-data-for-procurement':'/billus-ai-website-preview/assets/workspace-scene-render.webp',
+   'workspace-and-model-square':'/billus-ai-website-preview/assets/workspace-client-20261112.webp',
+  };
+  const latestNews=computed(()=>[...companyContent.news.items].sort((a,b)=>b.date.localeCompare(a.date)).slice(0,6).map(item=>({...item,homeImage:homeNewsImages[item.slug]||item.image})));
   const pageTitle=computed(()=>['manual','usage','policy','updates'].includes(page.value)?supportContent[supportDocKey.value].title:page.value==='team'?companyContent.team.title:page.value==='news'?(companyContent.news.items.find(item=>item.slug===newsSlug.value)?.title||companyContent.news.title):page.value==='openModels'?'开源模型':page.value==='modelDownloads'?'往期模型':siteContent[page.value]?.title||(page.value==='workspace'?'毕鲁斯智能体':page.value==='api'?'API 模型广场':'把未来，做成生活。'));
   const copiedFooter=ref(''),footerStatus=ref(''),selectedProduct=ref('毕鲁斯智能体');
   const guideTab=ref('install');
@@ -89,6 +99,8 @@ export default{
    {title:'核对报价',body:'明确单位、基准与实际结算规则。'},
    {title:'测试合作',body:'验证实际需求，再确定合作安排。'}
   ];
+  watch(page,value=>homeScroll.setEnabled(value==='home'),{immediate:true,flush:'sync'});
+  onBeforeUnmount(()=>homeScroll.dispose());
   function scrollToRoute(){
    nextTick(()=>requestAnimationFrame(()=>{
     const id=decodeURIComponent(location.hash.slice(1));
@@ -128,6 +140,6 @@ export default{
   function closeModal(){dialog.value.close();activeModal.value=''}
   function backdropClose(e){if(e.target===dialog.value)closeModal()}
   function submitRequest(){requestSent.value=true}
-  return{workspaceShowcaseTabs,workspaceHighlights,workspaceTabIndex,selectedWorkspaceTab,selectWorkspaceTab,onWorkspaceTabKeydown,productLinks,supportDocKey,newsSlug,locale,toggleLocale,requestPatch,requestDownload,visitApi,openModelLink,selectedModel,workspaceInstallSteps,guideTab,stepGuide,productAnchors,apiGuideTabs,apiSetupSteps,apiUsageNotes,apiPolicyOverview,page,navigate,hoverProducts,copiedFooter,footerStatus,copyFooter,selectedProduct,workspaceCapabilities,workspaceFaq,workspaceFlow,apiAdvantages,apiFaq,apiFlow,menuOpen,activeScene,compare,scenes,selectedScene,chooseScene,values,steps,activeModal,dialog,openModal,closeModal,backdropClose,requestSent,contactName,contactWay,submitRequest};
+  return{clientLogos,clientLogoRows,clientLogosPaused,latestNews,workspaceShowcaseTabs,workspaceHighlights,workspaceTabIndex,selectedWorkspaceTab,selectWorkspaceTab,onWorkspaceTabKeydown,productLinks,supportDocKey,newsSlug,locale,toggleLocale,requestPatch,requestDownload,visitApi,openModelLink,selectedModel,workspaceInstallSteps,guideTab,stepGuide,productAnchors,apiGuideTabs,apiSetupSteps,apiUsageNotes,apiPolicyOverview,page,navigate,hoverProducts,copiedFooter,footerStatus,copyFooter,selectedProduct,workspaceCapabilities,workspaceFaq,workspaceFlow,apiAdvantages,apiFaq,apiFlow,menuOpen,activeScene,compare,scenes,selectedScene,chooseScene,values,steps,activeModal,dialog,openModal,closeModal,backdropClose,requestSent,contactName,contactWay,submitRequest};
  }
 };
