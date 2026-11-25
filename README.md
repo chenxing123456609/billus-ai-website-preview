@@ -6,7 +6,7 @@
 
 GitHub Pages 发布源：main 分支的 /docs 文件夹。
 
-官网根路径默认展示毕鲁斯智能体产品页；点击顶部 Logo 可进入 `/home` 的网站首页。原产品介绍地址 `/products/workspace` 继续可访问。
+官网根路径默认进入 `/home` 的网站首页，点击顶部 Logo 也返回首页。毕鲁斯智能体产品页继续通过 `/products/workspace` 访问，其他独立页面地址保持可用。
 
 ## 本地预览
 

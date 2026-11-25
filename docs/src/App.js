@@ -96,9 +96,12 @@ export default{
   const steps=['需求输入','方案生成','商品匹配','报价核算','成果整理'];
   const siteBase=String(window.__BILLUS_BASE__||'').replace(/\/$/,'');
   const browserPath=()=>siteBase&&(location.pathname===siteBase||location.pathname.startsWith(siteBase+'/'))?(location.pathname.slice(siteBase.length)||'/'):location.pathname;
-  const canonicalRoute=path=>({'/support/developers':'/support/manual','/support/service-policy':'/support/usage-policy','/about':'/about/company'}[path.replace(/\/$/,'')]||path.replace(/\/$/,'')||'/');
+  const canonicalRoute=path=>{
+   const normalized=path.replace(/\/$/,'')||'/';
+   return {'/':'/home','/support/developers':'/support/manual','/support/service-policy':'/support/usage-policy','/about':'/about/company'}[normalized]||normalized;
+  };
   const currentPath=ref(canonicalRoute(browserPath()));
-  const routePages={"/": "workspace", "/home": "home", "/products/workspace": "workspace", "/products/workspace/enterprise": "enterprise", "/products/billus-agent": "workspace", "/products/api-model-square": "api", "/products/open-models": "openModels", "/products/open-models/downloads": "modelDownloads", "/support/manual": "manual", "/support/usage-notes": "usage", "/support/usage-policy": "policy", "/support/updates": "updates", "/about/company": "about", "/about/team": "team", "/about/news": "news", "/contact-sales": "sales"};
+  const routePages={"/": "home", "/home": "home", "/products/workspace": "workspace", "/products/workspace/enterprise": "enterprise", "/products/billus-agent": "workspace", "/products/api-model-square": "api", "/products/open-models": "openModels", "/products/open-models/downloads": "modelDownloads", "/support/manual": "manual", "/support/usage-notes": "usage", "/support/usage-policy": "policy", "/support/updates": "updates", "/about/company": "about", "/about/team": "team", "/about/news": "news", "/contact-sales": "sales"};
   const page=computed(()=>currentPath.value.startsWith('/about/news/')?'news':currentPath.value.startsWith('/support/manual/')?'manual':routePages[currentPath.value]||'home');
   const workspaceFeatures=useWorkspaceFeatureCarousel({page,index:workspaceTabIndex,count:workspaceShowcaseTabs.length,paused:workspaceTabPaused,durations:[23000,20500,20500]});
   const workspaceDemo=useWorkspaceDemo({page,slides:demoSlides,initialIndex:1});

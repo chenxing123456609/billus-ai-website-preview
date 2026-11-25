@@ -213,7 +213,7 @@
 <ContentPage v-else :page-key="page" @navigate="navigate" @download="requestDownload" @visit-api="visitApi" @contact="openModal('qr-support')"/>
 <div class="site-ending" :class="{'home-ending':page==='home'}" :id="page==='home'?'about':undefined">
  <section v-if="page==='home'" ref="closingBrandRoot" class="about-section about-invitation home-brand-invitation" :data-brand-phase="closingBrandPhase" aria-labelledby="about-title" @pointerdown="finishClosingBrandEntrance" @focusin="finishClosingBrandEntrance"><div class="wrap about-invitation-inner">
-  <h2 id="about-title" :aria-label="t('Billus AI 把未来，做成生活。')"><span class="home-closing-wordmark" aria-hidden="true">Billus AI</span> <span class="home-closing-brandline" aria-hidden="true"><span class="home-closing-measure">{{t('把未来，做成生活。')}}</span><span class="home-closing-typed">{{closingBrandTyped}}</span></span></h2>
+  <h2 id="about-title" :aria-label="t('Billus AI 把未来，做成生活。')"><span class="home-closing-wordmark" aria-hidden="true">Billus AI</span> <span class="home-closing-brandline" aria-hidden="true"><span class="home-closing-measure">{{t('把未来，做成生活。')}}</span><span class="home-closing-typed home-closing-typing-active">{{closingBrandTyped}}</span></span></h2>
   <p class="home-brand-positioning home-brand-detail">美好生活产业的智能缔造者</p>
   <p class="home-brand-scope home-brand-detail"><span>智能体驱动的供应链采购平台</span><span class="home-brand-separator" aria-hidden="true">·</span><span>从空间方案，到采购订单</span></p>
   <button type="button" @click="openModal('qr-support')" class="button button-green frosted-cta home-brand-detail" aria-haspopup="dialog"><span class="frosted-cta-label">聊聊你的项目</span><Icon name="arrow"/></button>
