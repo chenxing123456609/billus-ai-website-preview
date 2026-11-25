@@ -22,8 +22,9 @@
 @media(max-width:700px){.site .workspace-product-heading .workspace-animated-title{font-size:clamp(24px,6.7vw,32px)}}
 @media(prefers-reduced-motion:reduce){.site .workspace-animated-title .workspace-title-brand>span{transition:none}.workspace-title-caret{animation:none}}
 
-/* Fixed wordmark; opening the tagline row moves all following content down. */
-.site .workspace-fixed-title .workspace-fixed-brand{display:inline-grid;margin:0;line-height:1.2;vertical-align:top}
+/* Reserve the complete wordmark width while typing, centered on one row. */
+.site .workspace-product-heading .workspace-fixed-title{text-align:center}
+.site .workspace-product-heading .workspace-fixed-title>.workspace-fixed-brand{display:inline-grid;margin:0;line-height:1.2;vertical-align:top}
 .workspace-fixed-brand em{font-style:normal;color:#4c9c36}
 .site .workspace-fixed-title .workspace-fixed-brand>span{grid-area:1/1;display:block;margin:0;font-size:inherit;line-height:inherit;white-space:pre}
 .site .workspace-fixed-title .workspace-brand-measure{visibility:hidden;pointer-events:none;user-select:none}
