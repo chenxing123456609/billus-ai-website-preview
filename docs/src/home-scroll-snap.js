@@ -40,7 +40,12 @@ export function createHomeScrollSnap(){
   if(index<0)index=0;
   const current=points[index];
   if(!current)return;
-  if(sign>0&&scrollY<current.top+current.height-viewport-2)return;
+  // The balance animation now plays automatically; one gesture advances to news.
+  const balanceToNews=sign>0&&sections[index].matches('.shared-balance')&&sections[index+1]?.matches('.home-news-section');
+  // The workflow demo is one presentation screen even when its art is taller.
+  const workspaceToNext=sign>0&&sections[index].id==='workspace';
+  // The hero extends behind the header: advance it directly on the first gesture.
+  if(index>0&&sign>0&&!balanceToNews&&!workspaceToNext&&scrollY<current.top+current.height-viewport-2)return;
   if(sign<0&&scrollY>current.top+2)return;
   const next=points[index+sign];
   if(!next)return;

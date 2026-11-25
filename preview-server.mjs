@@ -14,6 +14,7 @@ const types = {
   '.jpg': 'image/jpeg', '.jpeg': 'image/jpeg', '.gif': 'image/gif',
   '.ttf': 'font/ttf', '.woff': 'font/woff', '.woff2': 'font/woff2',
   '.ico': 'image/x-icon', '.pdf': 'application/pdf',
+  '.mp4': 'video/mp4', '.webm': 'video/webm', '.vtt': 'text/vtt; charset=utf-8',
 };
 
 const server = http.createServer(async (request, response) => {
@@ -37,20 +38,43 @@ const server = http.createServer(async (request, response) => {
       response.writeHead(403).end();
       return;
     }
-    const info = await stat(file).catch(() => null);
+    let info = await stat(file).catch(() => null);
     if (!info?.isFile()) {
       if (extname(relative)) {
         response.writeHead(404).end('Not found');
         return;
       }
       file = resolve(root, 'index.html');
+      info = await stat(file);
     }
-    response.writeHead(200, {
+    const headers = {
       'Content-Type': types[extname(file).toLowerCase()] || 'application/octet-stream',
       'Cache-Control': 'no-store',
-    });
-    if (request.method === 'HEAD') response.end();
-    else createReadStream(file).on('error', () => response.destroy()).pipe(response);
+      'Accept-Ranges': 'bytes',
+      'Content-Length': info.size,
+    };
+    let start = 0, end = info.size - 1, status = 200;
+    if (request.headers.range) {
+      const range = /^bytes=(\d*)-(\d*)$/.exec(request.headers.range);
+      if (range && (range[1] || range[2])) {
+        start = range[1] ? Number(range[1]) : Math.max(0, info.size - Number(range[2]));
+        end = range[1] && range[2] ? Math.min(Number(range[2]), info.size - 1) : info.size - 1;
+      }
+      if (!range || !(range[1] || range[2]) || !Number.isSafeInteger(start) || !Number.isSafeInteger(end) || start < 0 || start > end || start >= info.size) {
+        response.writeHead(416, { 'Content-Range': `bytes */${info.size}` }).end();
+        return;
+      }
+      status = 206;
+      headers['Content-Range'] = `bytes ${start}-${end}/${info.size}`;
+      headers['Content-Length'] = end - start + 1;
+    }
+    response.writeHead(status, headers);
+    if (request.method === 'HEAD' || info.size === 0) response.end();
+    else {
+      const stream = createReadStream(file, { start, end });
+      response.on('close', () => stream.destroy());
+      stream.on('error', () => response.destroy()).pipe(response);
+    }
   } catch {
     if (!response.headersSent) response.writeHead(400);
     response.end('Bad request');

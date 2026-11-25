@@ -22,16 +22,17 @@ export const apiCompanionCards=[
 ];
 
 export const apiPersonalSteps=[
- {kind:'needs',title:c('说明使用需求','Describe what you need'),body:c('确认开发工具、使用场景与预估用量，再选择合适的服务沟通方向。','Identify your tools, scenarios and expected usage before discussing an appropriate service.'),action:c('咨询接入','Discuss access'),to:''},
+ {kind:'needs',title:c('说明使用需求','Describe what you need'),body:c('确认使用工具、使用场景与预估用量，再选择合适的服务沟通方向。','Identify your tools, scenarios and expected usage before discussing an appropriate service.'),action:c('咨询接入','Discuss access'),to:''},
  {kind:'billing',title:c('确认服务与计费','Confirm the service and billing'),body:c('核对可用模型、适配方式和计费单位，按确认的报价与规则开通。','Confirm models, compatibility and billing units, then proceed under the agreed pricing and rules.'),action:c('了解使用规则','Read the usage rules'),to:'/support/usage-policy'},
  {kind:'configure',title:c('配置并测试接入','Configure and test access'),body:c('按指引配置地址与凭证，用最小任务检查结果后再安排正式使用。','Configure addresses and credentials, then validate a small task before arranging regular use.'),action:c('查看工具教程','Read the tool guide'),to:'/support/manual/claude'},
 ];
 
 const pageCopy=[
- ['开发者与企业','Developers & teams'],['服务接入','Service access'],['长期合作','Ongoing cooperation'],
- ['对接模型服务，','Model services. '],['从开发需求开始。','Built around your workflow.'],
- ['面向个人开发者与企业团队，对接 Claude Code、Codex 相关代码模型服务，让接入方式、使用支持与合作沟通更清楚。','For individual developers and enterprise teams: discuss Claude Code and Codex related coding-model services with a clearer path to access, support and cooperation.'],
- ['探索模型服务','Explore model services'],['开发工具','Developer tools'],['访问凭证','Access credentials'],['工具配置','Tool configuration'],['使用验证','Usage validation'],
+ ['我们的三个优势','Our three advantages'],
+ ['开发者与设计师','Developers & designers'],['服务接入','Service access'],['长期合作','Ongoing cooperation'],
+ ['对接模型服务，','Model services. '],['从需求开始。','Built around your needs.'],
+ ['面向开发者与设计师，围绕开发与设计中的模型使用需求，提供服务接入、使用支持与合作沟通。','For developers and designers: discuss model access, usage support and cooperation around your development and design needs.'],
+ ['咨询了解更多','Contact us to learn more'],['开发工具','Developer tools'],['使用工具','Tools'],['访问凭证','Access credentials'],['工具配置','Tool configuration'],['使用验证','Usage validation'],
  ['工具与模型服务','Tools & model services'],['围绕你的开发方式选择','Choose around your workflow'],['前往模型广场','Visit the model square'],
  ['具体模型标识、服务范围与计费方式，以开通时的说明为准。','Model identifiers, service scope and billing are confirmed when access is arranged.'],
  ['接入前核对','Check before getting started'],['咨询配置','Discuss configuration'],
@@ -46,7 +47,7 @@ const pageCopy=[
  ['联系接入顾问','Contact the service team'],['团队采购与服务安排','Team procurement and service planning'],['结合用量、周期、权限与开票需求，确认具体合作条件。','Agree on cooperation terms around usage, duration, permissions and invoicing needs.'],
  ['用量','Usage'],['周期','Duration'],['条款','Terms'],['沟通长期合作','Discuss ongoing cooperation'],
  ['接入与合作常见问题','Access & cooperation questions'],['开始之前，先了解清楚。','A few things to clarify before you start.'],
- ['让模型服务更容易接入，','Make model services easier to access.'],['让团队把精力留给实际开发。','Keep your team focused on real development.'],
+ ['让模型服务更容易接入，','Make model services easier to access.'],['让你把精力留给开发与设计。','Stay focused on development and design.'],
  ['从实际需求出发，一起确认适合的接入方式与合作安排。','Start with actual needs and discuss a suitable approach to access and cooperation.'],['开始接入沟通','Start the conversation'],
  ['需求','Needs'],['配置','Setup'],['验证','Validation'],['开通','Access'],['使用','Usage'],['支持','Support'],['模型','Model'],['单位','Unit'],['规则','Rules'],['团队','Team'],['服务','Service'],['约定','Terms'],
 ];

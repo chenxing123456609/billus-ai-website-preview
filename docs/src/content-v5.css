@@ -1,6 +1,6 @@
 .site-header .header-brand{gap:0;line-height:0;flex-shrink:0;min-height:44px}
-.site-header .header-brand>img{height:30px;width:auto;max-width:none;object-fit:contain}
-@media(max-width:1100px){.site-header .header-brand>img{height:28px}}
+.site-header .header-brand>img{height:38px;width:auto;max-width:none;object-fit:contain}
+@media(max-width:1100px){.site-header .header-brand>img{height:36px}}
 @media(max-width:800px){.site-header .header-brand>img{height:28px}}
 @media(max-width:560px){.site-header .header-brand>img{height:26px}}
 @media(max-width:360px){.site-header .header-brand>img{height:24px}}
@@ -13,11 +13,17 @@ footer.full-footer{--page:#000;--surface:#000;--soft:#000;--text:#f5f5f5;--muted
 .company-subnav a[aria-current=page]{color:var(--brand);border-color:var(--brand)}
 .docs-grid{display:grid;grid-template-columns:205px minmax(0,1fr) 156px;gap:36px;padding-top:35px;padding-bottom:80px;align-items:start}
 .docs-sidebar,.docs-toc{position:sticky;top:110px;max-height:calc(100dvh - 130px);overflow-y:auto;scrollbar-width:thin}
-.docs-sidebar{padding-right:10px}
+.docs-sidebar{padding-right:10px;scrollbar-width:none;-ms-overflow-style:none}
+.docs-sidebar::-webkit-scrollbar{display:none}
 .docs-nav-toggle{width:100%;display:flex;justify-content:space-between;align-items:center;text-align:left;font-size:13px;font-weight:600;padding:8px 0 20px}
 .docs-nav-toggle>span{display:none}
 .docs-nav-group{margin-bottom:23px}
-.docs-nav-group h2{font-size:12px;font-weight:600;color:var(--text);padding:0 11px;margin-bottom:8px}
+.docs-nav-group h2{font-size:12px;font-weight:600;color:var(--text);padding:0;margin-bottom:0}
+.docs-nav-group h2 button{display:flex;align-items:center;justify-content:space-between;gap:10px;width:100%;min-height:44px;padding:8px 11px;text-align:left;font:inherit}
+.docs-nav-group h2 button:hover{color:var(--brand)}
+.docs-nav-group h2 button svg{width:16px;height:16px;transition:transform .2s ease-out}
+.docs-nav-group h2 button[aria-expanded=true] svg{transform:rotate(180deg)}
+@media(prefers-reduced-motion:reduce){.docs-nav-group h2 button svg{transition:none}}
 .docs-nav-group a{display:block;padding:9px 10px;margin-block:2px;border-left:2px solid transparent;border-radius:0 6px 6px 0;font-size:12px;line-height:1.65;color:var(--muted);transition:background .16s,color .16s}
 .docs-nav-group a:hover{background:var(--soft);color:var(--brand)}
 .docs-nav-group a[aria-current=page]{color:var(--brand);border-color:var(--brand);background:var(--tint)}

@@ -39,7 +39,7 @@ export const siteContent = {
       },
       {
         "id": "claude-setup",
-        "title": "Claude Code（克劳德）安装配置教程",
+        "title": "Claude Code 安装配置教程",
         "body": "本页说明 Claude Code 安装配置的准备与验证顺序。具体安装方式、认证和服务参数，以所用工具的当前官方文档及实际接入资料为准。",
         "bullets": [
           "根据电脑操作系统选择官方支持的安装方式，完成终端环境准备。",

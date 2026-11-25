@@ -19,6 +19,18 @@ html.home-scroll-snap{
  transition:none;
 }
 .home-page>.hero.hero-cinematic{min-height:calc(100svh - var(--home-header-height))}
+/* Extend the first background behind the transparent header without shifting its content. */
+.home-page{margin-top:calc(-1 * var(--home-header-height))}
+.site .home-page>.workspace-launch.workspace-split-hero{
+ min-height:max(calc(640px + var(--home-header-height)),100svh);
+ padding-top:calc(48px + var(--home-header-height));
+}
+@media(max-width:850px){
+ .site .home-page>.workspace-launch.workspace-split-hero{min-height:0}
+}
+@media(max-width:800px){
+ .site .home-page>.workspace-launch.workspace-split-hero{padding-top:calc(32px + var(--home-header-height))}
+}
 .home-page>.workspace-features,
 .home-page>.products-section,
 .home-scroll-snap .home-ending{

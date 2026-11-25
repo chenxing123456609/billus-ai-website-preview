@@ -1,5 +1,7 @@
 import {ref,watch} from '/billus-ai-website-preview/vendor/vue.esm-browser.prod.js';
 import {english} from './locales/en.js';
+import {formatDisplayText} from './display-text.js';
+import {supportTutorialEnglish} from './support-tutorial-content.js';
 
 let savedLocale='zh';
 try{savedLocale=localStorage.getItem('billus-locale')==='en'?'en':'zh'}catch{}
@@ -11,10 +13,14 @@ watch(locale,value=>{
 },{immediate:true});
 export function toggleLocale(){locale.value=locale.value==='zh'?'en':'zh'}
 export function t(value){
- if(locale.value!=='en'||typeof value!=='string')return value;
- if(Object.hasOwn(english,value))return english[value];
- if(/[\u3400-\u9fff]/.test(value))missingTranslations.add(value);
- return value;
+ if(typeof value!=='string')return value;
+ let result=value;
+ if(locale.value==='en'){
+  if(Object.hasOwn(supportTutorialEnglish,value))result=supportTutorialEnglish[value];
+  else if(Object.hasOwn(english,value))result=english[value];
+  else if(/[\u3400-\u9fff]/.test(value))missingTranslations.add(value);
+ }
+ return formatDisplayText(result);
 }
 
 // Compile both templates once; Vue keeps all subsequent language changes reactive.
@@ -25,7 +31,7 @@ export function localizeTemplate(source){
   .replace(/<(Icon|ContentPage|SupportPage|TeamPage|NewsPage|OpenModelsPage)\b((?:"[^"]*"|'[^']*'|[^'">])*)\/>/g,(_,name,attributes)=>'<'+name+attributes+'></'+name+'>')
   .replace(/<(\/?)(ContentPage|SupportPage|TeamPage|NewsPage|OpenModelsPage)\b/g,(_,slash,name)=>'<'+slash+name.replace(/([a-z])([A-Z])/g,'$1-$2').toLowerCase());
  function textPart(part){
-  if(!/[\u3400-\u9fff]/.test(part))return part;
+  if(!part.trim())return part;
   const [,before,content,after]=part.match(/^(\s*)([\s\S]*?)(\s*)$/);
   return before+'{{ t('+JSON.stringify(content)+') }}'+after;
  }

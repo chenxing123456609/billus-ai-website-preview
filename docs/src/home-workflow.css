@@ -1,0 +1,88 @@
+/* One example project makes the four benefits tangible. */
+.site .values-section.workflow-section{
+ display:flex;flex-direction:column;justify-content:center;gap:32px;
+ padding-block:clamp(40px,5.5svh,72px)
+}
+.site .workflow-heading{display:block;width:100%}
+.site .workflow-heading .eyebrow{margin:0 0 10px;font-size:12px;line-height:20px;letter-spacing:.12em}
+.site .workflow-heading h2{display:flex;align-items:baseline;flex-wrap:wrap;gap:0 .16em;margin:0;font-size:36px;line-height:1.35;font-weight:700;text-wrap:balance}
+.site .workflow-heading h2>span{display:inline;color:var(--brand);margin:0}
+.site .workflow-intro{max-width:680px;margin:12px 0 0;color:var(--muted);font-size:16px;line-height:28px;text-wrap:pretty}
+.site .workflow-body{display:grid;grid-template-columns:minmax(0,1.65fr) minmax(0,1fr);gap:40px;align-items:center;width:100%}
+.site .workflow-canvas{min-width:0;margin:0;overflow:hidden;border:1px solid var(--line);border-radius:20px;background:#f3f5ef}
+.site .workflow-project-view{position:relative;height:clamp(320px,43svh,460px);overflow:hidden;background:#e7e6df;isolation:isolate}
+.site .workflow-project-image{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center;opacity:0;transition:opacity 220ms ease-out}
+.site .workflow-project-image.is-active{opacity:1}
+.site .workflow-project-tag{position:absolute;top:20px;left:20px;display:inline-flex;align-items:center;gap:9px;max-width:calc(100% - 40px);padding:7px 12px;border:1px solid #ffffffa6;border-radius:999px;background:#ffffffed;color:#273329;font-size:12px;line-height:20px}
+.site .workflow-project-tag>i{width:6px;height:6px;border-radius:50%;background:#337a27;flex-shrink:0}
+.site .workflow-project-tag>span{color:#849082}
+.site .workflow-reference{position:absolute;left:24px;bottom:24px;width:33%;padding:10px;border:1px solid #e0e6db;border-radius:10px;background:#fff;box-shadow:0 6px 24px #1923191a}
+.site .workflow-reference-label{display:flex;align-items:center;gap:7px;padding:0 0 9px;border-bottom:1px solid #e8ece4;color:#4d5b4c;font-size:12px;line-height:18px}
+.site .workflow-reference-label svg{width:14px;height:14px;color:#337a27}
+.site .workflow-reference>img{display:block;width:100%;height:clamp(120px,14svh,170px);margin-top:8px;object-fit:contain;background:#fff}
+.site .workflow-reference.is-image>img{object-fit:cover;border-radius:4px}
+.site .workflow-reference.is-document{width:46%}
+.site .workflow-reference.is-document>img{height:clamp(145px,18svh,205px)}
+.site .workflow-canvas-index{position:absolute;right:24px;bottom:18px;color:#fff;font-size:44px;line-height:1.1;font-weight:700;letter-spacing:-.04em;text-shadow:0 1px 8px #17201926}
+.site .workflow-canvas-index small{margin-left:8px;font-size:13px;font-weight:400;letter-spacing:0}
+.site .workflow-canvas figcaption{display:flex;align-items:center;justify-content:space-between;gap:16px;min-height:52px;padding:13px 20px;background:#f5f7f1;color:#53614f;font-size:13px;line-height:22px}
+.site .workflow-caption-meta{font-size:9px;letter-spacing:.06em;white-space:nowrap;color:#7a8574}
+.site .workflow-choices{display:flex;flex-direction:column;gap:4px;min-width:0}
+.site .workflow-choice{position:relative;display:grid;grid-template-columns:30px minmax(0,1fr) 18px;align-items:start;gap:12px;min-height:88px;padding:20px 16px;border:1px solid transparent;border-radius:12px;color:var(--text);background:transparent;text-align:left;transition:background-color 180ms ease-out,border-color 180ms ease-out}
+.site .workflow-choice:hover{background:#f7f9f4}
+.site .workflow-choice[aria-selected=true]{background:#f1f6ec;border-color:#dce8d3}
+.site .workflow-choice-number{display:grid;place-items:center;width:30px;height:30px;margin-top:1px;border:1px solid #e0e6db;border-radius:50%;font-size:11px;line-height:16px;color:#788372;background:#fff;font-variant-numeric:tabular-nums}
+.site .workflow-choice[aria-selected=true] .workflow-choice-number{border-color:#337a27;background:#337a27;color:#fff}
+.site .workflow-choice-copy{display:flex;flex-direction:column;gap:4px;min-width:0}
+.site .workflow-choice-step{color:#75816e;font-size:11px;line-height:18px;letter-spacing:.03em}
+.site .workflow-choice-copy strong{font-size:20px;line-height:28px;font-weight:700;text-wrap:pretty}
+.site .workflow-choice-description{margin-top:7px;color:#626f5e;font-size:14px;line-height:24px;animation:workflow-copy-in 180ms ease-out}
+.site .workflow-choice-arrow{width:17px;height:17px;margin-top:25px;color:#7c8876;opacity:0;transition:opacity 180ms ease-out}
+.site .workflow-choice[aria-selected=true] .workflow-choice-arrow{opacity:1;color:#337a27}
+.site .workflow-path{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:24px;list-style:none;margin:0;padding:4px 0;color:#7a8575;width:100%}
+.site .workflow-path li{display:flex;align-items:center;gap:10px;min-width:0;font-size:13px;line-height:24px}
+.site .workflow-path li:not(:last-child)::after{content:"";height:1px;flex:1;order:1;background:#dfe5d9}
+.site .workflow-path-node{width:8px;height:8px;flex-shrink:0;border:1px solid #b7c3ae;border-radius:50%;background:#fff}
+.site .workflow-path li.is-active{color:#337a27}
+.site .workflow-path li.is-active .workflow-path-node{border-color:#337a27;background:#337a27;box-shadow:0 0 0 4px #edf4e7}
+.site .workflow-path svg{order:2;width:14px;height:14px;color:#a1ad98;flex-shrink:0}
+@keyframes workflow-copy-in{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}
+@media(max-width:1100px){
+ .site .workflow-body{gap:24px;grid-template-columns:minmax(0,1.3fr) minmax(0,1fr)}
+ .site .workflow-choice{padding:16px 12px;gap:9px;min-height:80px}
+ .site .workflow-choice-copy strong{font-size:18px;line-height:26px}
+ .site .workflow-caption-meta{display:none}
+}
+@media(max-width:800px){
+ .site .values-section.workflow-section{gap:28px;padding-block:48px}
+ .site .workflow-heading h2{font-size:30px;line-height:40px}
+ .site .workflow-intro{max-width:600px}
+ .site .workflow-body{grid-template-columns:1fr;gap:24px}
+ .site .workflow-project-view{height:auto;aspect-ratio:1.55}
+ .site .workflow-choice{padding:18px 16px}
+ .site .workflow-path{gap:16px}
+}
+@media(max-width:560px){
+ .site .workflow-heading h2{font-size:28px;line-height:38px}
+ .site .workflow-project-view{aspect-ratio:1.12}
+ .site .workflow-project-tag{top:14px;left:14px;padding:4px 9px;font-size:10px;gap:6px}
+ .site .workflow-reference{left:14px;bottom:16px;width:44%;padding:8px;border-radius:8px}
+ .site .workflow-reference.is-document{width:59%}
+ .site .workflow-reference>img{height:100px}
+ .site .workflow-reference.is-document>img{height:130px}
+ .site .workflow-reference-label{font-size:10px;line-height:16px;padding-bottom:6px;gap:5px}
+ .site .workflow-reference-label svg{width:12px;height:12px}
+ .site .workflow-canvas{border-radius:16px}
+ .site .workflow-canvas-index{right:14px;bottom:14px;font-size:32px}
+ .site .workflow-canvas-index small{font-size:10px;margin-left:5px}
+ .site .workflow-canvas figcaption{padding:12px 14px;font-size:12px;line-height:20px}
+ .site .workflow-choice{grid-template-columns:28px minmax(0,1fr) 16px;padding:16px 12px;gap:10px}
+ .site .workflow-choice-copy strong{font-size:18px;line-height:28px}
+ .site .workflow-path{grid-template-columns:repeat(2,minmax(0,1fr));gap:16px 24px}
+ .site .workflow-path li{font-size:12px}
+ .site .workflow-path li:nth-child(2)::after,.site .workflow-path li:nth-child(2)>svg{display:none}
+}
+@media(prefers-reduced-motion:reduce){
+ .site .workflow-project-image,.site .workflow-choice,.site .workflow-choice-arrow{transition:none}
+ .site .workflow-choice-description{animation:none}
+}

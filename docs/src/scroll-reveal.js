@@ -36,7 +36,7 @@ export function createScrollReveal() {
   function refresh() {
     clear();
     if (reduced.matches || !('IntersectionObserver' in window)) return;
-    const elements = [...document.querySelectorAll(selector)];
+    const elements = [...document.querySelectorAll(selector)].filter(el=>!el.closest('.shared-balance,.home-advantages,.open-model-gallery-hero'));
     elements.forEach((el, index) => {
       el.classList.add('scroll-reveal');
       el.style.setProperty('--reveal-delay', `${Math.min(index % 4, 3) * 65}ms`);

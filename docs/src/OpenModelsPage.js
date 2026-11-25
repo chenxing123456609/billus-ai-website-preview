@@ -1,5 +1,7 @@
 import {modelArchive,modelCapabilities} from './open-models-content.js';
 import {t} from './i18n.js';
+import {modelHeroPosters} from './open-model-hero-assets.js';
+import {useOpenModelHeroEntrance} from './open-model-hero-entrance.js';
 
 // Same line-icon paths and stroke treatment as the existing site Icon component.
 const capabilityIcons = {
@@ -13,29 +15,31 @@ export default {
   props: {view: {type: String, default: 'overview'}},
   emits: ['navigate', 'model-link'],
   setup(_props, {emit}) {
+    const entrance=useOpenModelHeroEntrance();
     const navigate = (to, event) => emit('navigate', to, event);
     const openModel = (model, event) => { event?.preventDefault(); emit('model-link', model); };
-    return {modelArchive, modelCapabilities, capabilityIcons, navigate, openModel, t};
+    return {heroRoot:entrance.root,scatterPhase:entrance.phase,ambientActive:entrance.ambientActive,finishEntrance:entrance.finish,modelHeroPosters, modelArchive, modelCapabilities, capabilityIcons, navigate, openModel, t};
   },
   template: `
   <main id="main" class="open-models-page">
-    <nav class="wrap breadcrumb" aria-label="面包屑导航">
-      <a href="/" @click="navigate('/', $event)">{{t('首页')}}</a><span>/</span>
-      <span>{{t('产品')}}</span><span>/</span>
-      <template v-if="view==='downloads'"><a href="/products/open-models" @click="navigate('/products/open-models', $event)">{{t('开源模型')}}</a><span>/</span><span>{{t('往期模型')}}</span></template>
-      <span v-else>{{t('开源模型')}}</span>
-    </nav>
-
     <template v-if="view==='overview'">
-      <section class="model-hero model-capability-hero wrap" aria-labelledby="model-page-title">
-        <div class="model-hero-copy">
-          <p class="model-kicker">BILLUS DIFFUSION / MODEL CAPABILITIES</p>
-          <h1 id="model-page-title"><span>{{t('毕鲁斯自研大模型')}}</span><span>{{t('空间创作的能力底座')}}</span></h1>
-          <p class="model-hero-lead">{{t('面向建筑、室内与景观场景，围绕图像生成、参考图编辑与空间表达持续研发。通过毕鲁斯智能体，衔接企业知识、项目任务与成果整理。')}}</p>
-          <div class="model-hero-actions">
+      <section ref="heroRoot" class="open-model-gallery-hero" id="open-model-overview" aria-labelledby="model-page-title" :data-scatter-state="scatterPhase" :data-ambient-active="ambientActive" @pointerdown="finishEntrance" @focusin="finishEntrance">
+        <div class="open-model-poster-field" aria-hidden="true">
+          <figure v-for="(poster,index) in modelHeroPosters" :key="poster.id" class="open-model-poster" :class="'poster-position-'+index"><img :src="poster.src" alt="" width="768" height="1024" decoding="async"></figure>
+        </div>
+        <div class="open-model-hero-copy">
+          <p class="model-kicker">BILLUS DIFFUSION · OPEN MODELS</p>
+          <h1 id="model-page-title">{{t('毕鲁斯自研大模型')}}</h1>
+          <p class="open-model-hero-subtitle">{{t('空间创作的能力底座')}}</p>
+          <p class="open-model-hero-description">{{t('面向建筑、室内与景观场景，围绕图像生成、参考图编辑与空间表达持续研发。通过毕鲁斯智能体，衔接企业知识、项目任务与成果整理。')}}</p>
+          <div class="open-model-hero-actions">
             <a class="button button-green" href="/products/open-models/downloads" @click="navigate('/products/open-models/downloads', $event)">{{t('查看模型档案')}} <span aria-hidden="true">→</span></a>
+            <a class="button button-outline" href="#model-capabilities">{{t('了解模型能力')}} <span aria-hidden="true">↓</span></a>
           </div>
         </div>
+      </section>
+
+      <section class="open-model-capabilities wrap" id="model-capabilities" :aria-label="t('模型能力')">
         <ul class="model-capability-list" :aria-label="t('模型能力')">
           <li v-for="item in modelCapabilities" :key="item.title">
             <span class="model-capability-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.65" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path :d="capabilityIcons[item.icon]"/></svg></span>
