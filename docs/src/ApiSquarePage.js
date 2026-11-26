@@ -3,6 +3,7 @@ import {homeApiFeatures,homeApiPricing,homeApiModels} from './home-api-content.j
 import {apiFaq} from './products.js';
 import {t} from './i18n.js';
 import {useApiHeroEntrance} from './api-hero-entrance.js';
+import SharedBalance from './SharedBalance.js';
 
 const paths={
  code:'m8 7-5 5 5 5m8-10 5 5-5 5m-3-13-2 16',
@@ -16,7 +17,7 @@ const paths={
 const ApiIcon={props:{name:String},setup(){return{paths}},template:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.65" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path :d="paths[name]||paths.arrow"/></svg>'};
 
 export default{
- components:{ApiIcon},emits:['navigate','visit-api','contact'],
+ components:{ApiIcon,SharedBalance},emits:['navigate','visit-api','contact'],
  setup(_,{emit}){
   const entrance=useApiHeroEntrance();
   return{heroRoot:entrance.root,introPhase:entrance.phase,finishHeroEntrance:entrance.finish,t,apiPersonalSteps,apiFaq,homeApiFeatures,homeApiPricing,homeApiModels,
@@ -65,6 +66,8 @@ export default{
     <p class="home-model-note">{{t('型号与计费以模型广场实际展示及开通说明为准。')}}</p>
    </div>
   </section>
+
+  <shared-balance @recharge="visitApi"></shared-balance>
 
   <section class="api2-section api2-access-section" id="api-access" aria-labelledby="api2-access-title"><div class="wrap">
    <header class="api2-section-heading" id="api-guide"><div><p class="api2-kicker">FOR DEVELOPERS &amp; DESIGNERS</p><h2 id="api2-access-title">{{t('开发者与设计师')}}<span>{{t('从需求确认，到第一次接入验证。')}}</span></h2></div></header>
