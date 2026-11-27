@@ -19,7 +19,7 @@ export default{
   }
   function navigate(path,event){navOpen.value=false;copyState.value='';emit('navigate',path,event)}
   async function copyPage(){
-   const text=[t(data.value.title),...data.value.sections.flatMap(s=>[t(s.title),t(s.body),...(s.bullets||[]).map(t),...(s.steps||[]).map((item,i)=>(i+1)+'. '+t(item.title)+'\n'+t(item.body)),...(s.example?[t(s.example.title),t(s.example.text)]:[]),...(s.faq||[]).map(item=>t(item.title)+'\n'+t(item.body)),...(s.links||[]).map(item=>t(item.title)+'\n'+t(item.detail))])].join('\n\n');
+   const text=[t(data.value.title),...data.value.sections.flatMap(s=>[t(s.title),t(s.body),...(s.bullets||[]).map(t),...(s.steps||[]).map((item,i)=>(i+1)+'. '+t(item.title)+'\n'+t(item.body)+(item.href?'\n'+item.href:'')),...(s.example?[t(s.example.title),t(s.example.text)]:[]),...(s.faq||[]).map(item=>t(item.title)+'\n'+t(item.body)),...(s.links||[]).map(item=>t(item.title)+'\n'+t(item.detail))])].join('\n\n');
    try{await navigator.clipboard.writeText(text);copyState.value='copied'}catch{copyState.value='failed'}
   }
   function seekVideo(id,time){
@@ -39,7 +39,7 @@ export default{
    <header class="docs-heading"><div class="docs-title-row"><h1>{{data.title}}</h1><button class="docs-copy" @click="copyPage">{{copyState==='copied'?'已复制':'复制本页'}}</button></div><p class="docs-copy-status" role="status" aria-live="polite">{{copyState==='failed'?'暂时无法自动复制，请选择正文后复制。':''}}</p></header>
    <details class="docs-inline-toc"><summary>本篇目录</summary><nav aria-label="本篇目录"><a v-for="section in data.sections" :key="section.id" :href="'#'+section.id">{{section.title}}</a></nav></details>
    <section v-for="(section,index) in data.sections" :key="section.id" :id="section.id" class="docs-section"><h2>{{section.title}}</h2><p>{{section.body}}</p><ul v-if="section.bullets"><li v-for="line in section.bullets" :key="line">{{line}}</li></ul>
-    <ol v-if="section.steps" class="docs-tutorial-steps"><li v-for="item in section.steps" :key="item.title"><h3>{{item.title}}</h3><p>{{item.body}}</p></li></ol>
+    <ol v-if="section.steps" class="docs-tutorial-steps"><li v-for="item in section.steps" :key="item.title"><h3>{{item.title}}</h3><p>{{item.body}}</p><a v-if="item.href" class="docs-step-link" :href="item.href" target="_blank" rel="noopener noreferrer">{{item.linkLabel}} <span aria-hidden="true">↗</span></a></li></ol>
     <div v-if="section.example" class="docs-task-example"><h3>{{section.example.title}}</h3><blockquote>{{section.example.text}}</blockquote></div>
     <figure v-if="section.video" class="docs-video"><video controls playsinline preload="metadata" :poster="section.video.poster" :aria-label="section.video.title"><source :src="section.video.src" type="video/mp4">视频暂不可播放</video><figcaption>{{section.video.caption}}</figcaption></figure>
     <nav v-if="section.chapters" class="docs-video-chapters" aria-label="视频章节"><button v-for="chapter in section.chapters" :key="chapter.time" type="button" @click="seekVideo(section.id,chapter.time)"><span>{{Math.floor(chapter.time/60)}}:{{String(chapter.time%60).padStart(2,'0')}}</span>{{chapter.label}}</button></nav>

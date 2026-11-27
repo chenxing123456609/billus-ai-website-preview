@@ -96,7 +96,7 @@
     <transition name="workspace-stage-subtitle" mode="out-in"><div :key="selectedWorkspaceTab.id" class="workspace-feature-subtitle-set workspace-feature-subtitle-current"><h3 id="workspace-stage-title" class="workspace-feature-subtitle-title">{{(t(selectedWorkspaceTab.title)+' '+t(selectedWorkspaceTab.accent)).replace(/[，,]/g,' ')}}</h3></div></transition>
    </div>
   </header>
-  <div class="workspace-feature-tabs" role="tablist" aria-label="参考与出图、选品与深化、汇报与报价">
+  <div class="workspace-feature-tabs" role="tablist" aria-label="创意构思、方案深化、成果交付">
    <button v-for="(item,i) in workspaceShowcaseTabs" :key="item.id" role="tab" :id="'workspace-tab-'+item.id" aria-controls="workspace-feature-panel" :aria-selected="workspaceTabIndex===i" :tabindex="workspaceTabIndex===i?0:-1" @click="selectWorkspaceTab(i)" @keydown="onWorkspaceTabKeydown($event)"><span class="workspace-stage-action">{{t(item.label)}}</span></button>
   </div>
   <div class="workspace-feature-panel" role="tabpanel" id="workspace-feature-panel" :aria-labelledby="'workspace-tab-'+selectedWorkspaceTab.id" tabindex="0">
@@ -141,10 +141,9 @@
   <home-api-model-flow></home-api-model-flow>
   </div>
   <div class="home-api-benefits" id="api-services">
-   <header class="home-api-benefits-heading"><h3 id="home-api-benefits-title">接入更稳 创作更从容</h3></header>
    <div class="home-api-features" role="group" aria-label="API 服务优势">
    <article class="home-api-feature" v-for="item in homeApiFeatures" :key="item.id" :class="'feature-'+item.id">
-    <h4 v-if="item.id==='pricing'" :aria-label="item.title"><api-price-amount reference></api-price-amount></h4><h4 v-else>{{item.title}}</h4><p>{{item.body}}</p>
+    <h3 v-if="item.id==='pricing'" :aria-label="item.title"><api-price-amount reference></api-price-amount></h3><h3 v-else>{{item.title}}</h3><p>{{item.body}}</p>
     <div class="home-api-art" aria-hidden="true">
      <div v-if="item.id==='stability'" class="home-api-support-art"><div><Icon name="code"/><span>Claude Code</span><Icon name="check"/></div><div><Icon name="code"/><span>Codex</span><Icon name="check"/></div><small>稳定接入与持续支持</small></div>
      <div v-else-if="item.id==='pricing'" class="home-api-price-art"><span>官方价格</span><strong><api-price-amount></api-price-amount></strong><div><i></i><i></i><i></i></div></div>
@@ -155,6 +154,8 @@
   </div>
  </div>
  </section>
+
+ <home-partner-wall></home-partner-wall>
 
  <section v-if="latestNews.length" class="home-news-section wrap" id="latest-news" aria-labelledby="latest-news-title">
   <header class="home-news-heading"><h2 id="latest-news-title">最新新闻</h2><a class="home-news-more" href="/about/news" @click="navigate('/about/news',$event)">查看全部新闻 <Icon name="arrow"/></a></header>
@@ -191,7 +192,7 @@
   <workspace-task-showcase></workspace-task-showcase>
 
   <section class="workspace-data-section workspace-core-section" id="workspace-data" aria-labelledby="workspace-data-title"><div class="wrap">
-   <header class="workspace-core-heading"><h2 id="workspace-data-title">六大核心能力</h2><p>连接企业资料、空间创作与成果整理，让项目工作持续推进。</p></header>
+   <header class="workspace-core-heading"><h2 id="workspace-data-title" class="product-section-title">六大核心能力</h2><p>连接企业资料、空间创作与成果整理，让项目工作持续推进。</p></header>
    <ul class="workspace-core-grid">
     <li><article class="workspace-core-card"><span class="workspace-data-icon"><Icon name="screen"/></span><h3>项目工作空间</h3><p>围绕同一项目组织需求、参考资料与生成成果，在连续对话中推进方案与修改。</p></article></li>
     <li><article class="workspace-core-card"><span class="workspace-data-icon"><Icon name="file"/></span><h3>企业知识库</h3><p>引用品牌规范、历史方案与业务资料，让项目任务结合企业已有知识开展。</p></article></li>
@@ -201,7 +202,7 @@
     <li><article class="workspace-core-card"><span class="workspace-data-icon"><Icon name="download"/></span><h3>多格式成果输出</h3><p>整理设计汇报 PPT、Word 说明、HTML 展示页及空间展示视频，支持方案沟通与交付。</p></article></li>
    </ul>
   </div></section>
-  <section class="workspace-model-section" id="workspace-models" aria-labelledby="workspace-model-title"><div class="wrap"><div class="workspace-model-heading"><p class="eyebrow">BILLUS AI WORKSPACE · MODELS</p><h2 id="workspace-model-title">按任务选择模型</h2><p>文字、图像与视频模型分组呈现，便于在项目任务中查看和选择</p></div><dl class="workspace-model-list"><div class="workspace-model-row"><dt>文字模型</dt><dd><ul><li>qwen3.8-flash</li><li>qwen3.8-max</li><li>gpt-6.1-sol</li><li>gpt-6.2-astra</li><li>gpt-6.2-sol</li></ul></dd></div><div class="workspace-model-row"><dt>图像模型</dt><dd><ul><li>Billus 057A EDIT</li><li>Billus 060A EDIT</li><li>gemini-3-pro-image-preview</li><li>gpt-image-2.5-sunburst</li><li>gpt-image-2.6-flare</li><li>gpt-image-2.6-sunburst</li></ul></dd></div><div class="workspace-model-row"><dt>视频模型</dt><dd><ul><li>grok-imagine-video-1.5</li></ul></dd></div></dl><p class="workspace-model-note">演示所列模型名称供参考，实际可用范围以客户端当前版本与接入配置为准</p></div></section>
+  <section class="workspace-model-section" id="workspace-models" aria-labelledby="workspace-model-title"><div class="wrap"><div class="workspace-model-heading"><h2 id="workspace-model-title" class="product-section-title">按任务选择模型</h2><p>文字、图像与视频模型分组呈现，便于在项目任务中查看和选择</p></div><dl class="workspace-model-list"><div class="workspace-model-row"><dt>文字模型</dt><dd><ul><li>qwen3.8-flash</li><li>qwen3.8-max</li><li>gpt-6.1-sol</li><li>gpt-6.2-astra</li><li>gpt-6.2-sol</li></ul></dd></div><div class="workspace-model-row"><dt>图像模型</dt><dd><ul><li>Billus 057A EDIT</li><li>Billus 060A EDIT</li><li>gemini-3-pro-image-preview</li><li>gpt-image-2.5-sunburst</li><li>gpt-image-2.6-flare</li><li>gpt-image-2.6-sunburst</li></ul></dd></div><div class="workspace-model-row"><dt>视频模型</dt><dd><ul><li>grok-imagine-video-1.5</li></ul></dd></div></dl><p class="workspace-model-note">演示所列模型名称供参考，实际可用范围以客户端当前版本与接入配置为准</p></div></section>
 <section class="detail-section wrap faq-section" id="workspace-faq"><div class="section-heading"><p class="eyebrow">GOOD TO KNOW</p><h2>开始之前，先了解这些</h2></div><div class="faq-list"><details v-for="item in workspaceFaq" :key="item.q"><summary>{{item.q}}<span>+</span></summary><p>{{item.a}}</p></details></div></section>
     <section class="detail-section wrap workspace-install-section" id="workspace-install"><div class="section-heading"><h2>下载与安装</h2><a class="workspace-install-guide" href="/support/manual/agent/install" @click="navigate('/support/manual/agent/install',$event)">使用指南 <Icon name="arrow"/></a></div><ol class="detail-flow api-flow"><li v-for="(step,i) in workspaceInstallSteps" :key="step.title"><span>0{{i+1}}</span><h3 class="workspace-install-step-title"><span>{{step.title}}</span><a v-if="step.href" class="workspace-install-step-link" :href="step.href" target="_blank" rel="noopener noreferrer" aria-label="前往密钥页面（在新标签页中打开）" title="前往密钥页面（在新标签页中打开）"><Icon name="arrowUpRight"/></a></h3><p>{{step.body}}</p></li></ol></section>
   <section class="closing-section"><div class="wrap closing-inner"><div><h2>立即下载，开始你的空间项目</h2></div><button type="button" class="button button-green" aria-haspopup="dialog" @click="requestDownload">立即下载 <Icon name="download"/></button></div></section>
@@ -231,7 +232,7 @@
   <div class="footer-channels"><a class="footer-channel" href="https://www.aigcacs.com/inspiration" target="_blank" rel="noopener noreferrer"><Icon name="globe"/><span>www.aigcacs.com/inspiration</span><span>↗</span></a><button class="footer-channel" @click="copyFooter('billus2025')"><Icon name="chat"/><span>官方客服搜索 <b>billus2025</b></span><small>{{copiedFooter==='billus2025'?'已复制':'复制'}}</small></button><button class="footer-channel social-channel" @click="copyFooter('毕鲁斯AI')"><Icon name="screen"/><span>小红书 / 视频号<small>更多账号搜索 毕鲁斯AI</small></span><small>{{copiedFooter==='毕鲁斯AI'?'已复制':'复制'}}</small></button><span class="footer-copy-status" role="status" aria-live="polite">{{footerStatus}}</span></div>
   <div class="footer-qr-list"><button class="footer-qr" @click="openModal('qr-support')" aria-label="放大小客服助手二维码"><img src="/billus-ai-website-preview/assets/support-qr.png" alt="小客服助手二维码"><span>小客服助手</span></button><button class="footer-qr" @click="openModal('qr-experience')" aria-label="放大扫码体验二维码"><img src="/billus-ai-website-preview/assets/experience-qr.png" alt="扫码体验二维码"><span>扫码体验</span></button><small>点击二维码放大查看</small></div>
  </div>
- <div class="wrap footer-bottom"><span>© 2026 Billus. All rights reserved.</span><span class="footer-preview-status">预览版 · 下载与表单暂未接入 · 2026.11.18</span><nav class="footer-policy-nav" aria-label="使用规则"><a href="/support/usage-notes" @click="navigate('/support/usage-notes',$event)">注意事项</a><a href="/support/usage-policy" @click="navigate('/support/usage-policy',$event)">使用政策</a></nav><a href="https://beian.miit.gov.cn/" target="_blank" rel="noopener noreferrer">粤ICP备2025396851号</a></div>
+ <div class="wrap footer-bottom"><span>© 2026 Billus. All rights reserved.</span><a href="https://beian.miit.gov.cn/" target="_blank" rel="noopener noreferrer">粤ICP备2025396851号</a></div>
 </footer>
 </div>
 

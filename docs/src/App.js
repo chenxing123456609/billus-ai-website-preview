@@ -7,6 +7,7 @@ import EnterpriseWorkspacePage from './EnterpriseWorkspacePage.js';
 import HomeAdvantages from './HomeAdvantages.js';
 import HomeApiTitle from './HomeApiTitle.js';
 import HomeApiModelFlow from './HomeApiModelFlow.js';
+import HomePartnerWall from './HomePartnerWall.js';
 import ApiPriceAmount from './ApiPriceAmount.js';
 import {ref,computed,nextTick,watch,onBeforeUnmount,onMounted} from '/billus-ai-website-preview/vendor/vue.esm-browser.prod.js';
 import {workspaceInstallSteps,workspaceFaq,apiAdvantages,apiFaq,apiGuideTabs,apiSetupSteps,apiUsageNotes,apiPolicyOverview} from './products.js';
@@ -60,7 +61,7 @@ const paths={
 };
 const Icon={props:{name:String},setup(){return{paths}},template:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.65" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path :d="paths[name] || paths.arrow"/></svg>'};
 export default{
- components:{WorkspaceTaskShowcase,EnterpriseWorkspacePage,InfiniteCanvasDemo,WorkspaceHeroTitle,WorkspaceEntrance,SharedBalance,HomeAdvantages,HomeApiTitle,HomeApiModelFlow,ApiPriceAmount,Icon,ContentPage,CompanyPage,SupportPage,TeamPage,NewsPage,OpenModelsPage,ApiSquarePage,WorkspaceImageCompare,WorkspaceFeatureDemo},
+ components:{HomePartnerWall,WorkspaceTaskShowcase,EnterpriseWorkspacePage,InfiniteCanvasDemo,WorkspaceHeroTitle,WorkspaceEntrance,SharedBalance,HomeAdvantages,HomeApiTitle,HomeApiModelFlow,ApiPriceAmount,Icon,ContentPage,CompanyPage,SupportPage,TeamPage,NewsPage,OpenModelsPage,ApiSquarePage,WorkspaceImageCompare,WorkspaceFeatureDemo},
  setup(){
   const {root:closingBrandRoot,phase:closingBrandPhase,typed:closingBrandTyped,finish:finishClosingBrandEntrance}=useHomeBrandEntrance();
   const menuOpen=ref(false),activeScene=ref(0),compare=ref(42),activeModal=ref(''),dialog=ref(null),requestSent=ref(false),contactName=ref(''),contactWay=ref(''),selectedModel=ref(null);

@@ -50,7 +50,7 @@ export default {
  },
  template:`<section ref="root" class="shared-balance" aria-labelledby="shared-balance-title" :data-balance-state="phase" :style="{'--balance-progress':progress}" @focusin="finish" @pointerdown="finish">
  <div class="balance-sticky wrap">
- <header class="balance-heading"><span class="balance-eyebrow">ONE BALANCE. FOUR POSSIBILITIES.</span><h2 id="shared-balance-title">{{copy('一次充值，多端通用','One balance. Across your tools.').replace(/[，,]/g,' ')}}</h2><p>{{copy('在毕鲁斯充值，让创作、项目与代码任务共用同一账户余额。','Top up with Billus. Use one balance for creative work, projects and code.')}}</p></header>
+ <header class="balance-heading"><h2 id="shared-balance-title" class="product-section-title">{{copy('一次充值，多端通用','One balance. Across your tools.').replace(/[，,]/g,' ')}}</h2><p>{{copy('在毕鲁斯充值，让创作、项目与代码任务共用同一账户余额。','Top up with Billus. Use one balance for creative work, projects and code.')}}</p></header>
  <div class="balance-scene">
  <div class="balance-folder-back" aria-hidden="true"><span></span></div>
  <article v-for="(card,i) in cards" :key="card.kind" class="balance-card" :class="'balance-card-'+card.kind" :style="cardStyle(i)">

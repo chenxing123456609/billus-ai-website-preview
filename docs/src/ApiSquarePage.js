@@ -89,7 +89,7 @@ export default{
    <article><span class="api2-step-number" aria-hidden="true">02</span><h3>{{t('团队采购与服务安排')}}</h3><p>{{t('结合用量、周期、权限与开票需求，确认具体合作条件。')}}</p><div class="api2-enterprise-terms"><span>{{t('用量')}}</span><span>{{t('周期')}}</span><span>{{t('条款')}}</span></div><button class="button button-dark" @click="contact">{{t('沟通长期合作')}}<ApiIcon name="arrow"/></button></article></div>
   </section>
 
-  <section class="api2-section api2-faq-section" id="api-faq"><div class="wrap api2-faq-layout"><header><p class="api2-kicker">QUESTIONS & ANSWERS</p><h2>{{t('接入与合作常见问题')}}</h2><p>{{t('开始之前，先了解清楚。')}}</p></header><div class="api2-faq-list"><details v-for="item in apiFaq" :key="item.q"><summary>{{t(item.q)}}<span aria-hidden="true">+</span></summary><p>{{t(item.a)}}</p></details></div></div></section>
-  <section class="api2-final"><div class="wrap"><p class="api2-kicker">BILLUS AI MODEL SQUARE</p><h2>{{t('让模型服务更容易接入，')}}<br>{{t('让你把精力留给开发与设计。')}}</h2><p>{{t('从实际需求出发，一起确认适合的接入方式与合作安排。')}}</p><button class="button button-green" @click="visitApi">{{t('访问模型广场')}}<ApiIcon name="arrow"/></button></div></section>
+  <section class="api2-section api2-faq-section" id="api-faq"><div class="wrap api2-faq-layout"><header><h2 class="product-section-title">{{t('接入与合作常见问题')}}</h2><p>{{t('开始之前，先了解清楚。')}}</p></header><div class="api2-faq-list"><details v-for="item in apiFaq" :key="item.q"><summary>{{t(item.q)}}<span aria-hidden="true">+</span></summary><p>{{t(item.a)}}</p></details></div></div></section>
+  <section class="api2-final"><div class="wrap"><h2>{{t('让模型服务更容易接入，')}}<br>{{t('让你把精力留给开发与设计')}}</h2><p>{{t('从实际需求出发，一起确认适合的接入方式与合作安排')}}</p><button class="button button-green" @click="visitApi">{{t('访问模型广场')}}<ApiIcon name="arrow"/></button></div></section>
  </div>`
 };

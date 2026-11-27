@@ -7,7 +7,7 @@ const assets='/billus-ai-website-preview/assets/';
 const tutorial=assets+'tutorials/';
 const link=(title,en,detail,enDetail,href)=>({title:c(title,en),detail:c(detail,enDetail),href});
 const section=(id,title,en,body,enBody,extra={})=>({id,title:c(title,en),body:c(body,enBody),...extra});
-const step=(title,en,body,enBody)=>({title:c(title,en),body:c(body,enBody)});
+const step=(title,en,body,enBody,extra={})=>({title:c(title,en),body:c(body,enBody),...extra});
 
 export function applySupportTutorials(content){
  content.overview.title=c('BILLUS AI WORKSPACE 介绍','About BILLUS AI WORKSPACE');
@@ -53,10 +53,14 @@ export function applySupportTutorials(content){
   step('确认程序与项目保存位置','Check program and project locations','本批教程的安装器使用固定程序目录；项目资料与生成结果的保存位置需要另外确认','The supplied tutorial uses a fixed program directory; check the storage location for projects and generated files separately'),
   step('打开并核对版本','Open the client and check its version','首次启动后确认可以进入工作区，再进行模型服务设置','Confirm the workspace opens before configuring the model service')
  ];
- install.sections.find(s=>s.id==='service-setup').steps=[
-  step('准备自己的服务配置','Prepare your service configuration','确认账号已开通相应模型服务，取得本人或企业获授权使用的服务参数；本批教程在创建访问凭证时选择“通用”分组，分组名称与适配范围按当前服务说明核对','Confirm the models are enabled and obtain authorized settings; the supplied tutorial selects the General credential group, but check the group name and compatibility against current service instructions'),
-  step('进入模型配置','Open model configuration','本批教程演示通过“高级后台 → 模型与执行能力 → API 配置”保存配置，实际入口以当前版本为准','The supplied tutorial uses Advanced settings → Models and execution → API configuration; the entry may vary by version'),
-  step('保存并检查模型选择','Save and check model selection','填写服务地址和访问凭证后保存配置，分别检查文字模型与图像模型选项，再重启客户端验证','Save the service URL and access credential, check text and image model options, then restart the client to verify')
+ const serviceSetup=install.sections.find(s=>s.id==='service-setup');
+ serviceSetup.body=c('按照“获取密钥 → 创建密钥 → 进入 WORKSPACE 配置”的顺序完成模型服务接入，保存后进行一次连接测试','Set up model access in three steps: open key management, create a key, then configure WORKSPACE and test the connection');
+ serviceSetup.steps=[
+  step('获取密钥','Get an API key','前往密钥管理页面，登录你的账号，准备创建用于 WORKSPACE 的服务密钥','Open the key management page and sign in to prepare a service key for WORKSPACE',{
+   href:'https://sub.aigcacs.com/keys',linkLabel:c('前往密钥管理','Open key management')
+  }),
+  step('创建密钥','Create a key','在密钥管理页面创建新密钥，填写名称并选择适用分组；创建完成后复制密钥，供 WORKSPACE 配置使用','Create a key on the key management page, enter a name and select the appropriate group, then copy the key for use in WORKSPACE'),
+  step('进入 WORKSPACE 进行配置','Configure WORKSPACE','打开 WORKSPACE，进入“高级后台 → 模型与执行能力 → API 配置”，填写服务地址与密钥后保存，再选择可用模型完成一次连接测试；具体入口以当前版本为准','Open WORKSPACE and go to Advanced settings → Models and execution → API configuration. Enter the service URL and key, save, then select an available model and test the connection. The entry may vary by version')
  ];
  install.sections.find(s=>s.id==='related-tutorials').links.splice(1,0,link('查看 Claude Desktop 配置教程','Read the Claude Desktop setup guide','对应本批桌面工具视频，不与 Claude Code 混用','Matches the supplied desktop video; separate from Claude Code','/support/manual/claude-desktop'));
  install.sections.push(section('troubleshooting','遇到问题怎么排查','Troubleshooting','先记录所用版本、发生步骤与错误信息，再对照下面的检查顺序定位问题','Record the version, step and error message, then check the following',{

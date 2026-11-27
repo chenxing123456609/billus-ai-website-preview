@@ -47,8 +47,8 @@ const pageCopy=[
  ['联系接入顾问','Contact the service team'],['团队采购与服务安排','Team procurement and service planning'],['结合用量、周期、权限与开票需求，确认具体合作条件。','Agree on cooperation terms around usage, duration, permissions and invoicing needs.'],
  ['用量','Usage'],['周期','Duration'],['条款','Terms'],['沟通长期合作','Discuss ongoing cooperation'],
  ['接入与合作常见问题','Access & cooperation questions'],['开始之前，先了解清楚。','A few things to clarify before you start.'],
- ['让模型服务更容易接入，','Make model services easier to access.'],['让你把精力留给开发与设计。','Stay focused on development and design.'],
- ['从实际需求出发，一起确认适合的接入方式与合作安排。','Start with actual needs and discuss a suitable approach to access and cooperation.'],['开始接入沟通','Start the conversation'],
+ ['让模型服务更容易接入，','Make model services easier to access'],['让你把精力留给开发与设计','Stay focused on development and design'],
+ ['从实际需求出发，一起确认适合的接入方式与合作安排','Start with actual needs and discuss a suitable approach to access and cooperation'],['开始接入沟通','Start the conversation'],
  ['需求','Needs'],['配置','Setup'],['验证','Validation'],['开通','Access'],['使用','Usage'],['支持','Support'],['模型','Model'],['单位','Unit'],['规则','Rules'],['团队','Team'],['服务','Service'],['约定','Terms'],
 ];
 for(const [zh,en] of pageCopy)c(zh,en);

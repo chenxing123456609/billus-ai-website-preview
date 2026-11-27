@@ -89,6 +89,7 @@ export const english = {
   "向右切换标识": "Move logos to the right",
   "暂停滚动": "Pause scrolling",
   "继续滚动": "Resume scrolling",
+  "合作企业": "Partner companies",
   "最新新闻": "Latest news",
   "查看全部新闻": "View all news",
   "查看更多": "View more",

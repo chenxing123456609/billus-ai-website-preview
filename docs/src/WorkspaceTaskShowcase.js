@@ -17,7 +17,7 @@ export default {
  },
  template:`<section class="workspace-task-section workspace-split-hero" id="workspace-task" aria-labelledby="workspace-task-title">
   <div class="wrap">
-   <header class="product-showcase-heading"><p>BILLUS AI WORKSPACE · WORKFLOW</p><h2 id="workspace-task-title">{{text('从一份资料 到一套完整成果','From the first reference to the final deliverables')}}</h2><div>{{text('跟随一个空间项目 看资料如何变成方案 再接着完成修改与交付','Follow one spatial project from references to concepts, revisions and deliverables')}}</div></header>
+   <header class="product-showcase-heading"><h2 id="workspace-task-title" class="product-section-title">{{text('从一份资料 到一套完整成果','From the first reference to the final deliverables')}}</h2><div>{{text('跟随一个空间项目 看资料如何变成方案 再接着完成修改与交付','Follow one spatial project from references to concepts, revisions and deliverables')}}</div></header>
    <div class="workspace-task-layout" @mouseenter="pointerEnter" @mouseleave="pointerLeave" @focusin="focusIn" @focusout="focusOut($event)">
     <div class="workspace-task-copy" :data-task-step="selected.id">
      <div id="task-current-copy" role="group" :aria-label="text('当前任务步骤','Current project step')" :aria-live="paused||interacting?'polite':'off'" aria-atomic="true">

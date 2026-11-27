@@ -4,7 +4,7 @@ const copy = (chinese, english) => {
   return chinese;
 };
 
-copy('参考与出图、选品与深化、汇报与报价', 'References and images, product selection and refinement, reports and quotes');
+copy('创意构思、方案深化、成果交付', 'Creative concepts, design development and deliverables');
 copy('WORKSPACE 让设计工作更高效', 'WORKSPACE Make design work more efficient');
 copy('让设计工作', 'Make design work');
 copy('更高效', 'more efficient');
@@ -12,20 +12,20 @@ copy('更高效', 'more efficient');
 export const workspaceShowcaseTabs = [
   {
     id: 'projects',
-    label: copy('参考与出图', 'References & images'),
+    label: copy('创意构思', 'Creative concepts'),
     eyebrow: copy("把图纸、现场照片、需求与参考方案放进同一项目，先明确空间条件和客户目标，让首版方案有资料可依。", "Bring drawings, site photos, briefs and references into one project. Clarify spatial conditions and client goals before preparing the first proposal."),
     title: copy("让项目资料", "Make project materials"),
     accent: copy("成为方案依据", "the basis for every proposal"),
     caption: copy("工作台示意 · 项目资料、多图参考与需求说明", "Workspace illustration \u00b7 project materials, image references and the brief"),
     features: [
-      {icon: 'file', title: copy("项目资料集中整理", "Organize project materials"), body: copy("把图纸、现场照片与需求文件汇入同一项目，结合空间条件和任务目标形成初稿，关键要求由项目人员确认。", "Bring drawings, site photos and briefs into one project. Draft from the spatial conditions and goals, with key requirements confirmed by the project team.")},
+      {icon: 'file', title: copy("参考资料生成初稿", "Draft from reference materials"), body: copy("把图纸、现场照片与需求文件汇入同一项目，结合空间条件和任务目标形成初稿，关键要求由项目人员确认。", "Bring drawings, site photos and briefs into one project. Draft from the spatial conditions and goals, with key requirements confirmed by the project team.")},
       {icon: 'grid', title: copy("多图参考辅助构思", "Develop ideas with references"), body: copy("将参考图与平面资料一起使用，把喜欢的配色、材质和家具关系带入当前空间，再逐轮调整。", "Use image references with the floor plan, bringing color, material and furniture ideas into the current space for further refinement.")},
-      {icon: 'chat', title: copy("简单出图，多轮修改", "Simple prompts, ongoing refinements"), body: copy("用简单提示词描述空间、风格与想要的效果，生成首版图片，再通过多轮对话调整家具、材质和局部细节，逐步完善方案。", "Describe the space, style and desired result with a simple prompt to generate a first image. Refine furniture, materials and details through follow-up conversations.")},
+      {icon: 'chat', title: copy("快速出图 对话精修", "Quick generation conversational refinement"), body: copy("用简单提示词描述空间、风格与想要的效果，生成首版图片，再通过多轮对话调整家具、材质和局部细节，逐步完善方案。", "Describe the space, style and desired result with a simple prompt to generate a first image. Refine furniture, materials and details through follow-up conversations.")},
     ],
   },
   {
     id: 'knowledge',
-    label: copy('选品与深化', 'Selection & refinement'),
+    label: copy('方案深化', 'Design development'),
     eyebrow: copy("以品牌规范、历史方案和企业商品资料作为项目参考，在画布中对照版本，围绕同一空间持续深化设计。", "Use brand standards, past proposals and company product information as project references. Compare versions on the canvas as the same space evolves."),
     title: copy("企业知识与素材", "Bring company knowledge"),
     accent: copy("参与方案深化", "into design development"),
@@ -38,7 +38,7 @@ export const workspaceShowcaseTabs = [
   },
   {
     id: 'outputs',
-    label: copy('汇报与报价', 'Reports & quotes'),
+    label: copy('成果交付', 'Deliverables'),
     eyebrow: copy("在同一项目中整理空间成果与汇报文件，引用企业商品和计价规则形成选品与报价草稿，交由业务人员复核。", "Organize spatial outputs and presentation files in one project. Use company product and pricing rules to prepare selection and quotation drafts for business review."),
     title: copy("从方案到交付", "From proposal to delivery"),
     accent: copy("成果可展示、可复核", "show the work, review the details"),
