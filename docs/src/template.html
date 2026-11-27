@@ -4,9 +4,10 @@
  <div class="header-inner wrap">
   <a class="brand header-brand" href="/home" @click="navigate('/home',$event)" :aria-current="page==='home'?'page':undefined" aria-label="Billus AI 返回首页"><img src="/billus-ai-website-preview/assets/billus-header-logo.png" width="800" height="246" alt="Billus AI"></a>
   <nav id="primary-navigation" class="primary-nav" :class="{open:menuOpen}" aria-label="主要导航">
-   <details class="nav-dropdown" @toggle="syncDropdown($event)" @focusout="closeDropdownOnBlur($event)" @keydown.esc="closeDropdown($event)" @mouseenter="hoverProducts($event,true)" @mouseleave="hoverProducts($event,false)"><summary>产品 <Icon name="chevronDown" class="nav-chevron" focusable="false"/></summary><div class="dropdown-panel"><a href="/products/workspace" @click="navigate('/products/workspace',$event)" :aria-current="page==='workspace'?'page':undefined"><strong>毕鲁斯智能体</strong><small>项目工作与成果交付</small></a><a href="/products/api-model-square" @click="navigate('/products/api-model-square',$event)" :aria-current="page==='api'?'page':undefined"><strong>API 模型广场</strong><small>模型接入与调用服务</small></a><a href="/products/open-models" @click="navigate('/products/open-models',$event)" :aria-current="['openModels','modelDownloads'].includes(page)?'page':undefined"><strong>开源模型</strong><small>公开模型与下载资料</small></a></div></details>
+   <a class="nav-home" href="/home" @click="navigate('/home',$event)" :aria-current="page==='home'?'page':undefined">首页</a>
+   <details class="nav-dropdown" @toggle="syncDropdown($event)" @focusout="closeDropdownOnBlur($event)" @keydown.esc="closeDropdown($event)" @mouseenter="hoverProducts($event,true)" @mouseleave="hoverProducts($event,false)"><summary>产品 <Icon name="chevronDown" class="nav-chevron" focusable="false"/></summary><div class="dropdown-panel"><a href="/products/workspace" @click="navigate('/products/workspace',$event)" :aria-current="page==='workspace'?'page':undefined"><strong>毕鲁斯智能体</strong><small>项目工作与成果交付</small></a><a href="/products/api-model-square" @click="navigate('/products/api-model-square',$event)" :aria-current="page==='api'?'page':undefined"><strong>毕鲁斯API开放平台</strong><small>模型接入与调用服务</small></a><a href="/products/open-models" @click="navigate('/products/open-models',$event)" :aria-current="['openModels','modelDownloads'].includes(page)?'page':undefined"><strong>开源模型</strong><small>公开模型与下载资料</small></a></div></details>
    <details class="nav-dropdown support-dropdown" @toggle="syncDropdown($event)" @focusout="closeDropdownOnBlur($event)" @keydown.esc="closeDropdown($event)" @mouseenter="hoverProducts($event,true)" @mouseleave="hoverProducts($event,false)"><summary>服务支持 <Icon name="chevronDown" class="nav-chevron" focusable="false"/></summary><div class="dropdown-panel support-dropdown-panel"><a href="/support/manual" :aria-current="page==='manual'?'page':undefined" @click="navigate('/support/manual',$event)"><strong>功能手册</strong><small>智能体 · Claude Code · Codex 教程</small></a><a href="/support/usage-notes" :aria-current="page==='usage'?'page':undefined" @click="navigate('/support/usage-notes',$event)"><strong>注意事项</strong><small>使用前的准备与核对</small></a><a href="/support/usage-policy" :aria-current="page==='policy'?'page':undefined" @click="navigate('/support/usage-policy',$event)"><strong>使用政策</strong><small>开通、使用与售后说明</small></a><a href="/support/updates" :aria-current="page==='updates'?'page':undefined" @click="navigate('/support/updates',$event)"><strong>更新日志</strong><small>公开资料与官网更新</small></a></div></details>
-   <details class="nav-dropdown about-dropdown" @toggle="syncDropdown($event)" @focusout="closeDropdownOnBlur($event)" @keydown.esc="closeDropdown($event)" @mouseenter="hoverProducts($event,true)" @mouseleave="hoverProducts($event,false)"><summary>关于我们 <Icon name="chevronDown" class="nav-chevron" focusable="false"/></summary><div class="dropdown-panel"><a href="/about/company" :aria-current="page==='about'?'page':undefined" @click="navigate('/about/company',$event)"><strong>公司介绍</strong><small>品牌定位与业务方向</small></a><a href="/about/team" :aria-current="page==='team'?'page':undefined" @click="navigate('/about/team',$event)"><strong>团队介绍</strong><small>项目团队与专业分工</small></a><a href="/about/news" :aria-current="page==='news'?'page':undefined" @click="navigate('/about/news',$event)"><strong>新闻动态</strong><small>产品与公司最新消息</small></a></div></details>
+   <details class="nav-dropdown about-dropdown" @toggle="syncDropdown($event)" @focusout="closeDropdownOnBlur($event)" @keydown.esc="closeDropdown($event)" @mouseenter="hoverProducts($event,true)" @mouseleave="hoverProducts($event,false)"><summary>关于我们 <Icon name="chevronDown" class="nav-chevron" focusable="false"/></summary><div class="dropdown-panel"><a href="/about/company" :aria-current="page==='about'?'page':undefined" @click="navigate('/about/company',$event)"><strong>公司介绍</strong><small>品牌定位与业务方向</small></a><a href="/about/news" :aria-current="page==='news'?'page':undefined" @click="navigate('/about/news',$event)"><strong>新闻动态</strong><small>产品与公司最新消息</small></a></div></details>
    <details class="nav-dropdown sales-dropdown" @toggle="syncDropdown($event)" @focusout="closeDropdownOnBlur($event)" @mouseenter="hoverProducts($event,true)" @mouseleave="hoverProducts($event,false)" @keydown.esc="closeDropdown($event)" >
     <summary class="nav-sales" aria-haspopup="dialog" @focus="$event.currentTarget.parentElement.open=true" @click.prevent="openModal('qr-support')">联系销售</summary>
     <div class="dropdown-panel sales-qr-panel">
@@ -21,7 +22,7 @@
   </div>
  </div>
 </header>
-<nav v-if="['about','team','news'].includes(page)" class="company-subnav" aria-label="关于我们二级导航"><div class="wrap"><a href="/about/company" :aria-current="page==='about'?'page':undefined" @click="navigate('/about/company',$event)"><strong>公司介绍</strong><small>品牌定位与业务方向</small></a><a href="/about/team" :aria-current="page==='team'?'page':undefined" @click="navigate('/about/team',$event)"><strong>团队介绍</strong><small>项目团队与专业分工</small></a><a href="/about/news" :aria-current="page==='news'?'page':undefined" @click="navigate('/about/news',$event)"><strong>新闻动态</strong><small>产品与公司最新消息</small></a></div></nav>
+<nav v-if="['about','team','news'].includes(page)" class="company-subnav" aria-label="关于我们二级导航"><div class="wrap"><a href="/about/company" :aria-current="page==='about'?'page':undefined" @click="navigate('/about/company',$event)"><strong>公司介绍</strong><small>品牌定位与业务方向</small></a><a href="/about/news" :aria-current="page==='news'?'page':undefined" @click="navigate('/about/news',$event)"><strong>新闻动态</strong><small>产品与公司最新消息</small></a></div></nav>
 <main v-if="page==='home'" id="main" class="home-page">
   <section class="workspace-launch workspace-split-hero has-client-strip" id="home-overview" aria-labelledby="hero-title">
    <div class="workspace-wave-field" aria-hidden="true"><svg viewBox="0 0 1600 900" preserveAspectRatio="none" focusable="false"><defs><filter id="workspace-wave-soft" x="-40%" y="-100%" width="180%" height="300%"><feGaussianBlur stdDeviation="32"/></filter><linearGradient id="workspace-wave-green" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#bcebb2" stop-opacity=".15"/><stop offset="48%" stop-color="#7dc963" stop-opacity=".5"/><stop offset="100%" stop-color="#c9efbd" stop-opacity=".12"/></linearGradient></defs><g class="workspace-wave-one"><path d="M-220 490 C80 340 390 350 690 455 S1270 565 1820 375" fill="none" stroke="url(#workspace-wave-green)" stroke-width="100" stroke-linecap="round" filter="url(#workspace-wave-soft)"/></g><g class="workspace-wave-two"><path d="M-200 535 C180 445 410 555 780 475 S1330 360 1830 480" fill="none" stroke="#a4dc8e" stroke-opacity=".28" stroke-width="64" stroke-linecap="round" filter="url(#workspace-wave-soft)"/></g><g class="workspace-wave-three"><ellipse cx="1170" cy="480" rx="230" ry="65" fill="#b6e7a1" fill-opacity=".12" filter="url(#workspace-wave-soft)"/></g></svg></div>
@@ -80,8 +81,7 @@
  <section class="home-video-section" id="workspace-introduction" aria-labelledby="home-video-title">
   <div class="wrap">
    <header class="home-video-heading">
-    <p class="eyebrow">BILLUS AI WORKSPACE · VIDEO</p>
-    <h2 id="home-video-title" v-text="locale==='en'?'BILLUS AI WORKSPACE video introduction':'BILLUS AI WORKSPACE 视频介绍'"></h2>
+    <h2 id="home-video-title">WORKSPACE视频介绍</h2>
     <p class="home-video-description">从需求与参考资料开始，了解空间方案、连续修改、选品报价与成果整理的工作流程。</p>
    </header>
    <div class="home-video-player"><video controls playsinline preload="metadata" width="1280" height="720" poster="/billus-ai-website-preview/assets/workspace-function-poster.webp" aria-label="毕鲁斯智能体功能介绍视频"><source src="/billus-ai-website-preview/assets/workspace-function-intro.mp4" type="video/mp4">您的浏览器暂不支持视频播放</video></div>
@@ -90,31 +90,30 @@
 
  <section ref="workspaceFeatureRoot" class="workspace-features wrap" id="workspace" aria-labelledby="workspace-title" @pointerenter="onWorkspaceFeaturePointerEnter" @pointerleave="onWorkspaceFeaturePointerLeave" @focusin="onWorkspaceFeatureFocusIn" @focusout="onWorkspaceFeatureFocusOut($event)">
   <header class="workspace-feature-heading">
-   <p class="eyebrow">BILLUS AI WORKSPACE</p>
-   <h2 id="workspace-title" class="workspace-feature-title-roll" :data-direction="workspaceTitleDirection" :aria-label="(t(selectedWorkspaceTab.title)+t(selectedWorkspaceTab.accent)).replace(/[，,]/g,' ')" :aria-live="workspaceFeaturePlaying?'off':'polite'" aria-atomic="true"><span v-for="item in workspaceShowcaseTabs" :key="item.id" class="workspace-title-row workspace-title-measure" aria-hidden="true"><span class="workspace-title-part">{{t(item.title).replace(/[，,]/g,' ')}}</span><span class="workspace-title-part workspace-title-accent">{{t(item.accent).replace(/[，,]/g,' ')}}</span></span><transition name="workspace-feature-title"><span :key="selectedWorkspaceTab.id" class="workspace-title-row workspace-title-current" aria-hidden="true"><span class="workspace-title-part">{{t(selectedWorkspaceTab.title).replace(/[，,]/g,' ')}}</span><span class="workspace-title-part workspace-title-accent">{{t(selectedWorkspaceTab.accent).replace(/[，,]/g,' ')}}</span></span></transition></h2>
+   <h2 id="workspace-title" class="workspace-feature-fixed-title" :aria-label="t('WORKSPACE 让设计工作更高效')">WORKSPACE {{t('让设计工作')}}<span>{{locale==='en'?' ':''}}{{t('更高效')}}</span></h2>
+   <div class="workspace-feature-subtitles" :data-direction="workspaceTitleDirection" :aria-live="workspaceFeaturePlaying?'off':'polite'" aria-atomic="true">
+    <div v-for="item in workspaceShowcaseTabs" :key="item.id" class="workspace-feature-subtitle-set workspace-feature-subtitle-measure" aria-hidden="true"><p class="workspace-feature-subtitle-title">{{(t(item.title)+' '+t(item.accent)).replace(/[，,]/g,' ')}}</p></div>
+    <transition name="workspace-stage-subtitle" mode="out-in"><div :key="selectedWorkspaceTab.id" class="workspace-feature-subtitle-set workspace-feature-subtitle-current"><h3 id="workspace-stage-title" class="workspace-feature-subtitle-title">{{(t(selectedWorkspaceTab.title)+' '+t(selectedWorkspaceTab.accent)).replace(/[，,]/g,' ')}}</h3></div></transition>
+   </div>
   </header>
-  <div class="workspace-feature-tabs" role="tablist" aria-label="资料导入、知识协同与成果交付">
-   <button v-for="(item,i) in workspaceShowcaseTabs" :key="item.id" role="tab" :id="'workspace-tab-'+item.id" aria-controls="workspace-feature-panel" :aria-selected="workspaceTabIndex===i" :tabindex="workspaceTabIndex===i?0:-1" @click="selectWorkspaceTab(i)" @keydown="onWorkspaceTabKeydown($event)">{{locale==='en'?item.labelEnglish:item.label}}</button>
+  <div class="workspace-feature-tabs" role="tablist" aria-label="参考与出图、选品与深化、汇报与报价">
+   <button v-for="(item,i) in workspaceShowcaseTabs" :key="item.id" role="tab" :id="'workspace-tab-'+item.id" aria-controls="workspace-feature-panel" :aria-selected="workspaceTabIndex===i" :tabindex="workspaceTabIndex===i?0:-1" @click="selectWorkspaceTab(i)" @keydown="onWorkspaceTabKeydown($event)"><span class="workspace-stage-action">{{t(item.label)}}</span></button>
   </div>
   <div class="workspace-feature-panel" role="tabpanel" id="workspace-feature-panel" :aria-labelledby="'workspace-tab-'+selectedWorkspaceTab.id" tabindex="0">
    <div class="workspace-feature-copy">
-    <p class="feature-eyebrow">{{selectedWorkspaceTab.eyebrow}}</p>
     <ul class="workspace-feature-list">
      <li v-for="(feature,i) in selectedWorkspaceTab.features" :key="feature.title" :class="{'is-demo-active':featureDemoStep===i}"><button class="feature-step-action" type="button" @click="selectFeatureDemoStep(i)" :aria-pressed="featureDemoStep===i" :aria-expanded="featureDemoStep===i"><Icon :name="feature.icon"/><span><h4>{{feature.title}}</h4><span class="feature-step-body" :aria-hidden="featureDemoStep!==i"><span><p>{{feature.body}}</p></span></span></span></button></li>
     </ul>
    </div>
    <figure class="workspace-feature-visual">
     <workspace-feature-demo ref="featureDemoRef" :key="selectedWorkspaceTab.id" :stage="selectedWorkspaceTab.id" @step-change="featureDemoStep=$event"></workspace-feature-demo>
-    <figcaption>{{selectedWorkspaceTab.caption}}</figcaption>
    </figure>
   </div>
  </section>
 
- <home-advantages></home-advantages>
-
  <section ref="sceneRoot" class="space-showcase scene-carousel scene-split" id="space-showcase" role="region" aria-roledescription="轮播图" aria-labelledby="industries-title" :data-playing="scenePlaying" @focusin="onSceneFocusIn($event)" @focusout="onSceneFocusOut($event)" @touchstart.passive="onSceneTouchStart($event)" @touchend.passive="onSceneTouchEnd($event)">
   <div class="scene-ambient" aria-hidden="true"><img v-for="(scene,index) in scenes" :key="scene.image" class="scene-ambient-image" :class="{'is-active':activeScene===index}" :src="scene.image" alt="" loading="lazy" decoding="async"><div class="scene-ambient-wash"></div></div>
-  <header class="industry-section-heading wrap"><p class="industry-section-kicker">{{locale==='en'?'BILLUS AI · INDUSTRIES':'SPATIAL INTELLIGENCE FOR DIVERSE INDUSTRIES'}}</p><h2 id="industries-title">{{t('以空间智能，服务多元行业').replace(/[，,]/g,' ')}}</h2></header>
+  <header class="industry-section-heading wrap"><h2 id="industries-title">{{t('以空间智能 拓展产业可能')}}</h2></header>
   <div class="space-inner scene-inner wrap">
    <div class="scene-content">
     <div class="space-heading scene-heading"><p class="scene-kicker">{{selectedScene.tag}}</p><h3 id="space-title" class="industry-name">{{selectedScene.name}}</h3><p class="scene-description">{{selectedScene.description}}</p></div>
@@ -129,25 +128,31 @@
   </div>
  </section>
 
- <section class="home-api-section" id="products" aria-labelledby="products-title"><div class="wrap" id="api">
+ <home-advantages></home-advantages>
+
+ <section class="home-api-section home-api-introduction" id="products" aria-labelledby="home-api-product-title">
+ <div class="wrap" id="api">
+  <div class="home-api-overview">
   <header class="home-api-heading">
-   <p class="home-api-eyebrow">BILLUS AI MODEL SQUARE</p>
-   <h2 id="products-title">Billus 毕鲁斯 AI <span>模型广场</span></h2>
-   <p class="home-api-lead">Claude Code、Codex 相关代码模型 API 服务（转让使用）</p>
-   <p class="home-api-intro">诚邀有代码大模型需求的开发者与企业，沟通接入方式，洽谈长期合作。</p>
+   <home-api-title></home-api-title>
+   <p class="home-api-intro">WORKSPACE 服务空间项目，API 开放平台面向开发者与设计师提供模型接入，支持 Claude Code、Codex 等工具相关服务（转让使用）。</p>
    <div class="home-api-actions"><button class="button button-green" @click="visitApi">访问模型广场 <Icon name="arrow"/></button><button class="button button-outline" @click="openModal('qr-support')">咨询长期合作 <Icon name="chat"/></button></div>
   </header>
-  <div class="home-api-features" role="group" aria-label="API 服务优势">
+  <home-api-model-flow></home-api-model-flow>
+  </div>
+  <div class="home-api-benefits" id="api-services">
+   <header class="home-api-benefits-heading"><h3 id="home-api-benefits-title">接入更稳 创作更从容</h3></header>
+   <div class="home-api-features" role="group" aria-label="API 服务优势">
    <article class="home-api-feature" v-for="item in homeApiFeatures" :key="item.id" :class="'feature-'+item.id">
-    <h3>{{item.title}}</h3><p>{{item.body}}</p>
+    <h4 v-if="item.id==='pricing'" :aria-label="item.title"><api-price-amount reference></api-price-amount></h4><h4 v-else>{{item.title}}</h4><p>{{item.body}}</p>
     <div class="home-api-art" aria-hidden="true">
-     <div v-if="item.id==='stability'" class="home-api-support-art"><div><Icon name="code"/><span>Claude Code</span><Icon name="check"/></div><div><Icon name="code"/><span>Codex</span><Icon name="check"/></div><small>接入与使用支持</small></div>
-     <div v-else-if="item.id==='pricing'" class="home-api-price-art"><span>官方价格</span><strong>{{homeApiPricing.label}}</strong><div><i></i><i></i><i></i></div></div>
+     <div v-if="item.id==='stability'" class="home-api-support-art"><div><Icon name="code"/><span>Claude Code</span><Icon name="check"/></div><div><Icon name="code"/><span>Codex</span><Icon name="check"/></div><small>稳定接入与持续支持</small></div>
+     <div v-else-if="item.id==='pricing'" class="home-api-price-art"><span>官方价格</span><strong><api-price-amount></api-price-amount></strong><div><i></i><i></i><i></i></div></div>
      <div v-else class="home-api-invoice-art"><div class="home-api-invoice-paper"><Icon name="file"/><span>专用发票</span><i></i><i></i><i></i></div><span class="home-api-invoice-check"><Icon name="check"/></span></div>
     </div>
    </article>
+   </div>
   </div>
-  <p class="home-api-note">接入方式、服务支持范围、计价基准与开票条件，以双方确认的服务说明为准。</p>
  </div>
  </section>
 
@@ -179,9 +184,11 @@
 <div class="product-subnav"><div class="wrap product-subnav-inner"><strong>{{page==='workspace'?'毕鲁斯智能体':'API 模型广场'}}</strong><nav aria-label="产品页导航"><a v-for="item in productAnchors" :key="item.id" :href="'#'+item.id">{{item.name}}</a></nav><button class="text-link" @click="openModal(page==='workspace'?'demo':'api-contact')">咨询接入 <Icon name="arrow"/></button></div></div>
  <template v-if="page==='workspace'">
  <section class="workspace-product-hero" id="workspace-overview" aria-labelledby="workspace-overview-title">
- <div class="workspace-product-heading wrap"><p class="workspace-product-eyebrow">BILLUS AI WORKSPACE</p><workspace-hero-title></workspace-hero-title><p class="workspace-product-intro">把需求、参考资料、方案修改与成果文件放进同一个项目工作区。<br>说出目标，连接企业知识，推进你的空间项目。</p><div class="workspace-product-actions"><button type="button" class="button workspace-product-download" @click="requestDownload"><Icon name="download"/><span v-text="locale==='en'?'Download WORKSPACE':'下载 WORKSPACE'"></span></button><a class="button workspace-enterprise-link" href="/products/workspace/enterprise" @click="navigate('/products/workspace/enterprise',$event)">了解企业使用功能 <Icon name="arrow"/></a></div><a class="workspace-product-guide" href="/support/manual/agent/install" @click="navigate('/support/manual/agent/install',$event)">查看使用指南 <Icon name="arrow"/></a></div>
+ <div class="workspace-product-heading wrap"><p class="workspace-product-eyebrow">BILLUS AI WORKSPACE</p><workspace-hero-title></workspace-hero-title><p class="workspace-product-intro">把需求、参考资料、方案修改与成果文件放进同一个项目工作区。<br>说出目标，连接企业知识，推进你的空间项目。</p><div class="workspace-product-actions"><button type="button" class="button workspace-product-download" @click="requestDownload"><Icon name="download"/><span v-text="locale==='en'?'Download WORKSPACE':'下载 WORKSPACE'"></span></button></div><a class="workspace-product-guide" href="/support/manual/agent/install" @click="navigate('/support/manual/agent/install',$event)">查看使用指南 <Icon name="arrow"/></a></div>
  <div class="workspace-product-demo wrap" id="workspace-capabilities"><workspace-entrance></workspace-entrance><p class="workspace-product-demo-caption">启动与工作台交互示意</p></div>
  </section>
+
+  <workspace-task-showcase></workspace-task-showcase>
 
   <section class="workspace-data-section workspace-core-section" id="workspace-data" aria-labelledby="workspace-data-title"><div class="wrap">
    <header class="workspace-core-heading"><h2 id="workspace-data-title">六大核心能力</h2><p>连接企业资料、空间创作与成果整理，让项目工作持续推进。</p></header>
@@ -206,6 +213,7 @@
 <enterprise-workspace-page v-else-if="page==='enterprise'" @navigate="navigate" @download="requestDownload" @contact="openModal('qr-support')"></enterprise-workspace-page>
 <OpenModelsPage v-else-if="page==='openModels'||page==='modelDownloads'" :view="page==='openModels'?'overview':'downloads'" @navigate="navigate" @model-link="openModelLink"/>
 <SupportPage v-else-if="['manual','usage','policy','updates'].includes(page)" :doc-key="supportDocKey" @navigate="navigate" @download="requestDownload" @patch="requestPatch" @contact="openModal('qr-support')"/>
+<company-page v-else-if="page==='about'" @navigate="navigate"></company-page>
 <TeamPage v-else-if="page==='team'" @navigate="navigate"/>
 <NewsPage v-else-if="page==='news'" :slug="newsSlug" @navigate="navigate"/>
 <ContentPage v-else :page-key="page" @navigate="navigate" @download="requestDownload" @visit-api="visitApi" @contact="openModal('qr-support')"/>

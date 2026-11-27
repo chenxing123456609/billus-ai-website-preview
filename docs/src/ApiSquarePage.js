@@ -4,6 +4,7 @@ import {apiFaq} from './products.js';
 import {t} from './i18n.js';
 import {useApiHeroEntrance} from './api-hero-entrance.js';
 import SharedBalance from './SharedBalance.js';
+import ApiPriceAmount from './ApiPriceAmount.js';
 
 const paths={
  code:'m8 7-5 5 5 5m8-10 5 5-5 5m-3-13-2 16',
@@ -17,7 +18,7 @@ const paths={
 const ApiIcon={props:{name:String},setup(){return{paths}},template:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.65" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path :d="paths[name]||paths.arrow"/></svg>'};
 
 export default{
- components:{ApiIcon,SharedBalance},emits:['navigate','visit-api','contact'],
+ components:{ApiIcon,SharedBalance,ApiPriceAmount},emits:['navigate','visit-api','contact'],
  setup(_,{emit}){
   const entrance=useApiHeroEntrance();
   return{heroRoot:entrance.root,introPhase:entrance.phase,finishHeroEntrance:entrance.finish,t,apiPersonalSteps,apiFaq,homeApiFeatures,homeApiPricing,homeApiModels,
@@ -40,10 +41,10 @@ export default{
    <h2 id="api2-benefits-title" class="sr-only">{{t('我们的三个优势')}}</h2>
    <div class="home-api-features" role="group" :aria-label="t('API 服务优势')">
     <article class="home-api-feature" v-for="item in homeApiFeatures" :key="item.id" :class="'feature-'+item.id">
-     <h3>{{t(item.title)}}</h3><p>{{t(item.body)}}</p>
+     <h3 v-if="item.id==='pricing'" :aria-label="t(item.title)"><api-price-amount reference></api-price-amount></h3><h3 v-else>{{t(item.title)}}</h3><p>{{t(item.body)}}</p>
      <div class="home-api-art" aria-hidden="true">
-      <div v-if="item.id==='stability'" class="home-api-support-art"><div><ApiIcon name="code"/><span>Claude Code</span><ApiIcon name="check"/></div><div><ApiIcon name="code"/><span>Codex</span><ApiIcon name="check"/></div><small>{{t('接入与使用支持')}}</small></div>
-      <div v-else-if="item.id==='pricing'" class="home-api-price-art"><span>{{t('官方价格')}}</span><strong>{{t(homeApiPricing.label)}}</strong><div><i></i><i></i><i></i></div></div>
+      <div v-if="item.id==='stability'" class="home-api-support-art"><div><ApiIcon name="code"/><span>Claude Code</span><ApiIcon name="check"/></div><div><ApiIcon name="code"/><span>Codex</span><ApiIcon name="check"/></div><small>{{t('稳定接入与持续支持')}}</small></div>
+      <div v-else-if="item.id==='pricing'" class="home-api-price-art"><span>{{t('官方价格')}}</span><strong><api-price-amount></api-price-amount></strong><div><i></i><i></i><i></i></div></div>
       <div v-else class="home-api-invoice-art"><div class="home-api-invoice-paper"><ApiIcon name="file"/><span>{{t('专用发票')}}</span><i></i><i></i><i></i></div><span class="home-api-invoice-check"><ApiIcon name="check"/></span></div>
      </div>
     </article>

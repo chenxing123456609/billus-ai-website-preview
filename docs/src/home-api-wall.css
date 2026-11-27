@@ -1,0 +1,87 @@
+/* Give the API introduction and illustrated services room to breathe. */
+.site .home-api-section{display:flex;flex-direction:column;justify-content:center;gap:0;padding-block:64px;background:#fff;color:var(--text)}
+.home-api-overview{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);align-items:center;gap:64px;min-height:400px}
+.site .home-api-introduction .home-api-heading{min-width:0;width:100%;max-width:none;padding:0;text-align:left;container-type:inline-size}
+.site .home-api-section .home-api-eyebrow{color:var(--brand);font-size:12px;font-weight:500;letter-spacing:.14em;line-height:1.6}
+.site .home-api-section .home-api-heading h2{margin:14px 0 0;font-size:40px;line-height:1.3;font-weight:700;letter-spacing:-.045em;text-wrap:balance}
+.site .home-api-section .home-api-heading h2>span{color:var(--brand)}
+.site .home-api-section .home-api-heading .home-api-fixed-title{font-size:clamp(30px,9.1cqw,48px);line-height:1.3;white-space:nowrap;text-wrap:initial}
+.site .home-api-section .home-api-heading .home-api-fixed-title>span{color:var(--text)}
+.home-api-fixed-title em{color:var(--brand);font-style:normal}
+html[lang=en] .home-api-fixed-title>span{font-size:clamp(18px,7.4cqw,40px);letter-spacing:-.045em}
+.api-price-amount{white-space:nowrap}
+.api-price-amount .api-price-from{font-size:.6em;font-weight:500;letter-spacing:0}
+.api-price-amount .api-price-from:last-child{margin-left:.12em}
+.site .home-api-section .home-api-lead{margin-top:20px;font-size:18px;line-height:1.65;color:var(--text)}
+.site .home-api-section .home-api-intro{max-width:560px;margin:24px 0 0;text-align:left;font-size:16px;line-height:1.85;color:var(--muted);text-wrap:pretty}
+.site .home-api-section .home-api-actions{display:flex;justify-content:flex-start;flex-wrap:wrap;gap:14px;margin-top:30px}
+.site .home-api-section .home-api-actions .button{min-height:48px;padding-inline:24px;font-size:14px;white-space:nowrap}
+.site .home-api-section .home-api-actions .button-green{background:var(--brand);border-color:var(--brand);color:#fff}
+
+.home-api-model-flow{position:relative;display:flex;align-items:center;min-width:0;width:100%;height:350px}
+.home-api-model-viewport{width:100%;min-width:0;overflow:hidden;mask-image:linear-gradient(to right,transparent,#000 18%,#000 95%,transparent);-webkit-mask-image:linear-gradient(to right,transparent,#000 18%,#000 95%,transparent)}
+.home-api-model-row+.home-api-model-row{margin-top:20px}
+.home-api-model-track{display:flex;width:max-content;animation:home-api-model-drift var(--model-flow-duration) linear var(--model-flow-delay) infinite;animation-play-state:paused}
+.home-api-model-flow[data-playing=true] .home-api-model-track{animation-play-state:running}
+.home-api-model-group{display:flex;flex:none;gap:16px;padding-right:16px}
+.home-api-model-card{display:flex;flex:none;align-items:center;justify-content:center;flex-direction:column;gap:7px;width:182px;min-height:132px;padding:18px 14px;border:1px solid #e1e7dd;border-radius:13px;background:#f7f8f5;text-align:center}
+.home-api-model-row:nth-child(2) .home-api-model-card{background:#f0f4ed}
+.home-api-model-card>img{display:block;width:38px;height:38px;object-fit:contain}
+.home-api-model-card>span{color:#8a9484;font-size:10px;font-weight:500;letter-spacing:.04em}
+.home-api-model-card>strong{max-width:100%;color:#35422e;font-size:13px;font-weight:600;line-height:1.5;overflow-wrap:anywhere}
+.home-api-model-toggle{position:absolute;right:0;bottom:0;display:grid;place-items:center;width:44px;height:44px;border:0;border-radius:50%;background:transparent;color:#839079;transition:background .18s ease-out,color .18s ease-out}
+.home-api-model-toggle:hover{background:#f0f4ed;color:#387c2a}
+.home-api-model-toggle svg{width:16px;height:16px;fill:none;stroke:currentColor;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
+.home-api-model-flow[data-reduced=true] .home-api-model-track{animation:none}
+@keyframes home-api-model-drift{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+
+.home-api-benefits{margin-top:32px;scroll-margin-top:100px}
+.home-api-benefits-heading{text-align:center}
+.site .home-api-benefits-heading h3{margin:0;color:#58645b;font-size:24px;line-height:32px;font-weight:500;letter-spacing:0}
+.site .home-api-section .home-api-features{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:24px;margin-top:24px}
+.site .home-api-section .home-api-feature{display:flex;flex-direction:column;position:relative;min-width:0;min-height:286px;padding:22px;border:1px solid #dce5d6;border-radius:12px;background:#fff;color:var(--text);box-shadow:none;transition:border-color .18s ease-out,box-shadow .18s ease-out}
+.site .home-api-section .home-api-feature:before{content:none}
+.site .home-api-section .home-api-feature:hover,.site .home-api-section .home-api-feature:focus-within{border-color:#aac99d;box-shadow:0 8px 24px #18340e08}
+.site .home-api-section .home-api-feature h4{margin:0;font-size:20px;line-height:1.5;font-weight:650;letter-spacing:-.025em}
+.site .home-api-section .home-api-feature>p{max-width:none;margin-top:10px;color:#717b6d;font-size:14px;line-height:1.8}
+.home-api-section :is(a,button):focus-visible{outline:2px solid var(--brand);outline-offset:4px}
+
+@media(min-width:901px) and (max-height:850px){
+ .site .home-api-section{padding-block:48px}
+}
+@media(max-width:1100px){
+ .home-api-overview{gap:40px;min-height:360px}
+ .site .home-api-section .home-api-heading h2{font-size:36px}
+ .site .home-api-section .home-api-features{gap:18px}
+ .site .home-api-section .home-api-feature{padding-inline:22px}
+ .site .home-api-section .home-api-feature h4{font-size:20px}
+}
+@media(max-width:900px){
+ .home-api-overview{grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:32px;min-height:320px}
+ .site .home-api-section .home-api-heading h2{font-size:32px}
+ .site .home-api-section .home-api-lead{font-size:16px;margin-top:16px}
+ .site .home-api-section .home-api-intro{font-size:14px}
+ .home-api-model-flow{height:320px}
+ .home-api-model-card{width:162px;min-height:120px;padding:16px 12px}
+ .site .home-api-section .home-api-features{gap:14px}
+ .site .home-api-section .home-api-feature{padding:20px 18px;min-height:310px}
+}
+@media(max-width:700px){
+ .site .home-api-section{padding-block:40px}
+ .home-api-overview{grid-template-columns:minmax(0,1fr);gap:32px;min-height:0}
+ .home-api-heading{grid-row:1}
+ .site .home-api-section .home-api-heading h2{font-size:30px}
+ .site .home-api-section .home-api-lead{font-size:16px}
+ .site .home-api-section .home-api-actions{margin-top:22px;gap:10px}
+ .site .home-api-section .home-api-heading .home-api-fixed-title{font-size:clamp(28px,9.1cqw,38px)}
+ .site .home-api-section .home-api-intro{margin-top:20px}
+ .site .home-api-section .home-api-actions .button{min-height:44px;padding-inline:17px;font-size:12px}
+ .home-api-model-flow{height:300px}
+ .home-api-model-card{width:160px}
+ .home-api-benefits{margin-top:32px}
+ .site .home-api-benefits-heading h3{font-size:20px;line-height:28px}
+ .site .home-api-section .home-api-features{grid-template-columns:minmax(0,1fr);gap:14px;margin-top:22px}
+ .site .home-api-section .home-api-feature{min-height:286px;padding:22px}
+ .site .home-api-section .home-api-feature h4{font-size:20px;margin:0}
+}
+@media(prefers-reduced-motion:reduce){.site .home-api-section .home-api-feature{transition:none!important}}

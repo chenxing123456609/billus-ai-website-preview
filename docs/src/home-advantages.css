@@ -1,7 +1,7 @@
 /* An ordered row: portrait previews become a landscape reading card in the center. */
 .site .home-advantages{display:flex;align-items:center;justify-content:center;padding-block:32px;background:#fff;overflow:hidden;isolation:isolate}
 .site .home-page>.home-advantages{min-height:calc(100svh - var(--home-header-height,82px))}
-.site .home-page>.home-advantages + .space-showcase.scene-carousel.scene-split{overflow:hidden}
+.site .home-page>.space-showcase.scene-carousel.scene-split{overflow:hidden}
 .site .advantages-layout{container-type:inline-size;display:flex;flex-direction:column;align-items:center;width:min(1640px,calc(100% - 80px));margin-inline:auto;min-width:0}
 .site .advantages-heading{width:100%;max-width:1100px;margin:0 auto 28px;text-align:center}
 .site .advantages-eyebrow{margin:0 0 10px;color:#397535;font-size:11px;line-height:18px;letter-spacing:.14em}
@@ -10,7 +10,7 @@
 .site .advantages-intro{margin:12px auto 0;color:#6a7669;font-size:15px;line-height:26px}
 .site .advantages-stage{
  --card-gap:clamp(10px,1.4cqw,24px);
- --center-width:clamp(360px,min(38cqw,calc((100svh - var(--home-header-height,82px) - 300px) * 4 / 3)),520px);
+ --center-width:clamp(400px,min(38cqw,calc((100svh - var(--home-header-height,82px) - 300px) * 4 / 3)),520px);
  --side-width:min(220px,calc((100cqw - var(--center-width) - var(--card-gap) * 4) / 4));
  --edge-fade:clamp(12px,1.2cqw,22px);
  position:relative;width:calc(var(--center-width) + var(--side-width) * 3 + var(--card-gap) * 4);max-width:100%;height:calc(var(--center-width) * 3 / 4 + 24px);min-width:0;flex:none;overflow:hidden;touch-action:pan-y;
@@ -70,6 +70,7 @@
  .site .advantages-nav{margin-top:18px}
 }
 @media(max-width:380px){.site .advantages-heading h2{font-size:28px}.site .advantage-cover h3{font-size:20px}.site .advantages-mobile-description{font-size:13px;line-height:23px}}
+@media(max-width:380px){html[lang=en] .site .advantage-cover h3{font-size:18px}}
 @media(prefers-reduced-motion:reduce){.site .advantage-cover,.site .advantage-cover-top,.site .advantage-cover-copy,.site .advantages-nav button,.site .advantage-nav-mark{transition:none!important}}
 
 .site .advantage-image-action{position:absolute;inset:0;z-index:5;width:100%;height:100%;padding:0;border:0;border-radius:inherit;background:transparent;cursor:pointer;touch-action:pan-y}

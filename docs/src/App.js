@@ -1,12 +1,17 @@
 import InfiniteCanvasDemo from './InfiniteCanvasDemo.js';
 import WorkspaceHeroTitle from './WorkspaceHeroTitle.js';
 import WorkspaceEntrance from './WorkspaceEntrance.js';
+import WorkspaceTaskShowcase from './WorkspaceTaskShowcase.js';
 import SharedBalance from './SharedBalance.js';
 import EnterpriseWorkspacePage from './EnterpriseWorkspacePage.js';
 import HomeAdvantages from './HomeAdvantages.js';
+import HomeApiTitle from './HomeApiTitle.js';
+import HomeApiModelFlow from './HomeApiModelFlow.js';
+import ApiPriceAmount from './ApiPriceAmount.js';
 import {ref,computed,nextTick,watch,onBeforeUnmount,onMounted} from '/billus-ai-website-preview/vendor/vue.esm-browser.prod.js';
 import {workspaceInstallSteps,workspaceFaq,apiAdvantages,apiFaq,apiGuideTabs,apiSetupSteps,apiUsageNotes,apiPolicyOverview} from './products.js';
 import ContentPage from './ContentPage.js';
+import CompanyPage from './CompanyPage.js';
 import SupportPage from './SupportPage.js';
 import TeamPage from './TeamPage.js';
 import NewsPage from './NewsPage.js';
@@ -55,7 +60,7 @@ const paths={
 };
 const Icon={props:{name:String},setup(){return{paths}},template:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.65" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path :d="paths[name] || paths.arrow"/></svg>'};
 export default{
- components:{EnterpriseWorkspacePage,InfiniteCanvasDemo,WorkspaceHeroTitle,WorkspaceEntrance,SharedBalance,HomeAdvantages,Icon,ContentPage,SupportPage,TeamPage,NewsPage,OpenModelsPage,ApiSquarePage,WorkspaceImageCompare,WorkspaceFeatureDemo},
+ components:{WorkspaceTaskShowcase,EnterpriseWorkspacePage,InfiniteCanvasDemo,WorkspaceHeroTitle,WorkspaceEntrance,SharedBalance,HomeAdvantages,HomeApiTitle,HomeApiModelFlow,ApiPriceAmount,Icon,ContentPage,CompanyPage,SupportPage,TeamPage,NewsPage,OpenModelsPage,ApiSquarePage,WorkspaceImageCompare,WorkspaceFeatureDemo},
  setup(){
   const {root:closingBrandRoot,phase:closingBrandPhase,typed:closingBrandTyped,finish:finishClosingBrandEntrance}=useHomeBrandEntrance();
   const menuOpen=ref(false),activeScene=ref(0),compare=ref(42),activeModal=ref(''),dialog=ref(null),requestSent=ref(false),contactName=ref(''),contactWay=ref(''),selectedModel=ref(null);
@@ -135,7 +140,7 @@ export default{
   const pageTitle=computed(()=>page.value==='enterprise'?'WORKSPACE 企业使用功能':['manual','usage','policy','updates'].includes(page.value)?supportContent[supportDocKey.value].title:page.value==='team'?companyContent.team.title:page.value==='news'?(companyContent.news.items.find(item=>item.slug===newsSlug.value)?.title||companyContent.news.title):page.value==='openModels'?'开源模型':page.value==='modelDownloads'?'往期模型':siteContent[page.value]?.title||(page.value==='workspace'?'毕鲁斯智能体':page.value==='api'?'API 模型广场':'把未来，做成生活。'));
   const copiedFooter=ref(''),footerStatus=ref(''),selectedProduct=ref('毕鲁斯智能体');
   const guideTab=ref('install');
-  const productAnchors=computed(()=>page.value==='workspace'?[{id:'workspace-overview',name:'产品介绍'},{id:'workspace-capabilities',name:'核心能力'},{id:'workspace-faq',name:'使用须知'},{id:'workspace-install',name:'下载与安装'}]:[{id:'api-overview',name:'产品介绍'},{id:'api-benefits',name:'服务优势'},{id:'api-guide',name:'使用帮助'},{id:'api-faq',name:'常见问题'}]);
+  const productAnchors=computed(()=>page.value==='workspace'?[{id:'workspace-overview',name:'产品介绍'},{id:'workspace-task',name:locale.value==='en'?'Project workflow':'完整任务'},{id:'workspace-faq',name:'使用须知'},{id:'workspace-install',name:'下载与安装'}]:[{id:'api-overview',name:'产品介绍'},{id:'api-benefits',name:'服务优势'},{id:'api-guide',name:'使用帮助'},{id:'api-faq',name:'常见问题'}]);
   function stepGuide(delta){const tabs=['install','notes','policy'];guideTab.value=tabs[(tabs.indexOf(guideTab.value)+delta+tabs.length)%tabs.length];nextTick(()=>document.getElementById('guide-tab-'+guideTab.value)?.focus())}
   const apiFlow=[
    {title:'说明需求',body:'沟通场景、用量与希望使用的服务。'},
@@ -170,7 +175,7 @@ export default{
   watch(currentPath,()=>nextTick(()=>requestAnimationFrame(()=>{motion.refresh();headerScroll.refresh()})));
   watch([pageTitle,locale],([title])=>{document.title=t(title)+' · Billus AI';document.querySelector('meta[name=description]')?.setAttribute('content',t('Billus AI 美好生活产业的智能缔造者，智能体驱动的供应链采购平台。'))},{immediate:true});
   function hoverProducts(event,open){
-   if(!matchMedia('(hover:hover)').matches)return;
+   if(!matchMedia('(hover:hover) and (min-width:801px)').matches)return;
    if(!open&&event.currentTarget.contains(document.activeElement))return;
    event.currentTarget.open=open;
   }

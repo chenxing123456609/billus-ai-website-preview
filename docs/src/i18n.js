@@ -1,7 +1,10 @@
 import {ref,watch} from '/billus-ai-website-preview/vendor/vue.esm-browser.prod.js';
 import {english} from './locales/en.js';
+import {aboutTranslations} from './about-translations.js';
 import {formatDisplayText} from './display-text.js';
 import {supportTutorialEnglish} from './support-tutorial-content.js';
+
+Object.assign(english, aboutTranslations);
 
 let savedLocale='zh';
 try{savedLocale=localStorage.getItem('billus-locale')==='en'?'en':'zh'}catch{}

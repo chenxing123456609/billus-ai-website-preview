@@ -13,7 +13,7 @@ export const english = {
   ...featureDemoEnglish,
   ...workspaceShowcaseEnglish,
   ...homeAdvantagesEnglish,
-  "以空间智能，服务多元行业": "Spatial intelligence for diverse industries",
+  "以空间智能 拓展产业可能": "Spatial intelligence New possibilities for industry",
   "了解模型能力": "Explore model capabilities",
   "从需求与参考资料开始，了解空间方案、连续修改、选品报价与成果整理的工作流程。": "See how a project moves from requirements and references to spatial concepts, revisions, selections, estimates and deliverables.",
   "使用指南": "Guide",

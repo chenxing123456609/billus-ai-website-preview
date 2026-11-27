@@ -4,6 +4,7 @@
 @import url('./workspace-enterprise.css');
 @import url('./enterprise-workspace-demo.css');
 @import url('./workspace-feature-demo.css');
+@import url('./workspace-feature-layout.css');
 :root {
   --bl-page: #fff;
   --bl-text: #171e18;
@@ -196,6 +197,7 @@
   letter-spacing: 0;
 }
 .site .hero.hero-cinematic h1 span { font-size: inherit; line-height: inherit; }
+.site .home-api-heading > h2 { margin-top: 0; }
 .site .workspace-split-hero h1 span { font-size: 40px; line-height: 52px; margin-top: 12px; }
 .site :is(.section-heading,.workspace-feature-heading,.space-heading,.values-lead,
           .home-api-heading,.home-news-heading,.home-clients-heading,.closing-inner,

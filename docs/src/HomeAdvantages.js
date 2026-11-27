@@ -77,8 +77,7 @@ export default{
  template:`<section ref="root" class="home-advantages" id="solutions" aria-labelledby="advantages-title" :data-phase="phase" :data-intro="intro" :data-playing="playing" @focusin="focusIn" @focusout="focusOut">
   <div class="advantages-layout">
    <header class="advantages-heading">
-    <p class="advantages-eyebrow">BILLUS AI · WHY BILLUS</p>
-    <h2 id="advantages-title">{{t('深耕空间产业')}} <span>{{t('连接方案与交付')}}</span></h2>
+    <h2 id="advantages-title">{{t('以行业积淀')}} <span>{{t('驱动持续创新')}}</span></h2>
     <p class="advantages-intro">{{t('以行业理解连接技术、数据与交付')}}</p>
    </header>
    <div class="advantages-stage" :aria-label="t('核心优势图片')" @touchstart.passive="touchBegin" @touchend.passive="touchEnd">

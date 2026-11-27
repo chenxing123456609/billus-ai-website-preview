@@ -1,0 +1,132 @@
+/* Mobile-only repairs. Keep desktop composition and all approved copy intact. */
+@media (max-width: 800px) {
+  /* Keep every step reachable, with distinct finger-sized targets. */
+  .site .workspace-split-hero .workspace-step-rail {
+    width: 100%;
+    max-width: 100%;
+    overflow-x: auto;
+    overflow-y: hidden;
+    overscroll-behavior-x: contain;
+    scrollbar-width: none;
+    scroll-padding-inline: 2px;
+  }
+  .site .workspace-split-hero .workspace-step-rail::-webkit-scrollbar { display: none; }
+  .site .workspace-split-hero .workspace-step-rail button {
+    flex: 0 0 44px;
+    width: 44px;
+    height: 44px;
+    min-height: 44px;
+    touch-action: manipulation;
+  }
+  .site .workspace-split-hero .workspace-step-rail-label { display: none; }
+  .site .home-clients-next { width: 44px; height: 44px; min-width: 44px; }
+  .site #workspace .feature-sequence { margin-bottom: 48px; }
+  .site #workspace .sequence-pause {
+    right: 4px;
+    bottom: -46px;
+    width: 44px;
+    height: 44px;
+    border: 1px solid #dfe7d9;
+    border-radius: 50%;
+    background: #fff;
+    font-size: 16px;
+    line-height: 1;
+    transform: none;
+    touch-action: manipulation;
+  }
+  .site #workspace-install .workspace-install-step-link {
+    flex-basis: 44px;
+    width: 44px;
+    height: 44px;
+  }
+  .site #workspace-install .workspace-install-step-link::after { content: none; }
+
+  /* Do not truncate the only identifying text in a news link to one line. */
+  .site .home-news-story h3 {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 3;
+    white-space: normal;
+    text-wrap: pretty;
+    font-size: 16px;
+    line-height: 24px;
+  }
+
+  .site .entrance-playback {
+    width: 44px;
+    height: 44px;
+    font-size: 16px;
+    touch-action: manipulation;
+  }
+  .site .ewd-demo-footer {
+    min-height: 48px;
+    padding: 2px 8px;
+    font-size: 10px;
+    line-height: 14px;
+  }
+  .site .ewd-demo-footer > span { flex: 1; min-width: 0; }
+  .site .ewd-demo-footer button {
+    min-width: 44px;
+    min-height: 44px;
+    padding: 8px;
+    font-size: 12px;
+    line-height: 20px;
+    touch-action: manipulation;
+  }
+  .site .ewd-welcome, .site .ewd-app { bottom: 48px; }
+}
+
+@media (max-width: 600px) {
+  /* The phase/action label pair fits three equal columns, not a 2+1 row. */
+  .site #workspace .workspace-feature-tabs {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 4px;
+    flex-wrap: nowrap;
+  }
+  .site #workspace .workspace-feature-tabs button {
+    grid-column: auto;
+    width: auto;
+    min-width: 0;
+    min-height: 56px;
+    padding: 6px 4px;
+    flex-direction: column;
+    gap: 0;
+  }
+  .site #workspace .workspace-stage-label {
+    max-width: 100%;
+    font-size: 11px;
+    line-height: 17px;
+  }
+  .site #workspace .workspace-stage-action {
+    max-width: 100%;
+    font-size: 13px;
+    line-height: 20px;
+    white-space: normal;
+    text-wrap: balance;
+  }
+  .site #workspace .feature-step-action h4 {
+    font-size: 16px;
+    line-height: 26px;
+    text-wrap: pretty;
+  }
+  .site #workspace .feature-step-body p { font-size: 14px; line-height: 25px; }
+  .site #workspace .feature-step-action { gap: 12px; min-height: 44px; }
+
+}
+
+@media (max-width: 480px) {
+  .site #workspace-install .detail-flow { grid-template-columns: 1fr; gap: 20px; }
+  .site #workspace-install .detail-flow > li {
+    padding: 16px 0 0;
+    border-left: 0;
+    border-top: 1px solid var(--line);
+  }
+  .site #workspace-install .detail-flow > li:first-child { padding-top: 0; border-top: 0; }
+}
+
+@media (max-width: 360px) {
+  .site .workspace-product-heading #workspace-overview-title {
+    font-size: clamp(20px, 6.7vw, 24px);
+  }
+}

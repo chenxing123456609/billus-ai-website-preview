@@ -1,5 +1,7 @@
 const entranceStyle=document.createElement('link');entranceStyle.rel='stylesheet';entranceStyle.href='/billus-ai-website-preview/src/workspace-entrance.css';document.head.append(entranceStyle);
 const balanceStyle=document.createElement('link');balanceStyle.rel='stylesheet';balanceStyle.href='/billus-ai-website-preview/src/shared-balance.css';document.head.append(balanceStyle);
+const productShowcaseStyle=document.createElement('link');productShowcaseStyle.rel='stylesheet';productShowcaseStyle.href='/billus-ai-website-preview/src/workspace-product-showcases.css';document.head.append(productShowcaseStyle);
+const mobileStyle=document.createElement('link');mobileStyle.rel='stylesheet';mobileStyle.href='/billus-ai-website-preview/src/mobile-refinements.css';document.head.append(mobileStyle);
 import {createApp} from '/billus-ai-website-preview/vendor/vue.esm-browser.prod.js';
 import App from './App.js';
 import {localizeTemplate,t} from './i18n.js';

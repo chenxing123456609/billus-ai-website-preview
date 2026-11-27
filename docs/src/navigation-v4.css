@@ -120,6 +120,7 @@ html[lang=en] .reader-sidebar .manual-nav a.manual-nav-child{font-size:11px}
 .site-header .nav-dropdown[open]>summary>.nav-chevron{transform:rotate(180deg)}
 @media(prefers-reduced-motion:reduce){.site-header .nav-chevron{transition:none}}
 .primary-nav>.nav-home[aria-current=page]{color:var(--brand)}
+@media(min-width:801px){.site .primary-nav>.nav-home{margin-inline-end:16px}}
 .site-header .dropdown-panel a:hover,.site-header .dropdown-panel a[aria-current=page]{background:var(--tint);color:var(--brand)}
 .site-header .nav-download{background:#1b211c;border-color:#1b211c;color:#fff}
 .site-header .nav-download:hover{background:#2b3a2e;border-color:#2b3a2e}

@@ -1,7 +1,7 @@
 import {ref,computed,watch,onMounted,onBeforeUnmount,nextTick} from '/billus-ai-website-preview/vendor/vue.esm-browser.prod.js';
 
 // One state drives the dialogue, attachment, preview and controls.
-export function useWorkspaceDemo({page,slides,initialIndex=1}){
+export function useWorkspaceDemo({page,slides,initialIndex=1,activePage='home',interval=1800}){
  const root=ref(null),video=ref(null),index=ref(initialIndex),paused=ref(false);
  const hovered=ref(false),focused=ref(false),visible=ref(false),hidden=ref(false),reduced=ref(false);
  const interacting=computed(()=>hovered.value||focused.value);
@@ -32,7 +32,7 @@ export function useWorkspaceDemo({page,slides,initialIndex=1}){
   const currentVideo=video.value;
   if(lastVideo&&lastVideo!==currentVideo)pauseVideo(lastVideo);
   if(currentVideo&&lastVideo!==currentVideo){currentVideo.muted=true;lastVideo=currentVideo;}
-  const enabled=page.value==='home'&&visible.value&&!hidden.value&&!paused.value;
+  const enabled=page.value===activePage&&visible.value&&!hidden.value&&!paused.value;
   if(selected.value.type==='video'){
    if(!enabled||(reduced.value&&!explicitVideoPlay)){pauseVideo(currentVideo);return;}
    if(currentVideo){
@@ -40,12 +40,12 @@ export function useWorkspaceDemo({page,slides,initialIndex=1}){
    }
   }else{
    pauseVideo();
-   if(enabled&&!reduced.value&&!interacting.value)timer=setTimeout(advance,selected.value.duration||1800);
+   if(enabled&&!reduced.value&&!interacting.value)timer=setTimeout(advance,selected.value.duration||interval);
   }
  }
  function observe(){
   observer?.disconnect();observer=null;visible.value=false;
-  if(page.value!=='home'||!root.value)return;
+  if(page.value!==activePage||!root.value)return;
   if(!('IntersectionObserver' in window)){visible.value=true;return;}
   observer=new IntersectionObserver(entries=>{visible.value=entries.some(e=>e.isIntersecting&&e.intersectionRatio>=.15);},{threshold:[0,.15,.6]});
   observer.observe(root.value);
@@ -83,7 +83,7 @@ export function useWorkspaceDemo({page,slides,initialIndex=1}){
   if(element===video.value&&!element.ended&&!hidden.value&&visible.value&&selected.value.type==='video')paused.value=true;
  }
  function videoEnded(){
-  if(page.value==='home'&&!paused.value&&!reduced.value){
+  if(page.value===activePage&&!paused.value&&!reduced.value){
    hovered.value=false;focused.value=false;
    advance();
   }

@@ -48,12 +48,6 @@ export default {
         </ul>
       </section>
 
-      <section class="model-feature wrap" aria-labelledby="model-feature-title">
-        <div class="model-feature-index">01 / PUBLIC MODEL</div>
-        <div class="model-feature-body"><h2 id="model-feature-title">{{t('空间方向的公开作品')}}</h2><p>{{t('毕鲁斯已在 LiblibAI 发布“毕鲁斯建筑室内景观大模型 0.4C”。版本、下载方式与许可范围以模型发布页为准。')}}</p></div>
-        <div class="model-feature-aside"><span>0.4C</span><small>{{t('建筑 · 室内 · 景观')}}</small></div>
-      </section>
-
       <section class="model-archive-link" aria-labelledby="model-archive-title"><div class="wrap model-archive-link-inner">
         <div><p class="model-kicker">MODEL ARCHIVE</p><h2 id="model-archive-title">{{t('往期模型')}}</h2></div>
         <a href="/products/open-models/downloads" @click="navigate('/products/open-models/downloads', $event)" class="model-big-link">{{t('查看模型档案与下载入口')}} <span aria-hidden="true">↗</span></a>
